@@ -2,8 +2,8 @@
  Makefile |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
---- libdlna-0.2.3.orig/Makefile
-+++ libdlna-0.2.3/Makefile
+--- a/Makefile
++++ b/Makefile
 @@ -32,8 +32,8 @@ lib:
  
  test: $(LIBTEST)
