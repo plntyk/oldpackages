@@ -12,7 +12,7 @@ PKG_VERSION:=6.3.26
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=http://download.berlios.de/fetchmail
+PKG_SOURCE_URL:=@SF/fetchmail
 PKG_MD5SUM:=61b66faad044afa26e142bb1791aa2b3
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
@@ -25,7 +25,7 @@ define Package/fetchmail/Default
   CATEGORY:=Mail
   TITLE:=Remote mail retriever
   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
-  URL:=http://fetchmail.berlios.de/
+  URL:=http://www.fetchmail.info/
 endef
 
 define Package/fetchmail/Default/description
