@@ -18,6 +18,8 @@ PKG_SOURCE_PROTO:=git
 PKG_REV:=e8565b98cfe40fba644f587536f15f1a8665d230
 PKG_SOURCE_VERSION:=$(PKG_REV)
 
+PKG_USE_MIPS16:=0
+
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 
@@ -52,6 +54,7 @@ endef
 CONFIGURE_VARS:= \
 	 CXXFLAGS="-I$(STAGING_DIR)/usr/include $(ICONV_CFLAGS) $(TARGET_CFLAGS)" \
 	 LDFLAGS="-L$(STAGING_DIR)/usr/lib      $(ICONV_LDFLAGS)" \
+	 ac_cv_path_PROTOC=$(STAGING_DIR_HOST)/usr/bin/protoc \
 
 CONFIGURE_ARGS += \
 	--prefix=/usr \

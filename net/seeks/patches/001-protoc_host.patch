@@ -1,0 +1,77 @@
+--- a/configure.in
++++ b/configure.in
+@@ -295,6 +295,11 @@ else
+ fi
+ 
+ #==========================================================================
++# Finding protoc
++#==========================================================================
++AC_PATH_PROG(PROTOC, protoc, no)
++
++#==========================================================================
+ # Finding curl
+ #==========================================================================
+ # First, check for the curl-config tool
+--- a/src/plugins/query_capture/Makefile.am
++++ b/src/plugins/query_capture/Makefile.am
+@@ -1,5 +1,7 @@
+ #automake for query_capture plugin.
+ 
++PROTOC = @PROTOC@
++
+ querycapturepluginlibdir = $(libdir)/seeks/plugins/query_capture
+ querycaptureplugindatadir = $(datadir)/seeks/plugins/query_capture
+ 
+@@ -14,7 +16,7 @@ ACLOCAL_AMFLAGS=-I m4
+ protoc_inputs=db_query_record_msg.proto
+ protoc_outputs=db_query_record_msg.pb.cc db_query_record_msg.pb.h
+ $(protoc_outputs): $(protoc_inputs)
+-	protoc -I$(srcdir) -I$(srcdir)/../../proxy/ --cpp_out=. $<
++	$(PROTOC) -I$(srcdir) -I$(srcdir)/../../proxy/ --cpp_out=. $<
+ 
+ querycapturepluginlib_LTLIBRARIES=libquerycaptureplugin.la
+ dist_libquerycaptureplugin_la_SOURCES=query_capture.cpp db_query_record.cpp \
+@@ -34,4 +36,4 @@ nobase_dist_querycaptureplugindata_DATA=
+ EXTRA_DIST = \
+ 	$(protoc_inputs)
+ 
+-SUBDIRS = . tests
+\ No newline at end of file
++SUBDIRS = . tests
+--- a/src/plugins/uri_capture/Makefile.am
++++ b/src/plugins/uri_capture/Makefile.am
+@@ -1,5 +1,7 @@
+ #automake for uri_capture plugin.
+ 
++PROTOC = @PROTOC@
++
+ uricapturepluginlibdir = $(libdir)/seeks/plugins/uri_capture
+ uricaptureplugindatadir = $(datadir)/seeks/plugins/uri_capture
+ 
+@@ -13,7 +15,7 @@ ACLOCAL_AMFLAGS=-I m4
+ protoc_inputs = db_uri_record_msg.proto
+ protoc_outputs = db_uri_record_msg.pb.cc db_uri_record_msg.pb.h
+ $(protoc_outputs): $(protoc_inputs)
+-	protoc -I$(srcdir) -I$(srcdir)/../../proxy/ --cpp_out=. $<
++	$(PROTOC) -I$(srcdir) -I$(srcdir)/../../proxy/ --cpp_out=. $<
+ 
+ uricapturepluginlib_LTLIBRARIES=liburicaptureplugin.la
+ liburicaptureplugin_la_SOURCES=uri_capture.cpp db_uri_record.cpp uri_capture.h \
+@@ -32,4 +34,4 @@ nobase_dist_uricaptureplugindata_DATA=ur
+ EXTRA_DIST = \
+ 	$(protoc_inputs)
+ 
+-SUBDIRS = . tests
+\ No newline at end of file
++SUBDIRS = . tests
+--- a/src/proxy/Makefile.am
++++ b/src/proxy/Makefile.am
+@@ -34,7 +34,7 @@ protoc_inputs=db_record_msg.proto
+ protoc_outputs=db_record_msg.pb.h db_record_msg.pb.cc
+ 
+ $(protoc_outputs): $(protoc_inputs)
+-	protoc -I$(srcdir) --cpp_out=. $<
++	$(PROTOC) -I$(srcdir) --cpp_out=. $<
+ 
+ dist_libseeksuserdb_la_SOURCES=db_record.cpp db_obj.cpp user_db.cpp
+ nodist_libseeksuserdb_la_SOURCES=$(protoc_outputs)
