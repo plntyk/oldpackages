@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/dialog
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libncurses
+  DEPENDS:=+PACKAGE_libncursesw:libncursesw +!PACKAGE_libncursesw:libncurses
   TITLE:=Dialog
   URL:=http://invisible-island.net/dialog/
 endef
