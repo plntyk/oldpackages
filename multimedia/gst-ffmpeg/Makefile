@@ -109,7 +109,7 @@ define Package/gst-ffmpeg
   TITLE:=GStreamer ffmpeg bindings
   URL:=http://www.gstreamer.net/modules/gst-ffmpeg.html
   MAINTAINER:=Okkel Klaver <info@vanhetland.nl>
-  DEPENDS:= +libgstreamer +gst-mod-alsa +libbz2 +libgstaudio
+  DEPENDS:= +libgstreamer +gst-mod-alsa +libbz2 +libgstaudio @BROKEN
 endef
 
 define Package/gst-ffmpeg/description
