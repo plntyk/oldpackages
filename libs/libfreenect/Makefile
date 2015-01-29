@@ -29,7 +29,10 @@ define Package/libfreenect
   DEPENDS:=+libusb-1.0
 endef
 
-CMAKE_OPTIONS += -DBUILD_EXAMPLES="OFF"
+CMAKE_OPTIONS += \
+	-DBUILD_EXAMPLES="OFF" \
+	-DLIB_SUFFIX=""
+
 TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include
 
 define Package/libfreenect/description
