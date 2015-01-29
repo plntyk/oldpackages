@@ -26,7 +26,7 @@ define Package/libgupnp-dlna
   CATEGORY:=Libraries
   TITLE:=Library for dealing with DLNA-related tasks
   URL:=http://www.gupnp.org/
-  DEPENDS:=+libgupnp +gstreamer +libgstpbutils
+  DEPENDS:=+libgupnp +gstreamer +libgstpbutils @BROKEN
 endef
 
 define Package/libgupnp-dlna/description
