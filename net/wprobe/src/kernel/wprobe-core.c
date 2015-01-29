@@ -1178,7 +1178,11 @@ wprobe_init(void)
 		return err;
 
 	for (i = 0; i < ARRAY_SIZE(wprobe_ops); i++) {
+		#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,14,0)
+		err = genl_register_family_with_ops(&wprobe_fam, wprobe_ops);
+		#else
 		err = genl_register_ops(&wprobe_fam, &wprobe_ops[i]);
+		#endif
 		if (err)
 			goto error;
 	}
