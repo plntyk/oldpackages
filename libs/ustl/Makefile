@@ -38,7 +38,7 @@ define Build/Configure
 	$(CP) ./files/Common.mk $(PKG_BUILD_DIR)/
 endef
 
-TARGET_CFLAGS += $(FPIC) -std=gnu++11
+TARGET_CFLAGS += $(FPIC)
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
