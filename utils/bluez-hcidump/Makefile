@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bluez-hcidump
-PKG_VERSION:=1.42
-PKG_RELEASE:=2
+PKG_VERSION:=2.5
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://bluez.sourceforge.net/download
-PKG_MD5SUM:=5704737aaf72104eeaf77335218a1827
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=http://www.kernel.org/pub/linux/bluetooth
+PKG_MD5SUM:=ec3442b08f19a1ad9fdfbb72912c4e80
 
 PKG_INSTALL:=1
 
