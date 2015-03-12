@@ -35,7 +35,7 @@ endef
 TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include/libevent
 TARGET_LDFLAGS = -L$(STAGING_DIR)/usr/lib/libevent -L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib
 
-ifdef CONFIG_USE_EGLIBC
+ifdef CONFIG_USE_GLIBC
 TARGET_LDFLAGS += -lrt
 endif
 
