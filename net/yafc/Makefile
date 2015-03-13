@@ -16,7 +16,6 @@ PKG_SOURCE_URL:=http://www.yafc-ftp.com/upload/
 PKG_MD5SUM:=34882bb4dbeee3a99587ff253648a66e
 
 PKG_FIXUP:=autoreconf
-PKG_REMOVE_FILES:=autogen.sh aclocal.m4
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -29,20 +28,17 @@ define Package/yafc
   URL:=http://www.yafc-ftp.com/
 endef
 
-# uses GNU configure
+TARGET_CFLAGS += -std=gnu99
+
 CONFIGURE_ARGS += \
 	--with-socks=no \
 	--with-socks5=no \
-	--with-krb4=no \
 	--with-krb5=no \
-	--with-gssapi=no
+	--without-bash-completion
 
 CONFIGURE_VARS += \
-	bash_cv_func_sigsetjmp=missing
-
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR)
-endef
+	bash_cv_func_sigsetjmp=missing \
+	ac_cv_ipv6=yes
 
 define Package/yafc/install
 	$(INSTALL_DIR) $(1)/usr/sbin
