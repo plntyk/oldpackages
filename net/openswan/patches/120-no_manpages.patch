@@ -22,7 +22,7 @@
 -
 --- a/programs/pluto/Makefile
 +++ b/programs/pluto/Makefile
-@@ -200,35 +200,11 @@ doinstall: all
+@@ -191,35 +191,11 @@ doinstall: all
  	$(INSTALL) $(INSTBINFLAGS) $(BINNAMEPLUTO) $(BINNAMEWHACK) $(LIBEXECDIR)
  	#$(INSTALL) $(INSTSUIDFLAGS) $(BINNAMEWHACKINIT) $(LIBEXECDIR)
  	if $(USE_ADNS) ; then $(INSTALL) $(INSTBINFLAGS) $(BINNAMEADNS)  $(LIBEXECDIR) ; fi
@@ -56,5 +56,5 @@
 -			echo $(FMANDIR)/$$to; \
 -		done
  
- alg_info_test: alg_info_test.o ike_alg.o constants.o defs.o log.o db_ops.o crypto.o $(LIBDESLITE) $(OPENSWANLIB)
+ alg_info_test: alg_info_test.o ike_alg.o constants.o defs.o log.o db_ops.o crypto.o $(LIBDESLITE) ${LIBOPENSWAN}
  	$(CC) -o $@ $^ $(LDFLAGS) $(LIBSPLUTO)
