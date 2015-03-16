@@ -32,6 +32,7 @@ $(call Package/wprobe/Default)
   SUBMENU:=Network Support
   TITLE:=Wireless driver probe infrastructure
   MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
+  DEPENDS:=@BROKEN
   FILES:= \
   	$(PKG_BUILD_DIR)/kernel/wprobe.ko
   AUTOLOAD:=$(call AutoLoad,01,wprobe)
