@@ -25,6 +25,7 @@ define KernelPackage/gpiotoggling
   SUBMENU:=Other modules
   TITLE:=Toggle GPIOs in kernel space
   FILES:=$(PKG_BUILD_DIR)/gpiotoggling.ko
+  DEPENDS:=@BROKEN
 endef
 
 define Build/Compile
