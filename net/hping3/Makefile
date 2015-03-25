@@ -22,14 +22,14 @@ define Package/hping3
   CATEGORY:=Network
   TITLE:=TCP/IP packet assembler/analyzer
   URL:=http://www.hping.org/
-  DEPENDS:=+libpcap +libpthread
+  DEPENDS:=+libpcap +libpthread @BROKEN
 endef
 
 define Package/hping3/description
-        hping is a command-line oriented TCP/IP packet assembler/analyzer. The interface is
-        inspired to the ping(8) unix command, but hping isn't only able to send ICMP echo
-        requests. It supports TCP, UDP, ICMP and RAW-IP protocols, has a traceroute mode, the
-        ability to send files between a covered channel, and many other features.
+	hping is a command-line oriented TCP/IP packet assembler/analyzer. The interface is
+	inspired to the ping(8) unix command, but hping isn't only able to send ICMP echo
+	requests. It supports TCP, UDP, ICMP and RAW-IP protocols, has a traceroute mode, the
+	ability to send files between a covered channel, and many other features.
 endef
 
 define Build/Configure
