@@ -1,0 +1,11 @@
+--- a/Makefile
++++ b/Makefile
+@@ -135,8 +135,5 @@ ${NAME}/config.h:	config.h
+ ${OBJS}:		Makefile Config.mk config.h
+ Config.mk:		Config.mk.in
+ config.h:		config.h.in
+-Config.mk config.h:	configure
+-	@if [ -x config.status ]; then echo "Reconfiguring ..."; ./config.status; \
+-	else echo "Running configure ..."; ./configure; fi
+ 
+ -include ${OBJS:.o=.d}
