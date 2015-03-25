@@ -34,7 +34,7 @@ else
   TARGET_CFLAGS+= -D__IPV4__
 endif
 
-TARGET_CFLAGS+= -DSYSLOG
+TARGET_CFLAGS+= -DSYSLOG -Wno-error=pointer-to-int-cast
 
 MAKE_FLAGS+= \
 	OFLAGS="$(TARGET_CFLAGS)" \
