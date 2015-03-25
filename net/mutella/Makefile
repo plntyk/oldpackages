@@ -26,7 +26,7 @@ define Package/mutella
   CATEGORY:=Network
   TITLE:=Gnutella client with command line and http interface
   URL:=http://mutella.sourceforge.net/
-  DEPENDS:=+libncurses +libreadline +libpthread +libstdcpp +zlib
+  DEPENDS:=+libncurses +libreadline +libpthread +libstdcpp +zlib @BROKEN
 endef
 
 define Package/mutella/description
