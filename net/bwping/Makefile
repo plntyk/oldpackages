@@ -16,6 +16,7 @@ PKG_SOURCE_URL:=@SF/bwping
 PKG_MD5SUM:=e5d2de8cf61791ad16713bd86609368f
 
 PKG_INSTALL:=1
+PKG_FIXUP:=autoreconf
 
 include $(INCLUDE_DIR)/package.mk
 
