@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/dialog
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+PACKAGE_libncursesw:libncursesw +!PACKAGE_libncursesw:libncurses
+  DEPENDS:=+libncurses
   TITLE:=Dialog
   URL:=http://invisible-island.net/dialog/
 endef
@@ -29,7 +29,7 @@ define Package/dialog/description
  A script-interpreter which provides a set of curses widgets.
 endef
 
-CONFIGURE_ARGS:= \
+CONFIGURE_ARGS+= \
 	--with-ncurses \
 	--with-curses-dir=$(STAGING_DIR)/usr \
 	--disable-rpath-hack
