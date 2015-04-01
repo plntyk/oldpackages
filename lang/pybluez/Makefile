@@ -25,7 +25,7 @@ define Package/python-bluez
   SECTION:=lang
   CATEGORY:=Languages
   TITLE:=Python wrapper for the BlueZ Bluetooth stack
-  URL:=http://code.google.com/p/pybluez/
+  URL:=https://github.com/karulis/pybluez
   DEPENDS:=+python-mini +bluez-libs
 endef
 
