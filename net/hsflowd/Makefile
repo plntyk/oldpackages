@@ -23,7 +23,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/hsflowd
   SECTION:=net
   CATEGORY:=Base system
-  DEPENDS:=+libpthread
+  DEPENDS:=+libpthread @BROKEN
   TITLE:=Host sFlow export agent
   URL:=http://host-sflow.sourceforge.net/
 endef
