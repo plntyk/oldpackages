@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/fprobe-ulog
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libpthread
+  DEPENDS:=+libpthread @BROKEN
   TITLE:=NetFlow probe (ulog-based)
   URL:=http://fprobe.sourceforge.net
 endef
