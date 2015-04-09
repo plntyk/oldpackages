@@ -29,7 +29,7 @@ define Package/seeks
   CATEGORY:=Network
   TITLE:=An open P2P design for websearch
   URL:=http://www.seeks-project.info/site/
-  DEPENDS:=+libpthread +libevent2 +libstdcpp +libcurl +libpcre +libxml2 $(ICONV_DEPENDS) +zlib +protobuf +tokyocabinet
+  DEPENDS:=+libpthread +libevent2 +libstdcpp +libcurl +libpcre +libxml2 $(ICONV_DEPENDS) +zlib +protobuf +tokyocabinet @BROKEN
   MAINTAINER:=Obinou <obconseil@gmail.com>
 endef
 
