@@ -31,7 +31,7 @@ define Package/pmacct/Default
   CATEGORY:=Administration
   SUBMENU:=Pmacct suite
   URL:=http://www.pmacct.net/
-  DEPENDS=+libpcap
+  DEPENDS=+libpcap @BROKEN
 endef
 
 define Package/pmacct-client
