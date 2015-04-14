@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2006-2012 OpenWrt.org
+# Copyright (C) 2006-2015 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libgphoto2
-PKG_VERSION:=2.4.12
+PKG_VERSION:=2.5.7
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=@SF/gphoto
-PKG_MD5SUM:=735c50ebb15cb8be61bac400ee4afb1e
+PKG_MD5SUM:=6b20635dc9120efb3d23c3b5201894a2
 
 PKG_FIXUP:=autoreconf
 PKG_LIBTOOL_PATHS:=. libgphoto2_port
@@ -30,7 +30,7 @@ endef
 
 define Package/libgphoto2
   $(call Package/libgphoto2/Default)
-  DEPENDS:=+libexif +libjpeg +libpthread +libltdl $(ICONV_DEPENDS)
+  DEPENDS:=+libexif +libjpeg +libpthread +libltdl $(ICONV_DEPENDS) +libxml2
   TITLE:=The basic library of the gphoto2 program.
   MENU:=1
 endef
