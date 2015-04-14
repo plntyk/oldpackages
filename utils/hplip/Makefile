@@ -8,14 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hplip
-PKG_VERSION:=3.9.12
-PKG_RELEASE:=4
+PKG_VERSION:=3.15.11
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/hplip
-PKG_MD5SUM:=2b0906b4a57b437988829557ca62adfd
+PKG_MD5SUM:=a2d8134ab15a1d67d4c3b3c11f85ba1c
 
-PKG_BUILD_DEPENDS := python
+PKG_BUILD_DEPENDS:=python
 PKG_FIXUP:=autoreconf
 
 include $(INCLUDE_DIR)/package.mk
@@ -32,22 +32,28 @@ define Package/hplip/description
 	HPLIP is an HP developed solution for printing, scanning, and faxing with HP inkjet and laser based printers in Linux.
 endef
 
-CONFIGURE_ARGS += \
-	--disable-gui-build \
-	--disable-network-build \
-	--disable-fax-build \
-	--disable-pp-build \
-	--disable-doc-build \
-	--disable-foomatic-xml-install \
-	--disable-dbus-build
+CONFIGURE_VARS += \
+	ac_cv_lib_cups_cupsDoFileRequest=yes \
+	LIBS="-lz -ljpeg -lusb -lcups -lpng -ltiff"
 
-define Build/Configure
-	$(call Build/Configure/Default,\
-		$(CONFIGURE_ARGS),\
-		ac_cv_lib_cups_cupsDoFileRequest=yes \
-		LIBS="-lz -ljpeg -lusb -lcups -lpng -ltiff" \
-	)
-endef
+CONFIGURE_ARGS += \
+	--enable-cups-ppd-install \
+	--enable-cups-drv-install \
+	--enable-hpcups-install \
+	--enable-lite-build \
+	--disable-new-hpcups \
+	--disable-dbus-build \
+	--disable-doc-build \
+	--disable-fax-build \
+	--disable-foomatic-ppd-install \
+	--disable-foomatic-drv-install \
+	--disable-foomatic-rip-hplip-install \
+	--disable-gui-build \
+	--disable-hpijs-install \
+	--disable-network-build \
+	--disable-qt4 \
+	--disable-scan-build
+
 
 define Package/hplip/install
 	$(INSTALL_DIR) $(1)/usr/lib
@@ -57,8 +63,9 @@ define Package/hplip/install
 	$(INSTALL_DIR) $(1)/usr/lib/cups/backend
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/.libs/hp $(1)/usr/lib/cups/backend
 
-	$(INSTALL_DIR) $(1)/usr/lib/sane
-	$(CP) $(PKG_BUILD_DIR)/.libs/libsane-hpaio.so* $(1)/usr/lib/sane
+# Not build with lite-build
+#	$(INSTALL_DIR) $(1)/usr/lib/sane
+#	$(CP) $(PKG_BUILD_DIR)/.libs/libsane-hpaio.so* $(1)/usr/lib/sane
 
 	$(INSTALL_DIR) $(1)/etc/hp
 	$(CP) $(PKG_BUILD_DIR)/hplip.conf $(1)/etc/hp/hplip.conf
