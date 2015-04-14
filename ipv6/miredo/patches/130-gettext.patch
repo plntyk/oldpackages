@@ -1,0 +1,18 @@
+--- a/po/Makefile.in.in
++++ b/po/Makefile.in.in
+@@ -9,13 +9,13 @@
+ # General Public License and is *not* in the public domain.
+ #
+ # Origin: gettext-0.18
+-GETTEXT_MACRO_VERSION = 0.18
++GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
+ 
+ PACKAGE = @PACKAGE@
+ VERSION = @VERSION@
+ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
+ 
+-SHELL = /bin/sh
++SHELL = @SHELL@
+ @SET_MAKE@
+ 
+ srcdir = @srcdir@

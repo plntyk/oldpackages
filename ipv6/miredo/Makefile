@@ -59,7 +59,6 @@ CONFIGURE_ARGS += \
 	--enable-static \
 	--with-gnu-ld \
 	--disable-rpath \
-	--disable-chroot \
 	--enable-teredo-client \
 	--enable-miredo-user=root \
 	--without-Judy
