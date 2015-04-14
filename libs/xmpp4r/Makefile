@@ -21,7 +21,7 @@ define Package/xmpp4r
 	TITLE:=XMPP/Jabber library for Ruby
 	SECTION:=libs
 	CATEGORY:=Libraries
-	DEPENDS:=+ruby
+	DEPENDS:=+ruby @BROKEN
 	MAINTAINER:=Giovanni Di Stasi <giovanni.distasi@unina.it>
 	URL:=http://home.gna.org/xmpp4r/
 endef
