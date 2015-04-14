@@ -27,5 +27,7 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 include ../php5/pecl.mk
 
-#$(eval $(call PECLPackage,$(PECL_NAME),$(PECL_LONGNAME)))
+CONFIGURE_ARGS+= --with-libevent=shared,"$(STAGING_DIR)/usr"
+
+#$(eval $(call PECLPackage,$(PECL_NAME),$(PECL_LONGNAME),+libevent2))
 #$(eval $(call BuildPackage,$(PKG_NAME)))
