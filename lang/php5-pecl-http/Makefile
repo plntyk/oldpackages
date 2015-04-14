@@ -31,5 +31,5 @@ CONFIGURE_ARGS+= \
 	--with-http-curl-requests="$(STAGING_DIR)/usr" \
 	--without-http-curl-libevent \
 
-$(eval $(call PECLPackage,http,$(PECL_LONGNAME),+libcurl +librt +php5-mod-iconv +php5-mod-session))
-$(eval $(call BuildPackage,$(PKG_NAME)))
+#$(eval $(call PECLPackage,http,$(PECL_LONGNAME),+libcurl +librt +php5-mod-iconv +php5-mod-session))
+#$(eval $(call BuildPackage,$(PKG_NAME)))
