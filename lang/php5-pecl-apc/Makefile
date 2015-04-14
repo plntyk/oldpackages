@@ -27,9 +27,5 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 include ../php5/pecl.mk
 
-CONFIGURE_ARGS+= \
-	--enable-apc=shared \
-	--disable-apc-mmap \
-
-#$(eval $(call PECLPackage,apc,$(PECL_LONGNAME),+librt))
+#$(eval $(call PECLPackage,$(PECL_NAME),$(PECL_LONGNAME)))
 #$(eval $(call BuildPackage,$(PKG_NAME)))
