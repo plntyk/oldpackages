@@ -28,7 +28,7 @@ define Package/libgupnp
   CATEGORY:=Libraries
   TITLE:=Library for implementing both UPnP clients and services in C
   URL:=http://www.gupnp.org/
-  DEPENDS:=+libgssdp +libuuid
+  DEPENDS:=+libgssdp +libuuid @BROKEN
 endef
 
 define Package/libgupnp/description
