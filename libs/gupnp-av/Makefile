@@ -26,7 +26,7 @@ define Package/libgupnp-av
   CATEGORY:=Libraries
   TITLE:=Library for dealing with UPnP/AV profiles
   URL:=http://www.gupnp.org/
-  DEPENDS:=+libgupnp
+  DEPENDS:=+libgupnp @BROKEN
 endef
 
 define Package/libgupnp-av/description
