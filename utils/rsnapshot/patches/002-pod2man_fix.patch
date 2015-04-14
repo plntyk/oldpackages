@@ -1,16 +1,30 @@
+--- a/rsnapshot-program.pl
++++ b/rsnapshot-program.pl
+@@ -6666,6 +6666,8 @@ additional disk space will be taken up.
+ 
+ =back
+ 
++=back
++
+ Remember that tabs must separate all elements, and that
+ there must be a trailing slash on the end of every directory.
+ 
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -16,11 +16,11 @@ doc: man html
+@@ -16,12 +16,12 @@ doc: man html
  man: $(man_MANS)
  rsnapshot.1 : rsnapshot
  	@# perl 5.8 for this
 -	/usr/bin/pod2man -c '' -n 'rsnapshot' -r '' rsnapshot > rsnapshot.1
+-	
 +	pod2man -c '' -n 'rsnapshot' -r '' rsnapshot > rsnapshot.1
- 	
++
  rsnapshot-diff.1 : rsnapshot-diff
  	@# perl 5.8 for this
 -	/usr/bin/pod2man -c '' -n 'rsnapshot-diff' -r '' rsnapshot-diff > rsnapshot-diff.1
+-	
 +	pod2man -c '' -n 'rsnapshot-diff' -r '' rsnapshot-diff > rsnapshot-diff.1
- 	
++
  html: rsnapshot.html
  rsnapshot.html: rsnapshot
+ 	pod2html rsnapshot | grep -v 'link rev' > rsnapshot.html
