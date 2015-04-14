@@ -18,8 +18,6 @@ PKG_MD5SUM:=4e3151125de991f474f728c1c5343ab1
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 
-TARGET_LDFLAGS+=\
-	-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
 
 define Package/libgupnp-dlna
   SECTION:=libs
@@ -33,6 +31,10 @@ define Package/libgupnp-dlna/description
 A small utility library that aims to ease the DLNA-related tasks such as media
 profile guessing, transcoding to a given profile, etc.
 endef
+
+TARGET_LDFLAGS+=\
+	-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
+
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
@@ -63,4 +65,4 @@ define Package/libgupnp-dlna/install
 		$(1)/usr/lib/
 endef
 
-$(eval $(call BuildPackage,libgupnp-dlna))
+#$(eval $(call BuildPackage,libgupnp-dlna))
