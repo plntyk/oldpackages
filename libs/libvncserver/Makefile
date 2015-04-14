@@ -41,6 +41,7 @@ CONFIGURE_ARGS += \
 	--without-fbpm \
 	--without-filetransfer \
 	--without-gcrypt \
+	--without-gnutls \
 	--without-libva \
 	--without-macosx-native \
 	--without-ssl \
