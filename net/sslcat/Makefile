@@ -24,7 +24,7 @@ define Package/sslcat
   CATEGORY:=Network
   TITLE:=A netcat like utility with SSL support
   URL:=http://www.bindshell.net/tools/sslcat
-  DEPENDS:= +libopenssl
+  DEPENDS:= +libopenssl @BROKEN
 endef
 
 define Package/sslcat/description
