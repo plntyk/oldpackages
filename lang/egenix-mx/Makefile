@@ -25,7 +25,7 @@ define Package/python-egenix-mx
   SUBMENU:=Python
   SECTION:=lang
   CATEGORY:=Languages
-  DEPENDS:=+python
+  DEPENDS:=+python @BROKEN
   TITLE:=Egenix mxBase
   URL:=http://www.egenix.com/products/python/mxBase/
 endef
@@ -38,11 +38,8 @@ endef
 TARGET_CFLAGS += $(FPIC)
 
 define Build/Compile
-	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)
-	$(call Build/Compile/PyMod,., \
-		build --build-lib="foo", \
-		BASECFLAGS="$(TARGET_CFLAGS)" \
-		OPT="" \
+	$(call Build/Compile/PyMod,,\
+	install --prefix="$(PKG_INSTALL_DIR)/usr" \
 	)
 endef
 
