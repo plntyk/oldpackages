@@ -39,7 +39,7 @@ endef
 define Package/rygel
 $(call Package/rygel/Default)
   DEPENDS:=+libgssdp +libgupnp +libgupnp-av +libgupnp-dlna +libgee \
-    +libsoup +gstreamer +libgstvideo +libgstpbutils
+    +libsoup +gstreamer +libgstvideo +libgstpbutils @BROKEN
 endef
 
 define Package/rygel/conffiles
