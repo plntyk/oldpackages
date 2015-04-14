@@ -25,7 +25,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/osirisd
   SECTION:=admin
   CATEGORY:=Administration
-  DEPENDS:=+libopenssl +libpthread
+  DEPENDS:=+libopenssl +libpthread @BROKEN
   TITLE:=Host integrity monitoring system (scanning agent)
   URL:=http://osiris.shmoo.com/
 endef
