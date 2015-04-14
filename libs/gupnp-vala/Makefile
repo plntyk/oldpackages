@@ -27,6 +27,7 @@ define Package/libgupnp-vala
   CATEGORY:=Languages
   TITLE:=GUPnP Vala bindings
   URL:=http://live.gnome.org/GUPnP
+  DEPENDS:=@BROKEN
 endef
 
 define Package/libgupnp-vala/description
