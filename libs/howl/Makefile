@@ -26,6 +26,7 @@ define Package/howl/Default
   CATEGORY:=Network
   TITLE:=Zeroconf networking implementation
   URL:=http://www.porchdogsoft.com/products/howl/
+  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/libhowl
@@ -90,12 +91,10 @@ define Package/howl-utils/description
 	This package contains mDNS (Multicast DNS) client utilities.
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default, \
+CONFIGURE_ARGS += \
 		--enable-shared \
 		--enable-static \
-	);
-endef
+
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
