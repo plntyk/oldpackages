@@ -1,0 +1,10 @@
+--- a/lib/libcli.c
++++ b/lib/libcli.c
+@@ -11,6 +11,7 @@
+ #include <ctype.h>
+ #include <unistd.h>
+ #include <regex.h>
++#include <sys/select.h>
+ #include "libcli.h"
+ // vim:sw=8 ts=8
+ 
