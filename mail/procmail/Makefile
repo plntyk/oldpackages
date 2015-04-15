@@ -35,7 +35,8 @@ TARGET_CFLAGS += -DPROCMAIL
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR)/src -f ../Makefile.openwrt  \
 		$(TARGET_CONFIGURE_OPTS) \
-		CFLAGS="$(TARGET_CFLAGS)"
+		CFLAGS="$(TARGET_CFLAGS)" \
+		LDFLAGS="$(TARGET_LDFLAGS) $(if $(CONFIG_USE_MUSL),,-lnsl)"
 endef
 
 define Package/procmail/install
