@@ -7,9 +7,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ap51-flash
-PKG_REV:=232
+PKG_REV:=300
 PKG_VERSION:=r$(PKG_REV)
-PKG_RELEASE:=3
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=svn
 PKG_SOURCE_VERSION:=$(PKG_REV)
@@ -31,16 +31,17 @@ define Package/ap51-flash
   URL:=http://dev.cloudtrax.com/wiki/ap51-flash-station
 endef
 
-TARGET_EXTRA_CFLAGS:=-DFLASH_FROM_FILE -DNO_LIBPCAP
+TARGET_EXTRA_CFLAGS:=-std=gnu99 -fno-strict-aliasing -DFLASH_FROM_FILE -DLINUX -D_GNU_SOURCE
 ifeq ($(CONFIG_BIG_ENDIAN),y)
-	TARGET_EXTRA_CFLAGS:=$(TARGET_EXTRA_CFLAGS) -DUIP_CONF_BYTE_ORDER=1234
+	TARGET_EXTRA_CFLAGS+=$(TARGET_EXTRA_CFLAGS) -DUIP_CONF_BYTE_ORDER=1234
 endif
 
 # pass optimization flags
 MAKE_FLAGS += \
-	OFLAGS="$(TARGET_CFLAGS)" \
-	EXTRA_CFLAGS="$(TARGET_EXTRA_CFLAGS)" \
+	PLATFORM="LINUX" \
 	REVISION="$(PKG_VERSION)" \
+	EXTRA_CFLAGS="$(TARGET_EXTRA_CFLAGS)"
+
 
 define Package/ap51-flash/install
 	$(INSTALL_DIR) $(1)/etc/config $(1)/etc/init.d $(1)/usr/sbin \

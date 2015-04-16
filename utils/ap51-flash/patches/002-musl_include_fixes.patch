@@ -1,0 +1,21 @@
+--- a/compat.h
++++ b/compat.h
+@@ -26,13 +26,17 @@
+ #include <netinet/udp.h>
+ #include <netinet/if_ether.h>
+ #include <netpacket/packet.h>
+-#include <linux/if_ether.h>
+ #include <linux/netlink.h>
+ #include <linux/rtnetlink.h>
+ 
+ #define O_BINARY 0
+ #define USE_PCAP 0
+ 
++#define ETH_ALEN        6
++#define ETH_HLEN        14
++#define ETH_DATA_LEN    1500
++
++#define IPPORT_TFTP	69
+ 
+ #elif defined(OSX)
+ 
