@@ -8,15 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=aprx
-PKG_REV:=421
-PKG_VERSION:=2.00_r$(PKG_REV)
-PKG_RELEASE:=3
+PKG_REV:=593
+PKG_VERSION:=2.08.svn$(PKG_REV)
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://repo.ham.fi/svn/aprx/trunk/
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=http://repo.ham.fi/svn/aprx
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_SOURCE_PROTO:=svn
+PKG_MD5SUM:=f1b82e728736ca818c34b04bd9fd21dc
 
 include $(INCLUDE_DIR)/package.mk
 
