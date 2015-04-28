@@ -1,0 +1,36 @@
+--- a/pg_api.c
++++ b/pg_api.c
+@@ -128,14 +128,14 @@ PGconn *pg_init( const char *szConnInfo,
+   	pCreate = PQexec( pConn, szCommand );
+   	if( PQresultStatus( pCreate ) != PGRES_COMMAND_OK )
+   	{ sprintf( szErrorMsg, "(%s):%s", PG_API_NAME, PQerrorMessage( pConn ) );
+-  	  syslog( LOG_WARNING, szErrorMsg );
++  	  syslog( LOG_WARNING, "%s", szErrorMsg );
+   	}
+   	PQclear( pCreate );
+       }
+     }
+     else
+     { sprintf( szErrorMsg, "(%s):%s", PG_API_NAME, PQerrorMessage( pConn ) );
+-      syslog( LOG_WARNING, szErrorMsg );
++      syslog( LOG_WARNING, "%s", szErrorMsg );
+     }
+     PQclear( pResult );
+   }
+@@ -334,14 +334,14 @@ int pg_insert( PGconn *pConn, const char
+     pInsert = PQexec( pConn, szCommand );
+     if( PQresultStatus( pInsert ) != PGRES_COMMAND_OK )
+     { sprintf( szErrorMsg, "(%s):%s", PG_API_NAME, PQerrorMessage( pConn ) );
+-      syslog( LOG_WARNING, szErrorMsg );
++      syslog( LOG_WARNING, "%s", szErrorMsg );
+       nRet = -1; 
+     }
+   }
+   else 
+   { /* the connection was no good: retry */
+     sprintf( szErrorMsg, "(%s):%s", PG_API_NAME, "The connection was no good: retying..." );
+-    syslog( LOG_WARNING, szErrorMsg );
++    syslog( LOG_WARNING, "%s", szErrorMsg );
+     nRet = -2;
+   }
+ 
