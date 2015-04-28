@@ -31,6 +31,7 @@ define Package/sqlite2/Default
   SUBMENU:=database
   TITLE:=SQLite (v2.x) database engine
   URL:=http://www.sqlite.org/
+  DEPENDS:=@BROKEN
 endef
 
 define Package/libsqlite2
