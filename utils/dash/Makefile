@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dash
-PKG_VERSION:=0.5.7
+PKG_VERSION:=0.5.8
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://gondor.apana.org.au/~herbert/dash/files
-PKG_MD5SUM:=f6cedb10ae7258adb5ab17a10ae80d51
+PKG_MD5SUM:=5c152209680dab3c319e8923f6c51378
 
 PKG_INSTALL:=1
 
