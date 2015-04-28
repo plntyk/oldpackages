@@ -31,7 +31,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/glib1
   SECTION:=libs
   CATEGORY:=Libraries
-  DEPENDS:=+libpthread
+  DEPENDS:=+libpthread @BROKEN
   TITLE:=The GLib library of C routines
   URL:=http://www.gtk.org/
 endef
