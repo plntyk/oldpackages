@@ -1,0 +1,11 @@
+--- a/bin/bbackupquery/BackupQueries.cpp
++++ b/bin/bbackupquery/BackupQueries.cpp
+@@ -613,7 +613,7 @@ void BackupQueries::List(int64_t DirID,
+ 			// terminate
+ 			*(f++) = ' ';
+ 			*(f++) = '\0';
+-			printf(displayflags);
++			printf("%s", displayflags);
+ 			
+ 			if(en_flags != 0)
+ 			{
