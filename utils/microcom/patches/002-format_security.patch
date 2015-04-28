@@ -1,0 +1,11 @@
+--- a/autodet.c
++++ b/autodet.c
+@@ -73,7 +73,7 @@ int autodetect(int port) {
+ 
+   if (i > 0) {
+     buf[i + 1] = '\0';
+-    printf(buf);
++    printf("%s", buf);
+     if (strstr(buf, "OK") != NULL) {
+       printf("Modem found on %s\n\n", device);
+       retval = 1;
