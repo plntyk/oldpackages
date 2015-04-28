@@ -1,0 +1,11 @@
+--- a/buf.c
++++ b/buf.c
+@@ -213,7 +213,7 @@ rs_result rs_file_copy_cb(void *arg, rs_
+ 
+     got = fread(*buf, 1, *len, f);
+     if (got == -1) {
+-        rs_error(strerror(errno));
++        rs_error("error fread: %s", strerror(errno));
+         return RS_IO_ERROR;
+     } else if (got == 0) {
+         rs_error("unexpected eof on fd%d", fileno(f));
