@@ -1,0 +1,11 @@
+--- a/src/radmsgLog.c
++++ b/src/radmsgLog.c
+@@ -134,7 +134,7 @@ int radMsgLog
+     vsprintf (&temp1[index], format, argList);
+     va_end   (argList);
+ 
+-    syslog (priority, temp1);
++    syslog (priority, "%s", temp1);
+ 
+     return OK;
+ }
