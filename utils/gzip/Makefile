@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gzip
-PKG_VERSION:=1.4
-PKG_RELEASE:=3
+PKG_VERSION:=1.6
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@GNU/gzip
-PKG_MD5SUM:=e381b8506210c794278f5527cba0e765
+PKG_MD5SUM:=38603cb2843bf5681ff41aab3bcd6a20
 
 PKG_INSTALL:=1
 
@@ -31,9 +31,11 @@ define Package/gzip/description
 	replacement for compress.
 endef
 
+#fflush musl fix ... from config.cache of sabotage-linux
 CONFIGURE_VARS += \
 	gl_cv_func_getopt_gnu=yes \
-	ac_cv_search_clock_gettime=no
+	ac_cv_search_clock_gettime=no \
+	gl_cv_func_fflush_stdin=yes
 
 define Package/gzip/install
 	$(SED) 's,/bin/bash,/bin/sh,g' $(PKG_INSTALL_DIR)/usr/bin/{gunzip,zcat}
