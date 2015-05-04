@@ -22,6 +22,7 @@ define Package/scponly
   CATEGORY:=Utilities
   TITLE:=Alternative 'shell' (of sorts) for sysadmins
   URL:=http://sourceforge.net/projects/scponly
+  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/scponly/description
