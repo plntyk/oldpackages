@@ -22,7 +22,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/deco
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libncurses
+  DEPENDS:=+libncurses @!USE_MUSL
   TITLE:=Text-based, full featured file manager
   URL:=http://deco.sourceforge.net/
   SUBMENU:=filemanager
