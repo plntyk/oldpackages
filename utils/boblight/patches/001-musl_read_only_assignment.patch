@@ -1,0 +1,23 @@
+--- a/src/util/daemonize.cpp
++++ b/src/util/daemonize.cpp
+@@ -24,6 +24,9 @@
+ 
+ void Daemonize()
+ {
++  FILE * stdout_stream;
++  FILE * stderr_stream;
++
+   //fork a child process
+   pid_t pid = fork();
+   if (pid == -1)
+@@ -37,8 +40,8 @@ void Daemonize()
+ 
+   //route stdout and stderr to /dev/null
+   fclose(stdout);
+-  stdout = fopen("/dev/null", "w");
++  stdout_stream = fopen("/dev/null", "w");
+   fclose(stderr);
+-  stderr = fopen("/dev/null", "w");
++  stderr_stream = fopen("/dev/null", "w");
+ }
+ 
