@@ -1,0 +1,29 @@
+--- a/def.h
++++ b/def.h
+@@ -13,13 +13,13 @@
+ #include        "chrdef.h"
+ #include        "ttydef.h"
+ 
+-
+ /* necesarry to get asprintf & friends with glibc XXX doesn't work for some
+  * mysterious reason! */
+-#ifdef __GLIBC__
+ #  define _GNU_SOURCE
+ #  define __USE_GNU
+-#endif
++
++#include	<unistd.h>
++#include	<stdlib.h>
+ 
+ #if defined(__APPLE__) || defined(__FreeBSD__)
+ #  define LOGIN_NAME_MAX _POSIX_LOGIN_NAME_MAX
+--- a/dir.c
++++ b/dir.c
+@@ -15,6 +15,7 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <unistd.h>
++#include <ctype.h>
+ 
+ #include "def.h"
+ 

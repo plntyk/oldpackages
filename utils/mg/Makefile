@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mg
-PKG_VERSION:=20110120
+PKG_VERSION:=20150323
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://homepage.boetes.org/software/mg
-PKG_MD5SUM:=f2fa8016a491aa2a9d4c5698c593f31b
+PKG_MD5SUM:=84deb782c161758a77b57cd0f9ecb3b8
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -35,11 +35,8 @@ define Package/mg/description
 endef
 
 define Build/Configure
-	(cd $(PKG_BUILD_DIR); \
-		$(TARGET_CONFIGURE_OPTS) \
-		./configure \
-	);
 endef
+
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
