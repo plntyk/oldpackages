@@ -1,0 +1,7 @@
+--- a/utils.h
++++ b/utils.h
+@@ -1,3 +1,4 @@
++#include <sys/types.h>
+ #include <stdlib.h>
+ #include <endian.h>
+ #include <stdio.h>
