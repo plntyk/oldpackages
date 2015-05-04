@@ -1,15 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=calcurse
-PKG_VERSION:=2.8
+PKG_VERSION:=4.0.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=get.cgi?calcurse-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://culot.org/cgi-bin
-PKG_MD5SUM:=124d40c0912b12021996220f02b759cc
-PKG_CAT:=zcat
-
-PKG_BUILD_DIR:=$(BUILD_DIR)/calcurse-$(PKG_VERSION)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=http://calcurse.org/files
+PKG_MD5SUM:=3cd414a30e6e1d118ae340bc7cb1a93a
 
 include $(INCLUDE_DIR)/package.mk
 
