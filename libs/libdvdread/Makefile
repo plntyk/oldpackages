@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libdvdread
-PKG_VERSION:=0.9.7
-PKG_RELEASE:=2
+PKG_VERSION:=5.0.3
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://www.dtek.chalmers.se/~dvd/dist
-PKG_MD5SUM:=078788c9241ae16763529e1235502337
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_URL:=http://download.videolan.org/pub/videolan/$(PKG_NAME)/$(PKG_VERSION)/
+PKG_MD5SUM:=b7b7d2a782087ed2a913263087083715
 
 PKG_FIXUP:=autoreconf
 
@@ -39,6 +39,7 @@ TARGET_CFLAGS += \
 CONFIGURE_ARGS += \
 	--enable-shared \
 	--enable-static
+
 #	--with-build-cc="$(HOSTCC)"
 
 define Build/Compile
