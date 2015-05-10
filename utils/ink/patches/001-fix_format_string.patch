@@ -1,0 +1,20 @@
+--- a/ink.c
++++ b/ink.c
+@@ -36,7 +36,7 @@ void print_version_information(void) {
+   printf(PACKAGE_STRING);
+   printf("\n");
+   libinklevel_version_string = get_version_string();
+-  printf(libinklevel_version_string);
++  printf("%s", libinklevel_version_string);
+   printf("\n");
+ }
+ 
+@@ -235,7 +235,7 @@ int main(int argc, char *argv[]) {
+     for(i = 0; i < MAX_CARTRIDGE_TYPES; i++) {
+       if (threshold == -1 || level->levels[i][INDEX_LEVEL] <= threshold) {
+ 	if (headerNeeded) {
+-	  printf(headerline);
++	  printf("%s", headerline);
+ 	  printf("%s\n\n", level->model);
+ 	  headerNeeded = 0;
+ 	}
