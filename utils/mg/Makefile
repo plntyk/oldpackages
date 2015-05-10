@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/mg
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libncurses
+  DEPENDS:=+libncurses @BROKEN
   TITLE:=microscopic GNU Emacs-style editor
   URL:=http://homepage.boetes.org/software/mg/
   SUBMENU:=Editors

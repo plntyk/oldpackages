@@ -1,0 +1,51 @@
+--- a/main.c
++++ b/main.c
+@@ -21,6 +21,10 @@
+ #include "funmap.h"
+ #include "macro.h"
+ 
++#ifndef __dead2
++#define __dead2
++#endif
++
+ int		 thisflag;			/* flags, this command	*/
+ int		 lastflag;			/* flags, last command	*/
+ int		 curgoal;			/* goal column		*/
+--- a/undo.c
++++ b/undo.c
+@@ -246,9 +246,9 @@ undo_add_boundary(int f, int n)
+ void
+ undo_add_modified(void)
+ {
+-	struct undo_rec *rec, *trec;
++	struct undo_rec *rec, *trec, *next;
+ 
+-	TAILQ_FOREACH_SAFE(rec, &curbp->b_undo, next, trec)
++	TAILQ_FOREACH_SAFE(rec, &curbp->b_undo, next, trec);
+ 		if (rec->type == MODIFIED) {
+ 			TAILQ_REMOVE(&curbp->b_undo, rec, next);
+ 			free_undo_record(rec);
+--- a/tags.c
++++ b/tags.c
+@@ -8,7 +8,9 @@
+ 
+ #include <sys/queue.h>
+ #include <sys/stat.h>
++#ifndef __linux__
+ #include <sys/tree.h>
++#endif
+ #include <sys/types.h>
+ #include <ctype.h>
+ #include <err.h>
+@@ -18,11 +20,6 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <unistd.h>
+-#if defined(LIBBSD_OVERLAY) || defined(__FreeBSD__) || defined(__GLIBC__)
+-#  include <libutil.h>
+-#else
+-#include <util.h>
+-#endif
+ 
+ #include "def.h"
+ 
