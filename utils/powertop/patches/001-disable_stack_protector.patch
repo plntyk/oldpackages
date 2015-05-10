@@ -1,0 +1,23 @@
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -127,7 +127,6 @@ powertop_CXXFLAGS = \
+ 	-Wformat \
+ 	-Wshadow \
+ 	-fno-omit-frame-pointer \
+-	-fstack-protector \
+ 	$(GLIB2_CFLAGS) \
+ 	$(LIBNL_CFLAGS) \
+ 	$(NCURSES_CFLAGS) \
+@@ -136,7 +135,6 @@ powertop_CXXFLAGS = \
+ 
+ powertop_CPPFLAGS = \
+ 	-DLOCALEDIR=\"$(localedir)\" \
+-	-D_FORTIFY_SOURCE=2 \
+ 	$(GLIB2_CFLAGS) \
+ 	$(LIBNL_CFLAGS) \
+ 	$(LIBZ_CFLAGS) \
+@@ -162,3 +160,4 @@ css.h: powertop.css
+ 	$(SHELL) ${srcdir}/csstoh.sh ${srcdir}/powertop.css css.h
+ 
+ EXTRA_DIST = ${srcdir}/csstoh.sh
++
