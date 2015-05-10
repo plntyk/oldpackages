@@ -1,0 +1,31 @@
+--- a/tspc-advanced/platform/openwrt/platform.h
++++ b/tspc-advanced/platform/openwrt/platform.h
+@@ -80,7 +80,7 @@ This source code copyright (c) Hexago In
+ #ifdef _USES_SYSLOG_H_
+ #include <syslog.h>
+ #define SYSLOG(A,B)\
+-	syslog(A, B)
++	syslog(A, "%s", B)
+ #define OPENLOG(A,B,C)\
+ 	openlog(A, B, C)
+ #define CLOSELOG\
+--- a/tspc-advanced/src/tsp/tsp_redirect.c
++++ b/tspc-advanced/src/tsp/tsp_redirect.c
+@@ -71,7 +71,7 @@ tRedirectStatus tspAddBrokerToList(tBrok
+ 	}
+ 
+ 	/* Set the broker address */
+-	snprintf(new_broker->address, MAX_REDIRECT_ADDRESS_LENGTH, address);
++	snprintf(new_broker->address, MAX_REDIRECT_ADDRESS_LENGTH, "%s", address);
+ 
+ 	/* Validate that the address was set correctly */
+ 	if (strlen(new_broker->address) != strlen(address)) {
+@@ -443,7 +443,7 @@ tRedirectStatus tspReadLastServerFromFil
+ 		if (strlen(line) && (line[strlen(line) - 1] == '\n' || line[strlen(line) - 1] == '\r')) line[strlen(line) - 1] = '\0';
+ 
+ 		/* Copy the line to the buffer */
+-		sprintf(buffer, line);
++		sprintf(buffer, "%s", line);
+ 
+ 		/* We found a server, so stop looking */
+ 		found_server = 1;
