@@ -1,0 +1,20 @@
+--- a/src/lib/howl/debug.c
++++ b/src/lib/howl/debug.c
+@@ -61,7 +61,7 @@ sw_print_assert(
+ 		snprintf(message, sizeof(message), "[assert] error: %s\n[assert] where: \"%s\", \"%s\", line: %d\n\n", assert_string, file, func, line);
+ 	}
+ 
+-	fprintf(stderr, message);
++	fprintf(stderr, "%s", message);
+ 
+ #if defined(WIN32)
+ 	OutputDebugString(message);
+@@ -123,7 +123,7 @@ sw_print_debug(
+ 
+ #endif
+ 	
+-		fprintf(stderr, buffer2);
++		fprintf(stderr, "%s", buffer2);
+ 
+ #if defined(WIN32)
+ 
