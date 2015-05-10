@@ -1,0 +1,11 @@
+--- a/lib/ipmi_hpmfwupg.c
++++ b/lib/ipmi_hpmfwupg.c
+@@ -1053,7 +1053,7 @@ static struct ipmi_rs *  HpmfwupgSendCmd
+ int HpmGetUserInput(char *str)
+ {
+     char userInput[2];
+-    printf(str);
++    printf("%s", str);
+     scanf("%s",userInput);
+     if (toupper(userInput[0]) == 'Y')
+     {
