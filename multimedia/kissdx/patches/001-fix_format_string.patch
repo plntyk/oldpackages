@@ -1,0 +1,38 @@
+--- a/kissdx.h
++++ b/kissdx.h
+@@ -86,9 +86,9 @@ char * extended_logfile_format(const cha
+ #define log0(txt)								\
+ 	do {										\
+ 		if (options.daemonize)					\
+-			syslog(LOG_WARNING, extended_logfile_format(txt));	\
++			syslog(LOG_WARNING, "%s", extended_logfile_format(txt));	\
+ 		else									\
+-			fprintf(stderr, extended_logfile_format(txt "\n"));	\
++			fprintf(stderr, "%s", extended_logfile_format(txt "\n"));	\
+ 	} while(0)
+ 
+ // =====================================================================================
+@@ -107,9 +107,9 @@ char * extended_logfile_format(const cha
+ 	do {											\
+ 		if (config.loglevel == LOGDEBUG) {						\
+ 			if (options.daemonize)					\
+-				syslog(LOG_INFO, extended_logfile_format(txt));	\
++				syslog(LOG_INFO, "%s", extended_logfile_format(txt));	\
+ 			else									\
+-				fprintf(stderr, extended_logfile_format(txt "\n"));	\
++				fprintf(stderr, "%s", extended_logfile_format(txt "\n"));	\
+ 		}											\
+ 	} while(0)
+ 
+@@ -131,9 +131,9 @@ char * extended_logfile_format(const cha
+ 	do {											\
+ 		if (config.loglevel>=minlevel) {						\
+ 			if (options.daemonize)					\
+-				syslog(LOG_INFO, extended_logfile_format(txt));	\
++				syslog(LOG_INFO, "%s", extended_logfile_format(txt));	\
+ 			else									\
+-				fprintf(stderr, extended_logfile_format(txt "\n"));	\
++				fprintf(stderr, "%s", extended_logfile_format(txt "\n"));	\
+ 		}											\
+ 	} while(0)
+ // =====================================================================================
