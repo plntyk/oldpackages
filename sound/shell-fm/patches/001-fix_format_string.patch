@@ -1,0 +1,11 @@
+--- a/source/interface.c
++++ b/source/interface.c
+@@ -133,7 +133,7 @@ void interface(int interactive) {
+ 				break;
+ 
+ 			case 'A':
+-				printf(meta("Really ban all tracks by artist %a? [yN]", M_COLORED, & track));
++				printf("%s", meta("Really ban all tracks by artist %a? [yN]", M_COLORED, & track));
+ 				fflush(stdout);
+ 				if(fetchkey(5000000) != 'y')
+ 					puts("\nAbort.");
