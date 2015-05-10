@@ -26,11 +26,11 @@ define Package/ttcp/description
 	A small utility to test TCP connection performance.
 endef
 
-define Build/Compile		
+define Build/Compile
 	$(TARGET_CC) $(TARGET_CFLAGS) -o $(PKG_BUILD_DIR)/ttcp ttcp.c
 endef
 
-define Package/ttcp/install	
+define Package/ttcp/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ttcp $(1)/usr/bin/
 endef
