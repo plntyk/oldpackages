@@ -1,0 +1,31 @@
+--- a/platform/linux/platform.h
++++ b/platform/linux/platform.h
+@@ -69,7 +69,7 @@
+ #ifdef _USES_SYSLOG_H_
+ #include <syslog.h>
+ #define SYSLOG(A,B)\
+-	syslog(A, B)
++	syslog(A, "%s", B)
+ #define OPENLOG(A,B,C)\
+ 	openlog(A, B, C)
+ #define CLOSELOG\
+--- a/src/lib/log.c
++++ b/src/lib/log.c
+@@ -186,7 +186,7 @@ int LogPrintf(enum tErrorLevel ErrorLeve
+ 			*s1++ = fmt[j];
+ 
+ 	*s1++ = '\0';
+-    fprintf(Logfp, s2);
++    fprintf(Logfp, "%s", s2);
+ 	free(s2);
+ 
+     fputs("\n", Logfp);
+@@ -225,7 +225,7 @@ int vLogPrintf(enum tErrorLevel ErrorLev
+             Ident == NULL ? "" : Ident,
+ 	    FunctionName == NULL ? "" : FunctionName);
+ 
+-    fprintf(Logfp, fmt);
++    fprintf(Logfp, "%s", fmt);
+ 
+     fputs("\n", Logfp);
+     fflush(Logfp);
