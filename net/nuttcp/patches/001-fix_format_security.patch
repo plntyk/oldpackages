@@ -1,0 +1,11 @@
+--- a/nuttcp-6.1.2.c
++++ b/nuttcp-6.1.2.c
+@@ -5410,7 +5410,7 @@ cleanup:
+ 	exit(0);
+ 
+ usage:
+-	fprintf(stdout,Usage);
++	fprintf(stdout, "%s", Usage);
+ 	exit(1);
+ }
+ 
