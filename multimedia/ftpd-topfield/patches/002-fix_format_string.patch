@@ -1,0 +1,11 @@
+--- a/ftpd.c
++++ b/ftpd.c
+@@ -1898,7 +1898,7 @@ renamefrom (const char *path)
+ 	const char *fullpath = topfield_dir(tf_makename(curdir(), path));
+ 
+ 	if (tf_stat(&tf, fullpath, &dirent) != 0) {
+-			reply (550, path);
++			reply (550, "%s", path);
+ 			return 0;
+ 	}
+ 	reply (350, "File exists, ready for destination name");
