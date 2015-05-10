@@ -1,0 +1,11 @@
+--- a/src/upnp.c
++++ b/src/upnp.c
+@@ -147,7 +147,7 @@ say_document(int level, const char *head
+         char *line;
+         char *line2;
+ 
+-        say(level, header);
++        say(level, "%s",header);
+         dump = ixmlPrintDocument(document);
+         for (line = dump; (line2 = strstr(line, "\n")) != NULL; line = line2+1) {
+             *line2 = '\0';
