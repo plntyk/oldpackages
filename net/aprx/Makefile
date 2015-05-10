@@ -18,6 +18,8 @@ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_MD5SUM:=f1b82e728736ca818c34b04bd9fd21dc
 
+PKG_FIXUP:=autoreconf
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/aprx
@@ -34,6 +36,10 @@ endef
 
 CONFIGURE_ARGS += \
 	--with-embedded \
+	--without-pthread
+
+MAKE_FLAGS+=\
+	LD=$(TARGET_CC)
 
 define Package/aprx/install
 	$(INSTALL_DIR) $(1)/etc/init.d

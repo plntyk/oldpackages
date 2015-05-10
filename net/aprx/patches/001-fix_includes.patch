@@ -1,0 +1,11 @@
+--- a/ttyreader.c
++++ b/ttyreader.c
+@@ -10,6 +10,8 @@
+ 
+ #define _SVID_SOURCE 1
+ 
++#include <stdio.h>
++
+ #include "aprx.h"
+ #include <sys/socket.h>
+ #include <netdb.h>
