@@ -8,19 +8,22 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=vtun
-PKG_VERSION:=3.0.2
+PKG_VERSION:=3.0.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/vtun
-PKG_MD5SUM:=d3d8bc4d58886498a1c338670eab9315
+PKG_MD5SUM:=f3becf2a0270910a841060c08d1db824
+
+PKG_FIXUP:=autoreconf
+PKG_REMOVE_FILES:=
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/vtun
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+kmod-tun +VTUN_LZO:liblzo +VTUN_LZO:zlib +VTUN_SSL:libopenssl
+  DEPENDS:=+kmod-tun +VTUN_LZO:liblzo +VTUN_LZO:zlib +VTUN_SSL:libopenssl +USE_GLIBC:libbsd
   TITLE:=VPN tunneling daemon
   URL:=http://vtun.sourceforge.net
   SUBMENU:=VPN
@@ -56,17 +59,11 @@ endef
 CONFIGURE_ARGS += \
 	$(if $(CONFIG_VTUN_LZO),--with-lzo-lib="$(STAGING_DIR)/usr/lib/",--disable-zlib) \
 	$(if $(CONFIG_VTUN_LZO),--with-lzo-headers="$(STAGING_DIR)/usr/include/lzo",--disable-lzo) \
-	$(if $(CONFIG_VTUN_SSL),--with-ssl-headers="$(STAGING_DIR)/usr/lib/",--disable-ssl) \
+	$(if $(CONFIG_VTUN_SSL),--with-ssl-headers="$(STAGING_DIR)/usr/include/openssl",--disable-ssl) \
+	$(if $(CONFIG_VTUN_SSL),--with-blowfish-headers="$(STAGING_DIR)/usr/include/openssl",--disable-ssl)
 
 CONFIGURE_VARS += \
-	LIBS="$(TARGET_LDFLAGS)" \
-	$(if $(CONFIG_VTUN_LZO),LZO_HDR_DIR="$(STAGING_DIR)/usr/include/lzo") \
-	$(if $(CONFIG_VTUN_SSL),BLOWFISH_HDR_DIR="$(STAGING_DIR)/usr/include/openssl") \
-	$(if $(CONFIG_VTUN_SSL),SSL_HDR_DIR="$(STAGING_DIR)/usr/include/openssl") \
-
-define Build/Compile
-	$(call Build/Compile/Default,vtund)
-endef
+	LIBS="$(TARGET_LDFLAGS)"
 
 define Package/vtun/install
 	$(INSTALL_DIR) $(1)/etc

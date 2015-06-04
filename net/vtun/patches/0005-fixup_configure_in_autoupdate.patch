@@ -1,0 +1,126 @@
+--- a/configure.in
++++ b/configure.in
+@@ -7,7 +7,8 @@ dnl
+ dnl Process this file with autoconf to produce a configure script.
+ dnl
+ 
+-AC_INIT(lib.c)
++AC_INIT
++AC_CONFIG_SRCDIR([lib.c])
+ AC_CONFIG_HEADER(config.h)
+ 
+ dnl Shapper support
+@@ -79,7 +80,7 @@ AC_ARG_WITH(socks-lib,
+ 
+ dnl Guess host type.
+ AC_CANONICAL_HOST
+-AC_CANONICAL_SYSTEM
++AC_CANONICAL_TARGET
+ 
+ dnl Check for programs.
+ AC_PROG_YACC
+@@ -118,7 +119,7 @@ fi
+ 
+ if test "$ZLIB" = "yes"; then
+    AC_MSG_RESULT()
+-   AC_CHECKING( for ZLIB Library and Header files ... )
++   AS_MESSAGE([checking for ZLIB Library and Header files ... ...])
+    AC_CHECK_LIB(z, deflate,
+ 	LIBS="$LIBS -lz"
+ 	AC_DEFINE([HAVE_ZLIB],[],[Define to use ZLIB]),
+@@ -130,7 +131,7 @@ dnl very servicable code borrowed heavil
+ if test "$LZO" = "yes"; then
+    LZOCHK=""
+    AC_MSG_RESULT()
+-   AC_CHECKING( for LZO Library and Header files ... )
++   AS_MESSAGE([checking for LZO Library and Header files ... ...])
+    AC_SEARCH_HEADERS(lzo_asm.h,
+ 	$LZO_HDR_DIR /usr/include/lzo "" /usr/local/include,
+ 	LZOCHK="lzo2 lzo",
+@@ -164,17 +165,13 @@ fi
+ 
+ if test "$SSL" = "yes"; then
+    AC_MSG_RESULT()
+-   AC_CHECKING( for md5 Library and Header files ... )
+-AC_SEARCH_HEADERS(md5.h,
+-    $SSL_HDR_DIR "" , 
+-    ,
+-    AC_MSG_ERROR( SSL headers not found. )
+-   )
++   AS_MESSAGE([checking for md5 Library and Header files ... ...])
++   AC_CHECK_HEADERS([openssl/md5.h])
+ fi
+ 
+ if test "$SSL" = "yes"; then
+    AC_MSG_RESULT()
+-   AC_CHECKING( for blowfish Library and Header files ... )
++   AS_MESSAGE([checking for blowfish Library and Header files ... ...])
+    AC_SEARCH_HEADERS(blowfish.h,
+     $BLOWFISH_HDR_DIR $SSL_HDR_DIR,
+ 	AC_CHECK_LIB(crypto, BF_set_key,
+@@ -183,39 +180,39 @@ if test "$SSL" = "yes"; then
+ 	       AC_DEFINE([HAVE_SSL],[],[Define to use SSL])
+ 	       AC_DEFINE([HAVE_SSL_BLOWFISH],[],[Define to use blowfish])
+ 	    ],
+-	    AC_MSG_ERROR( SSL library not found. )
++	    AC_MSG_ERROR( Blowfish SSL library not found. )
+ 	),
+-	AC_MSG_ERROR( SSL headers not found. )
++	AC_MSG_ERROR( SSL Blowfish headers not found. )
+    )
+ fi
+ 
+ if test "$SSL" = "yes"; then
+    AC_MSG_RESULT()
+-   AC_CHECKING( for AES Library and Header files ... )
++   AS_MESSAGE([checking for AES Library and Header files ... ...])
+    AC_SEARCH_HEADERS(aes.h,
+-    $SSL_HDR_DIR ,
++    $SSL_HDR_DIR,
+ 	AC_CHECK_LIB(crypto, AES_set_encrypt_key,
+ 	    [
+ 	       AC_DEFINE([HAVE_SSL_AES],[],[Define to use AES])
+ 	    ],
+-	    AC_MSG_ERROR( AES library not found. )
++	    AC_MSG_ERROR( AES SSL library not found. )
+ 	),
+-	AC_MSG_ERROR( AES headers not found. )
++	AC_MSG_ERROR( SSL AES headers not found. )
+    )
+ fi
+ 
+ if test "$SSL" = "yes"; then
+    AC_MSG_RESULT()
+-   AC_CHECKING( for EVP Library and Header files ... )
++   AS_MESSAGE([checking for EVP Library and Header files ... ...])
+    AC_SEARCH_HEADERS(evp.h,
+-    $SSL_HDR_DIR ,
++    $SSL_HDR_DIR,
+ 	AC_CHECK_LIB(crypto, EVP_EncryptInit,
+ 	    [
+ 	       AC_DEFINE([HAVE_SSL_EVP],[],Define to use EVP)
+ 	    ],
+-	    AC_MSG_ERROR( EVP library not found. )
++	    AC_MSG_ERROR( EVP SSL library not found. )
+ 	),
+-	AC_MSG_ERROR( EVP headers not found. )
++	AC_MSG_ERROR( SSL EVP headers not found. )
+    )
+ fi
+ 
+@@ -225,7 +222,7 @@ fi
+ 
+ if test "$SOCKS" = "yes"; then
+    AC_MSG_RESULT()
+-   AC_CHECKING( for SOCKS Library ... )
++   AS_MESSAGE([checking for SOCKS Library ... ...])
+    AC_CHECK_LIB(socks5, SOCKSconnect,
+         [
+ 	  CFLAGS="$CFLAGS -DVTUN_SOCKS=1"
+@@ -276,4 +273,5 @@ changequote([,])
+ 
+ AC_DEFINE_UNQUOTED([VTUN_VER], ["$REL `date '+%m/%d/%Y'`"], [vtun version])
+ 
+-AC_OUTPUT(Makefile)
++AC_CONFIG_FILES([Makefile])
++AC_OUTPUT
