@@ -8,15 +8,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gpgme
-PKG_VERSION:=1.4.3
+PKG_VERSION:=1.4.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=ftp://ftp.gnupg.org/gcrypt/gpgme/
-PKG_MD5SUM:=334e524cffa8af4e2f43ae8afe585672
+PKG_MD5SUM:=5f8064dac227d12496dc559bd34f1bee
+
+PKG_BUILD_DEPENDS:=argp-standalone
 
 PKG_INSTALL:=1
-
+PKG_FIXUP:=autoreconf
 PKG_USE_MIPS16:=0
 
 include $(INCLUDE_DIR)/package.mk
@@ -50,8 +52,7 @@ CONFIGURE_ARGS += \
 	--with-libassuan-prefix="$(STAGING_DIR)/usr" \
 	--without-g13 \
 	--without-gpgconf \
-	--without-gpgsm \
-	--without-pth \
+	--without-gpgsm
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
