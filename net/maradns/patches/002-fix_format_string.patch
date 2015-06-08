@@ -1,0 +1,11 @@
+--- a/tcp/zoneserver.c
++++ b/tcp/zoneserver.c
+@@ -1015,7 +1015,7 @@ int main(int argc, char **argv) {
+ 
+     /* Kill children processes when we are signaled */
+     if(setpgrp()) {
+-        printf(strerror(errno)); /* harderror() would kill the group which may not be correct yet */
++        printf("%s",strerror(errno)); /* harderror() would kill the group which may not be correct yet */
+         return 3;
+     }
+     signal(SIGTERM,handle_term);
