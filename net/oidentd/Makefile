@@ -28,6 +28,8 @@ define Package/oidentd/description
 	A nat aware identd server that will correctly forwared requests to clients.
 endef
 
+TARGET_CFLAGS+= -std=gnu89
+
 # uses GNU configure
 
 define Build/Compile
