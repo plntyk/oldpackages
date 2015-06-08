@@ -32,6 +32,8 @@ define Package/flow-tools/description
 	NetFlow data from Cisco and Juniper routers.
 endef
 
+TARGET_CFLAGS+=-std=gnu89
+
 define Build/Compile
 	$(call Build/Compile/Default,all)
 endef
