@@ -1,0 +1,20 @@
+--- a/phidget21/pdictclient.c
++++ b/phidget21/pdictclient.c
+@@ -443,7 +443,7 @@ cmd(pdc_session_t *pdcs, int desired, co
+ 
+ 	if (!(grcba = malloc(sizeof (*grcba)))) {
+ 		if (errdesc)
+-			(void) snprintf(errdesc, errlen, strerror(errno));
++			(void) snprintf(errdesc, errlen, "%s", strerror(errno));
+ 		return 0;
+ 	}
+ 	r.r_tag = 0;
+@@ -527,7 +527,7 @@ jcmd(pdc_session_t *pdcs, const char *cm
+ 
+ 	if (!(grcba = malloc(sizeof (*grcba)))) {
+ 		if (errdesc)
+-			(void) snprintf(errdesc, errlen, strerror(errno));
++			(void) snprintf(errdesc, errlen, "%s", strerror(errno));
+ 		return 0;
+ 	}
+ 	r.r_tag = 0;
