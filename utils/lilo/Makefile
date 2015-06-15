@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lilo
-PKG_VERSION:=22.8
-PKG_RELEASE:=2
+PKG_VERSION:=24.1
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).src.tar.gz
-PKG_SOURCE_URL:=ftp://metalab.unc.edu/pub/Linux/system/boot/lilo/
-PKG_MD5SUM:=72765f2aafd20e23ecf07ebd22baeec7
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=http://lilo.alioth.debian.org/ftp/sources/
+PKG_MD5SUM:=66573ba8629209da694131efbe20c5de
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -22,7 +22,7 @@ define Package/lilo
   CATEGORY:=Boot Loaders
   DEPENDS:=@TARGET_x86
   TITLE:=lilo
-  URL:=ftp://metalab.unc.edu/pub/Linux/system/boot/lilo/
+  URL:=http://lilo.alioth.debian.org/ftp/sources/
 endef
 
 define Package/lilo/conffiles
@@ -31,19 +31,19 @@ endef
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
-		CC="$(HOSTCC) -m32" \
+		CC="$(HOSTCC) -m32 -std=gnu89" \
 		alles
 endef
 
 define Package/lilo/install
 	$(INSTALL_DIR) $(1)/sbin
-	$(CP) $(PKG_BUILD_DIR)/lilo.static $(1)/sbin/lilo
+	$(CP) $(PKG_BUILD_DIR)/src/lilo.static $(1)/sbin/lilo
 	$(INSTALL_DIR) $(1)/etc
 	$(CP) ./files/lilo.conf $(1)/etc/
 	$(CP) ./files/boot.msg $(1)/etc/
 endef
 
-$(foreach command, as86 ld86, \
+$(foreach command, as86 ld86 uudecode, \
   $(eval $(call RequireCommand,$(command), \
    $(PKG_NAME) requires $(command). \
   )) \

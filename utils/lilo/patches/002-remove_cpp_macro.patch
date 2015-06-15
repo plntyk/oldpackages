@@ -1,0 +1,11 @@
+--- a/src/lilo.c
++++ b/src/lilo.c
+@@ -839,7 +839,7 @@ fprintf(errstd,"REBOOT=\"%s\"\n", reboot
+ #include <sys/utsname.h>
+           struct utsname buf;
+ #endif
+-          printf("Compiled at %s on %s%s\n", __TIME__, __DATE__, semi);
++          /* printf("Compiled at %s on %s%s\n", __TIME__, __DATE__, semi); */
+ #if !__MSDOS__
+           if (verbose>=2 && uname(&buf)==0) {
+             printf("Running %s kernel %s on %s\n",
