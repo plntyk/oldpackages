@@ -83,7 +83,7 @@ else
 		--disable-gettext
 endif
 
-TARGET_CFLAGS+=$(FPIC)
+TARGET_CFLAGS+=$(FPIC) -std=gnu89
 
 MAKE_FLAGS+= \
 	$(TARGET_CONFIGURE_OPTS) \
