@@ -34,6 +34,8 @@ define Package/reiserfsprogs/description
 	resize, and debug ReiserFS filesystems.
 endef
 
+TARGET_CFLAGS+=-std=gnu89
+
 define Package/reiserfsprogs/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(foreach bin,debugreiserfs mkreiserfs reiserfsck reiserfstune resize_reiserfs,$(PKG_INSTALL_DIR)/usr/sbin/$(bin)) $(1)/usr/sbin/
