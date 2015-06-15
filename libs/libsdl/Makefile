@@ -30,7 +30,7 @@ define Package/libsdl
   CATEGORY:=Libraries
   TITLE:=Simple DirectMedia Layer
   URL:=http://www.libsdl.org
-  DEPENDS:=+directfb +zlib +libpthread +AUDIO_SUPPORT:alsa-lib
+  DEPENDS:=+directfb +zlib +libpthread +AUDIO_SUPPORT:alsa-lib @BROKEN
 endef
 
 define Package/libsdl/description
@@ -125,6 +125,8 @@ endif
 
 CONFIGURE_VARS+= \
 		ac_cv_path_DIRECTFBCONFIG=no \
+
+TARGET_CFLAGS+=-std=gnu89
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include $(1)/usr/lib/pkgconfig
