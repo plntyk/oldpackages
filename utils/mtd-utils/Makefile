@@ -93,6 +93,8 @@ endef
 
 $(foreach file,$(FILES),$(eval $(call PartGen,$(file))))
 
+TARGET_CFLAGS+=-std=gnu89
+
 MAKE_FLAGS += \
 	DESTDIR="$(PKG_INSTALL_DIR)" \
 	BUILDDIR="$(PKG_BUILD_DIR)" \
