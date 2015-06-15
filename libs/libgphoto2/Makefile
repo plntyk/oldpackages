@@ -49,6 +49,7 @@ CONFIGURE_ARGS += \
 	--without-included-ltdl \
 	--without-libiconv-prefix \
 	--without-libintl-prefix \
+	--without-bonjour
 
 CONFIGURE_VARS += \
 	CPPFLAGS="$$$$CPPFLAGS $(ICONV_CFLAGS)" \
