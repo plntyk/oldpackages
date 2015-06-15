@@ -47,17 +47,6 @@ CONFIGURE_VARS += \
 	ac_libnet_have_pf_packet=yes \
 	LL_INT_TYPE=libnet_link_linux
 
-define Build/Configure
-	(cd $(PKG_BUILD_DIR); touch \
-		configure.in \
-		include.m4 \
-		aclocal.m4 \
-		Makefile.in \
-		configure \
-	);
-	$(call Build/Configure/Default)
-endef
-
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/lib/libnet-1.1.x/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/libnet-config $(1)/usr/lib/libnet-1.1.x/bin/
