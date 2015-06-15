@@ -56,6 +56,8 @@ define Package/vtun/conffiles
 /etc/vtund.conf
 endef
 
+TARGET_CFLAGS+=-std=gnu89
+
 CONFIGURE_ARGS += \
 	$(if $(CONFIG_VTUN_LZO),--with-lzo-lib="$(STAGING_DIR)/usr/lib/",--disable-zlib) \
 	$(if $(CONFIG_VTUN_LZO),--with-lzo-headers="$(STAGING_DIR)/usr/include/lzo",--disable-lzo) \
