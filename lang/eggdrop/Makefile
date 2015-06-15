@@ -33,6 +33,8 @@ define Package/eggdrop/description
 	EggDrop IRC BOT
 endef
 
+TARGET_CFLAGS+=-std=gnu89
+
 CONFIGURE_ARGS+=\
 	--prefix="$(PKG_INSTALL_DIR)/eggdrop" \
 	--enable-threads \
