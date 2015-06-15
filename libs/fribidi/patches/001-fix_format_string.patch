@@ -1,0 +1,56 @@
+--- a/fribidi_main.c
++++ b/fribidi_main.c
+@@ -429,7 +429,7 @@ main (int argc, char *argv[])
+ 
+ 		  if (show_visual)
+ 		    {
+-		      printf (nl_found);
++		      printf ("%s",nl_found);
+ 
+ 		      if (bol_text)
+ 			printf ("%s", bol_text);
+@@ -497,7 +497,7 @@ main (int argc, char *argv[])
+ 		    }
+ 		  if (show_basedir)
+ 		    {
+-		      printf (nl_found);
++		      printf ("%s",nl_found);
+ 		      printf ("Base direction: %s",
+ 			      (FRIBIDI_DIR_TO_LEVEL (base) ? "R" : "L"));
+ 		      nl_found = "\n";
+@@ -506,7 +506,7 @@ main (int argc, char *argv[])
+ 		    {
+ 		      FriBidiStrIndex i;
+ 
+-		      printf (nl_found);
++		      printf ("%s",nl_found);
+ 		      for (i = 0; i < len; i++)
+ 			printf ("%ld ", (long) ltov[i]);
+ 		      nl_found = "\n";
+@@ -515,7 +515,7 @@ main (int argc, char *argv[])
+ 		    {
+ 		      FriBidiStrIndex i;
+ 
+-		      printf (nl_found);
++		      printf ("%s",nl_found);
+ 		      for (i = 0; i < len; i++)
+ 			printf ("%ld ", (long) vtol[i]);
+ 		      nl_found = "\n";
+@@ -524,7 +524,7 @@ main (int argc, char *argv[])
+ 		    {
+ 		      FriBidiStrIndex i;
+ 
+-		      printf (nl_found);
++		      printf ("%s",nl_found);
+ 		      for (i = 0; i < len; i++)
+ 			printf ("%d ", (int) levels[i]);
+ 		      nl_found = "\n";
+@@ -557,7 +557,7 @@ main (int argc, char *argv[])
+ 	    }
+ 
+ 	    if (*nl_found)
+-	      printf (new_line);
++	      printf ("%s",new_line);
+ 	  }
+       }
+     }
