@@ -60,6 +60,9 @@ define Build/InstallDev
 
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libgpgme{,-pthread}.{a,so*} $(1)/usr/lib/
+
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(CP) $(PKG_INSTALL_DIR)/usr/bin/gpgme-config $(1)/usr/bin/
 endef
 
 define Package/libgpgme/install
