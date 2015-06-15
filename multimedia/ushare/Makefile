@@ -36,6 +36,8 @@ endef
 MAKE_INSTALL_FLAGS+= \
 	INSTALL="install" \
 
+TARGET_CFLAGS+=-std=gnu89
+
 define Build/Configure
 	# this is *NOT* GNU configure
 	( cd $(PKG_BUILD_DIR); \
