@@ -64,7 +64,7 @@ endef
 
 define Package/mini-httpd-matrixssl
 $(call Package/mini-httpd/Default)
-  DEPENDS:= +libmatrixssl
+  DEPENDS:= +libmatrixssl @BROKEN
   TITLE+= (built with MatrixSSL)
 endef
 
