@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=matrixssl
-PKG_VERSION:=3-7-1
+PKG_VERSION:=3-7-2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-open.tgz
@@ -32,21 +32,24 @@ endef
 define Build/Configure
 endef
 
-TARGET_CFLAGS += $(FPIC)
+TARGET_CFLAGS += $(FPIC) -Wall -ffunction-sections -fdata-sections -fomit-frame-pointer
 
 define Build/Compile
 	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
 		$(TARGET_CONFIGURE_OPTS) \
-		DFLAGS="$(TARGET_CFLAGS) -Wall" \
-		CROSS=$(TARGET_CROSS)
+		CFLAGS="$(TARGET_CFLAGS) -I$(PKG_BUILD_DIR) -I$(STAGING_DIR)/usr/include" \
+		CROSS=$(TARGET_CROSS) \
+		CCARCH="LINUX" \
+		OSDEP="POSIX"
 endef
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include/matrixSsl
-	$(CP) $(PKG_BUILD_DIR)/matrixSsl.h $(1)/usr/include/matrixSsl/
-	ln -sf matrixSsl/matrixSsl.h $(1)/usr/include/matrixSsl.h
+	$(INSTALL_DIR) $(1)/usr/include
+	$(CP) $(PKG_BUILD_DIR)/matrixssl/matrixsslApi.h $(1)/usr/include
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_BUILD_DIR)/src/libmatrixssl.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/core/libcore_s.a $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/crypto/libcrypt_s.a $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/matrixssl/libssl_s.a $(1)/usr/lib/
 endef
 
 define Package/libmatrixssl/install
