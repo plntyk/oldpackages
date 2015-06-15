@@ -38,7 +38,7 @@ define Package/jtg/Description
 endef
 
 MAKE_VARS += \
-	CFLAGS="$(TARGET_CFLAGS) -DLinuxTCP"
+	CFLAGS="$(TARGET_CFLAGS) -DLinuxTCP -std=gnu89"
 
 define Package/jtg/install
 	$(INSTALL_DIR) $(1)/usr/bin
