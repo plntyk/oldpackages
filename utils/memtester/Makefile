@@ -29,7 +29,7 @@ define Package/memtester/description
 endef
 
 define Build/Configure
-	$(SED) 's|cc \-O2|$(TARGET_CC) $(TARGET_CFLAGS)|g' $(PKG_BUILD_DIR)/conf-cc
+	$(SED) 's|cc \-O2|$(TARGET_CC) $(TARGET_CFLAGS) -std=gnu89|g' $(PKG_BUILD_DIR)/conf-cc
 	$(SED) 's|cc|$(TARGET_CC)|g' $(PKG_BUILD_DIR)/conf-ld
 endef
 
