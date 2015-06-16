@@ -1,0 +1,11 @@
+--- a/mount.h
++++ b/mount.h
+@@ -20,6 +20,8 @@
+ #ifndef _MOUNT_H_
+ #define _MOUNT_H_
+ 
++#include <paths.h>
++
+ /* exit status - bits below are ORed */
+ #define EX_USAGE	1	/* incorrect invocation or permission */
+ #define EX_SYSERR	2	/* out of memory, cannot fork, ... */
