@@ -26,6 +26,7 @@ define Package/l2tpd
   TITLE:=An L2TP (Layer 2 Tunneling Protocol) daemon
   URL:=http://l2tpd.sourceforge.net/
   SUBMENU:=VPN
+  DEPENDS:=@BROKEN
 endef
 
 define Package/l2tpd/description
