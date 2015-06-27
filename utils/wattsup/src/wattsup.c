@@ -27,6 +27,7 @@
 #include<signal.h>
 #include<time.h>
 
+#include<sys/select.h>
 #include<sys/stat.h>
 
 static const char * wu_version = "0.02";
