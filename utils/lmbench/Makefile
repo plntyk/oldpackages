@@ -25,6 +25,7 @@ define Package/lmbench
   TITLE:=lmbench microbenchmarks
   URL:=http://sourceforge.net/projects/lmbench
   MENU:=1
+  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/lmbench/description
