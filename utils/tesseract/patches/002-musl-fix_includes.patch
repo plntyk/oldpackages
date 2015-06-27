@@ -1,0 +1,12 @@
+--- a/viewer/svutil.cpp
++++ b/viewer/svutil.cpp
+@@ -45,6 +45,9 @@ struct addrinfo {
+ #include <unistd.h>
+ #endif
+ 
++#include <time.h>
++#include <sys/select.h>
++
+ #include <cstdlib>
+ #include <cstring>
+ #include <iostream>
