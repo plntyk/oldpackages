@@ -1,0 +1,22 @@
+--- a/src/read-cis.c
++++ b/src/read-cis.c
+@@ -52,7 +52,7 @@ static int follow_link(tuple_t *tuple)
+ 		/* Get indirect link from the MFC tuple */
+ 		read_cis(tuple->Flags.link_space,
+ 			       tuple->LinkOffset, 5, link);
+-		ofs = *(u_int *)(link+1);
++		ofs = *(unsigned int *)(link+1);
+ 		tuple->Flags.space = (link[0] == CISTPL_MFC_ATTR);
+ 		/* Move to the next indirect link */
+ 		tuple->LinkOffset += 5;
+--- a/src/yacc_config.y
++++ b/src/yacc_config.y
+@@ -40,7 +40,7 @@ int yylex(void);
+ 
+ %union {
+     char *str;
+-    u_long num;
++    unsigned long num;
+     struct adjust_list_t *adjust;
+ }
+ 
