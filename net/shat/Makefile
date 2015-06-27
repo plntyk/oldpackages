@@ -22,6 +22,7 @@ define Package/shat
   CATEGORY:=Network
   TITLE:=Source Hardware Address Translation
   URL:=http://sourceforge.net/projects/shat/
+  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/shat/description
