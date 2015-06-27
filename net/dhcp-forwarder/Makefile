@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dhcp-forwarder
-PKG_VERSION:=0.10
+PKG_VERSION:=0.11
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=http://savannah.nongnu.org/download/dhcp-fwd
-PKG_MD5SUM:=3b96dd27f6d05502d4048acab453808d
+PKG_MD5SUM:=cf4718aee26b4339ee6c5fca0ec4aa76
 
 include $(INCLUDE_DIR)/package.mk
 
