@@ -24,7 +24,7 @@ define Package/tctool
   CATEGORY:=Network
   TITLE:=TrendChip-Modem-Utility
   URL:=http://speedmodem50b.berlios.de/
-  DEPENDS:=+libstdcpp
+  DEPENDS:=+libstdcpp @!USE_MUSL
 endef
 
 define Package/tctool/description
