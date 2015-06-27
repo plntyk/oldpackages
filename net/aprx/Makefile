@@ -27,6 +27,7 @@ define Package/aprx
   CATEGORY:=Network
   TITLE:=APRS RX only I-gate
   URL:=http://ham.zmailer.org/oh2mqk/aprx/
+  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/aprx/description
