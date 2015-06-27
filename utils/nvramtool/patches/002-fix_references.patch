@@ -1,0 +1,11 @@
+--- a/common.h
++++ b/common.h
+@@ -53,7 +53,7 @@
+ #define INW(x) __extension__ ({ u_int tmp = (x); inw(tmp); })
+ #define INL(x) __extension__ ({ u_int tmp = (x); inl(tmp); })
+ #else
+-#if defined(__GLIBC__)
++#if defined(__GLIBC__) || defined(__linux__)
+ #include <sys/io.h>
+ #endif
+ #if (defined(__MACH__) && defined(__APPLE__))
