@@ -9,8 +9,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=isc-dhcp
 UPSTREAM_NAME:=dhcp
-PKG_VERSION:=4.2.4
-PKG_RELEASE:=3
+PKG_VERSION:=4.3.2
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(UPSTREAM_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.isc.org/isc/dhcp/$(PKG_VERSION)
@@ -154,11 +154,13 @@ $(call Package/isc-dhcp-omshell/description)
  This package is compiled with IPv4 and IPv6 support.
 endef
 
+CONFIGURE_VARS += \
+	ac_cv_file__dev_random=yes
+
 CONFIGURE_ARGS += \
 	--disable-tracing 		\
 	--enable-paranoia		\
-	--disable-dependency-tracking	\
-	ac_cv_file__dev_random=yes
+	--disable-dependency-tracking
 
 ifeq ($(BUILD_VARIANT),ipv4)
   CONFIGURE_ARGS += --disable-dhcpv6

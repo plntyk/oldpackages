@@ -1,5 +1,14 @@
 --- a/bind/Makefile
 +++ b/bind/Makefile
+@@ -52,7 +52,7 @@ all:
+ 	else                                                       \
+ 		echo Configuring BIND Export libraries for DHCP. ; \
+ 		rm -rf ./lib ./include ./configure.log ./build.log ./install.log ; \
+-		(cd ${bindsrcdir} && ./configure --disable-kqueue --disable-epoll --disable-devpoll --without-openssl --without-libxml2 --enable-exportlib --enable-threads=no --with-export-includedir=${binddir}/include --with-export-libdir=${binddir}/lib --with-gssapi=no > ${binddir}/configure.log); \
++		(cd ${bindsrcdir} && ./configure --disable-kqueue --disable-epoll --disable-devpoll --without-openssl --without-libxml2 --enable-exportlib --enable-threads=no --with-export-includedir=${binddir}/include --with-export-libdir=${binddir}/lib --with-gssapi=no --with-randomdev=/dev/random > ${binddir}/configure.log); \
+ 	fi
+ 
+ # Build and install the export libraries
 @@ -61,9 +61,12 @@ all:
  		echo Bind export libraries already installed ;               \
  	else                                                                 \
