@@ -15,7 +15,7 @@ PKG_RELEASE:=2
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.jbrain.com/pub/linux/serial/
 PKG_MD5SUM:=e712ae9fe6893bc825026b6dee6da9c0
-
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -35,11 +35,6 @@ define Package/tcpser/description
  and understands extended and vendor proprietary commands (though it does
  not implement many of them). TCPSER can be used for both inbound and
  outbound connections.
-endef
-
-define Build/Prepare
-	$(call Build/Prepare/Default)
-	$(CP) $(PKG_BUILD_DIR)/../$(PKG_NAME)/* $(PKG_BUILD_DIR)/
 endef
 
 define Build/Compile
