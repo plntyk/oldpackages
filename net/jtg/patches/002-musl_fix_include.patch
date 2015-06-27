@@ -1,0 +1,22 @@
+--- a/jtg.h
++++ b/jtg.h
+@@ -53,7 +53,6 @@
+ #include <setjmp.h>
+ 
+ #ifdef LinuxTCP
+-#include <sys/sysctl.h>
+ #define SIZE(x) sizeof(x)/sizeof(x[0])
+ #endif
+ 
+--- a/jtg_calc.h
++++ b/jtg_calc.h
+@@ -4,6 +4,9 @@
+ #include <string.h>
+ #include <unistd.h>
+ 
++#include <sys/time.h>
++typedef unsigned int uint;
++
+ #define VERSION "1.41 (28th November, 2006)"
+ 
+ #define TOOLOW(x) (x < (del_avg-jit_mdev))
