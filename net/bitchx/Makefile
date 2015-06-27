@@ -31,6 +31,9 @@ define Package/bitchx
   URL:=http://www.bitchx.org
 endef
 
+CONFIGURE_ARGS += \
+		--without-ssl
+
 define Package/bitchx/install
 	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/lib $(1)/etc/init.d
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin
