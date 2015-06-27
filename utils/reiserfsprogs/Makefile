@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=reiserfsprogs
-PKG_VERSION:=3.6.21
+PKG_VERSION:=3.6.24
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@KERNEL/linux/utils/fs/reiserfs/
-PKG_MD5SUM:=bc00c7c4e047902575dc4e1c64ab3ba4
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=@KERNEL/linux/kernel/people/jeffm/$(PKG_NAME)/v$(PKG_VERSION)/
+PKG_MD5SUM:=66787380fb418ff7d88a23e47cda7af6
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -25,7 +25,7 @@ define Package/reiserfsprogs
   CATEGORY:=Utilities
   SUBMENU:=Filesystem
   TITLE:=ReiserFS filesystems utilities
-  DEPENDS:=+libuuid
+  DEPENDS:=+libuuid @!USE_MUSL
   URL:=http://www.namesys.com/
 endef
 

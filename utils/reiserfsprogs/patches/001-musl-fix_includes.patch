@@ -1,0 +1,10 @@
+--- a/include/misc.h
++++ b/include/misc.h
+@@ -4,6 +4,7 @@
+  */
+ 
+ /* nothing abount reiserfs here */
++#define _GNU_SOURCE
+ 
+ #ifndef REISERFSPROGS_MISC_H
+ #define REISERFSPROGS_MISC_H
