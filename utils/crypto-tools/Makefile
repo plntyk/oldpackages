@@ -23,7 +23,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/crypto-tools
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libopenssl
+  DEPENDS:=+libopenssl @!USE_MUSL
   TITLE:=OCF-Linux's crypto-tools
   URL:=http://ocf-linux.sourceforge.net/
 endef
