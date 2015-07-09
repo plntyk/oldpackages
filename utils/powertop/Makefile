@@ -35,7 +35,6 @@ define Package/powertop/description
  misbehaving while your computer is idle.
 endef
 
-
 CONFIGURE_ARGS += \
 	 --without-libiconv-prefix \
 	 --with-libintl-prefix=$(INTL_PREFIX)
