@@ -21,7 +21,7 @@ define Package/nfs-server
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Filesystem
-  DEPENDS:=+portmap $(LIBRPC_DEPENDS)
+  DEPENDS:=+portmap $(LIBRPC_DEPENDS) @BROKEN
   TITLE:=User Space NFS server
   URL:=http://packages.debian.org/nfs-user-server
 endef
