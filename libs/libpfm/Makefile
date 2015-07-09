@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libpfm
-PKG_VERSION:=3.6
+PKG_VERSION:=4.6.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/perfmon2
-PKG_MD5SUM:=5075fa45ddce4aa647b70e9f9446eacc
+PKG_MD5SUM:=5077b9022440e4951d96f2d0e73bd487
 
 include $(INCLUDE_DIR)/package.mk
 
