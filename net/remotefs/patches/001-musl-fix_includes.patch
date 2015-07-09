@@ -1,0 +1,13 @@
+--- a/src/resume/client.c
++++ b/src/resume/client.c
+@@ -7,9 +7,7 @@ See the file LICENSE.
+ */
+ 
+ #include <errno.h>
+-#ifdef SOLARIS
+-#	include <fcntl.h>
+-#endif
++#include <fcntl.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/file.h>
