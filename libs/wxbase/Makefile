@@ -16,7 +16,7 @@ PKG_SOURCE_URL:=@SF/wxwindows
 PKG_MD5SUM:=08f81ab60647308058f6ce99712b14f8
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/wxGTK-$(PKG_VERSION)
-
+PKG_USE_MIPS16:=0
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -48,7 +48,6 @@ TARGET_CFLAGS += $(FPIC)
 CONFIGURE_ARGS+= \
 	--enable-shared \
 	--disable-rpath \
-	--with-gnu-ld \
 	--disable-gui \
 	--disable-monolithic \
 	--enable-plugins \
@@ -75,6 +74,7 @@ CONFIGURE_ARGS+= \
 	--enable-exceptions \
 	--disable-sound \
 	--enable-largefile \
+	--enable-no_deps \
 	\
 	--without-gtk \
 	--without-motif \
@@ -106,6 +106,8 @@ CONFIGURE_ARGS+= \
 	--without-cppunit-prefix \
 
 UNICODE=yes
+
+#  --with-gnu-ld
 
 ifeq ($(UNICODE),yes)
   CONFIGURE_ARGS+= --enable-unicode
