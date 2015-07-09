@@ -1,0 +1,20 @@
+--- a/ftpfs-ls.c
++++ b/ftpfs-ls.c
+@@ -52,7 +52,7 @@ static int parse_dir_unix(const char *li
+                "%5s"  "%*c"
+                "%1023c",
+                mode, &nlink, user, group, &size, month, day, year, file);
+-  if (res < 9) {
++  if (res < 8) {
+     res = sscanf(line,
+                  "%11s"
+                  "%32s" SPACES
+@@ -63,7 +63,7 @@ static int parse_dir_unix(const char *li
+                  "%5s"  "%*c"
+                  "%1023c",
+                  mode, user, group, &size, month, day, year, file);
+-    if (res < 8) {
++    if (res < 7) {
+       return 0;
+     }
+   }
