@@ -22,7 +22,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/gkrellmd
   SECTION:=admin
   CATEGORY:=Administration
-  DEPENDS:=+glib1
+  DEPENDS:=+glib2
   TITLE:=The GNU Krell Monitors Server
   URL:=http://gkrellm.net/
 endef
@@ -42,7 +42,6 @@ define Build/Compile
 	LDFLAGS="$(EXTRA_LDFLAGS) " \
 	$(MAKE) -C $(PKG_BUILD_DIR)/server \
 		CC="$(TARGET_CC)" \
-		glib12="yes" \
 		without-libsensors="yes" \
 		GLIB12_LIB="$(TARGET_LDFLAGS) -lglib -lgmodule" \
 		GLIB12_INCLUDE="-I$(STAGING_DIR)/usr/include/glib-1.2 -I$(STAGING_DIR)/usr/lib/glib/include"
