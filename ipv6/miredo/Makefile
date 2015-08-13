@@ -26,6 +26,7 @@ define Package/miredo/Default
   CATEGORY:=Network
   SUBMENU:=miredo: Teredo (IPv6 tunneling over UDP through NAT)
   URL:=http://www.remlab.net/miredo/
+  DEPENDS:=@!USE_MUSL
 endef
 
 define Package/miredo-common
