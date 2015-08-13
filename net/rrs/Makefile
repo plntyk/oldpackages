@@ -21,7 +21,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/rrs/Default
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=$(CXX_DEPENDS)
+  DEPENDS:=$(CXX_DEPENDS) @BROKEN
   TITLE:=A reverse (connecting) remote shell
   URL:=http://www.cycom.se/dl/rrs/
 endef
@@ -48,9 +48,9 @@ define Build/Template
 $(STAMP_BUILT)-$(2): $(STAMP_PREPARED)
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		CC="$(TARGET_CC)" \
-		CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS) -I$(STAGING_DIR)/usr/include/uClibc++ -fno-builtin -fno-rtti -nostdinc++" \
-		LDFLAGS="$(TARGET_LDFLAGS) -nodefaultlibs -lc $(4) -luClibc++ -lm -lutil $(LIBGCC_S)" \
-		LDFLAGSNOSSL="$(TARGET_LDFLAGS) -nodefaultlibs -lc $(4) -luClibc++ -lm -lutil $(LIBGCC_S)" \
+		CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS) $(if $(CONFIG_USE_UCLIBCXX), -nostdinc++ -I$(STAGING_DIR)/usr/include/uClibc++,) -fno-builtin -fno-rtti" \
+		LDFLAGS="$(TARGET_LDFLAGS) -lc $(4) $(if $(CONFIG_USE_UCLIBCXX),-nodefaultlibs -luClibc++,) -lm -lutil $(LIBGCC_S)" \
+		LDFLAGSNOSSL="$(TARGET_LDFLAGS) -lc $(4) $(if $(CONFIG_USE_UCLIBCXX),-nodefaultlibs -luClibc++,) -lm -lutil $(LIBGCC_S)" \
 		$(3)
 	( cd $(PKG_BUILD_DIR); mv -f rrs rrs-$(2); )
 	touch $$@
