@@ -24,7 +24,7 @@ define Package/libzstream
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=minimalistic network stream library
-  DEPENDS:=+libubox +libopenssl
+  DEPENDS:=+libubox +libopenssl @!USE_MUSL
 endef
 
 define Package/zstream
@@ -41,7 +41,7 @@ TARGET_LDFLAGS += \
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		$(TARGET_CONFIGURE_OPTS) \
-		CPPFLAGS="$(TARGET_CPPFLAGS)" \
+		CPPFLAGS="$(TARGET_CPPFLAGS) -D_GNU_SOURCE" \
 		CFLAGS="$(TARGET_CFLAGS)" \
 		LDFLAGS="$(TARGET_LDFLAGS)" \
 		WFLAGS="-Wall -Werror"
