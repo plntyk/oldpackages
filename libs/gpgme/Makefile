@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gpgme
-PKG_VERSION:=1.4.4
+PKG_VERSION:=1.5.5
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=ftp://ftp.gnupg.org/gcrypt/gpgme/
-PKG_MD5SUM:=5f8064dac227d12496dc559bd34f1bee
+PKG_MD5SUM:=a56df7028a0814ef57d77262898ca040
 
 PKG_BUILD_DEPENDS:=argp-standalone
 
@@ -39,10 +39,14 @@ define Package/libgpgme/description
   for CMS (S/MIME).
 endef
 
-ifdef CONFIG_USE_UCLIBC
-CONFIGURE_VARS += \
-    LIBS="-largp"
+ifdef CONFIG_USE_UCLIBC)
+CONFIGURE_VARS += LIBS="-largp"
+else ifdef CONFIG_USE_MUSL
+CONFIGURE_VARS += LIBS="-largp"
 endif
+
+#musl: configure fails to detect error_t in argp.h
+CONFIGURE_VARS += ac_cv_type_error_t=yes
 
 CONFIGURE_ARGS += \
 	--enable-shared \
@@ -50,9 +54,9 @@ CONFIGURE_ARGS += \
 	--with-gpg=/"usr/bin/gpg" \
 	--with-gpg-error-prefix="$(STAGING_DIR)/usr" \
 	--with-libassuan-prefix="$(STAGING_DIR)/usr" \
-	--without-g13 \
-	--without-gpgconf \
-	--without-gpgsm
+	--disable-gpgconf-test \
+	--disable-gpgsm-test \
+	--disable-g13-test
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
