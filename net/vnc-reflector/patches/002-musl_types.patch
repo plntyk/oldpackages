@@ -1,0 +1,22 @@
+--- a/reflector.h
++++ b/reflector.h
+@@ -19,6 +19,8 @@
+ 
+ #define VERSION  "1.2.4"
+ 
++#include <sys/types.h>
++
+ /* FIXME: Too many header files with too many dependencies */
+ 
+ /* Framebuffer and related metadata */
+--- a/rfblib.h
++++ b/rfblib.h
+@@ -17,6 +17,8 @@
+ #ifndef _REFLIB_RFBLIB_H
+ #define _REFLIB_RFBLIB_H
+ 
++#include <sys/types.h>
++
+ /*
+  * Define data types used in the RFB protocol.
+  */
