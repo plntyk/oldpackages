@@ -1,0 +1,10 @@
+--- a/stun.cxx
++++ b/stun.cxx
+@@ -12,6 +12,7 @@
+ #else
+ 
+ #include <stdlib.h>
++#include <stdio.h>
+ #include <unistd.h>
+ #include <string.h>
+ #include <sys/ioctl.h>
