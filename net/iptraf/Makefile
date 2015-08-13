@@ -21,7 +21,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/iptraf
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libncurses
+  DEPENDS:=+libncurses @BROKEN
   TITLE:=A console-based network monitoring program
   URL:=http://iptraf.seul.org/
 endef
@@ -31,6 +31,7 @@ define Package/iptraf/description
   variety of figures such as TCP connection packet and byte counts, interface
   statistics and activity indicators, TCP/UDP traffic breakdowns, and LAN
   station packet and byte counts.
+  USE iptraf-ng
 endef
 
 define Package/iptraf/postinst
