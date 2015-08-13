@@ -18,6 +18,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #define WL_DEVICE "eth1"
 
+#include <sys/types.h>
+
 typedef unsigned int uint32;
 typedef unsigned char uchar;
 typedef int bool;
