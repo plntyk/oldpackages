@@ -35,6 +35,7 @@ define Package/pepsal/description
  links with different characteristics
 endef
 
+TARGET_CFLAGS+= -D_GNU_SOURCE
 
 define Package/pepsal/install
 	$(INSTALL_DIR) $(1)/usr/bin
