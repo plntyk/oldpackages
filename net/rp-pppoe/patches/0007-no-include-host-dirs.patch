@@ -1,0 +1,20 @@
+From 192bd0494db32733f623fce1a02589dd04d56921 Mon Sep 17 00:00:00 2001
+From: Dirk Neukirchen <dirkneukirchen@web.de>
+Date: Sat, 28 May 2016 10:23:14 +0200
+Subject: [PATCH] no include host dirs
+
+---
+ src/configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/src/configure.ac
++++ b/src/configure.ac
+@@ -114,7 +114,7 @@ if test "$ac_cv_header_linux_if_pppox_h"
+ fi
+ 
+ if test "$PPPD_INCDIR" = "" ; then
+-   PPPD_INCDIR=/usr/include
++	PPPD_INCDIR=$ac_cv_pluginpath
+ fi
+ 
+ if test "$ac_cv_debugging" = "yes" ; then

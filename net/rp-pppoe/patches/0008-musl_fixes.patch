@@ -1,0 +1,44 @@
+--- a/src/pppoe.h
++++ b/src/pppoe.h
+@@ -129,6 +129,10 @@ typedef unsigned long UINT32_t;
+ 
+ #include <netinet/in.h>
+ 
++#ifdef HAVE_LINUX_IF_ETHER_H
++#include <linux/if_ether.h>
++#endif
++
+ #ifdef HAVE_NETINET_IF_ETHER_H
+ #include <sys/types.h>
+ 
+@@ -136,7 +140,7 @@ typedef unsigned long UINT32_t;
+ #include <sys/socket.h>
+ #endif
+ #ifndef HAVE_SYS_DLPI_H
+-#include <netinet/if_ether.h>
++/* #include <netinet/if_ether.h> */
+ #endif
+ #endif
+ 
+--- a/src/plugin.c
++++ b/src/plugin.c
+@@ -49,7 +49,7 @@ static char const RCSID[] =
+ #include <unistd.h>
+ #include <fcntl.h>
+ #include <signal.h>
+-#include <net/ethernet.h>
++/* #include <net/ethernet.h> */
+ #include <net/if_arp.h>
+ #include <linux/ppp_defs.h>
+ #include <linux/if_pppox.h>
+--- a/src/if.c
++++ b/src/if.c
+@@ -31,7 +31,7 @@ static char const RCSID[] =
+ #endif
+ 
+ #ifdef HAVE_NET_ETHERNET_H
+-#include <net/ethernet.h>
++/* #include <net/ethernet.h> */
+ #endif
+ 
+ #ifdef HAVE_ASM_TYPES_H

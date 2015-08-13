@@ -1,0 +1,87 @@
+From 1f6b14886edf5627be86999fe6dec5dee3802033 Mon Sep 17 00:00:00 2001
+From: Dirk Neukirchen <dirkneukirchen@web.de>
+Date: Sat, 28 May 2016 08:31:43 +0200
+Subject: [PATCH] change configure.in for autoreconf compatibility
+
+---
+ src/configure.in | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+--- a/src/configure.in
++++ b/src/configure.in
+@@ -1,11 +1,12 @@
+ dnl Process this file with autoconf to produce a configure script.
+ dnl LIC: GPL
+-AC_INIT(pppoe.c)
++AC_INIT([rp-pppoe], 3.12)
+ 
+ dnl pppd directory for kernel-mode PPPoE
+ PPPD_DIR=ppp-2.4.1.pppoe2
+ 
+ AC_CONFIG_HEADER(config.h)
++AC_CONFIG_FILES(Makefile libevent/Makefile ../scripts/pppoe-connect ../scripts/pppoe-start ../scripts/pppoe-stop ../scripts/pppoe-init ../scripts/pppoe-init-suse ../scripts/pppoe-init-turbolinux ../scripts/pppoe-setup ../gui/Makefile ../gui/tkpppoe $EXTRACONFIGS)
+ 
+ AC_PREFIX_DEFAULT(/usr)
+ 
+@@ -26,6 +27,7 @@ AC_CHECK_HEADERS(linux/if_pppox.h, [], [
+ #include<net/ethernet.h>
+ #include<linux/if.h>
+ #include<linux/in.h>
++#include <linux/in6.h>
+ ])
+ 
+ dnl Checks for typedefs, structures, and compiler characteristics.
+@@ -45,7 +47,7 @@ ac_cv_struct_sockaddr_ll=no)
+ AC_MSG_RESULT($ac_cv_struct_sockaddr_ll)
+ 
+ if test "$ac_cv_struct_sockaddr_ll" = yes ; then
+-AC_DEFINE(HAVE_STRUCT_SOCKADDR_LL)
++AC_DEFINE([HAVE_STRUCT_SOCKADDR_LL], ,[have struct sockaddr_ll])
+ fi
+ 
+ dnl Check for N_HDLC line discipline
+@@ -58,7 +60,7 @@ AC_TRY_COMPILE([
+ 	ac_cv_n_hdlc=no)
+ AC_MSG_RESULT($ac_cv_n_hdlc)
+ if test "$ac_cv_n_hdlc" = yes ; then
+-AC_DEFINE(HAVE_N_HDLC)
++AC_DEFINE([HAVE_N_HDLC], , [have HDLC])
+ fi
+ 
+ AC_ARG_ENABLE(plugin, [  --enable-plugin=pppd_src_path   build pppd plugin], ac_cv_pluginpath=$enableval, ac_cv_pluginpath=no)
+@@ -106,7 +108,7 @@ PPPD_INCDIR=""
+ if test "$ac_cv_header_linux_if_pppox_h" = yes ; then
+ 	if test "$ac_cv_pluginpath" != no ; then
+ 		LINUX_KERNELMODE_PLUGIN=rp-pppoe.so
+-		AC_DEFINE(HAVE_LINUX_KERNEL_PPPOE)
++		AC_DEFINE([HAVE_LINUX_KERNEL_PPPOE], ,[Kernel PPPoE])
+ 		PPPD_INCDIR=$ac_cv_pluginpath
+ 	fi
+ fi
+@@ -116,7 +118,7 @@ if test "$PPPD_INCDIR" = "" ; then
+ fi
+ 
+ if test "$ac_cv_debugging" = "yes" ; then
+-   AC_DEFINE(DEBUGGING_ENABLED)
++   AC_DEFINE([DEBUGGING_ENABLED], ,[Debugging])
+ fi
+ 
+ AC_SUBST(LINUX_KERNELMODE_PLUGIN)
+@@ -262,7 +264,7 @@ fi
+ 
+ if test "$rpppoe_cv_pack_bitfields" = "rev" ; then
+ 	AC_MSG_RESULT(reversed)
+-	AC_DEFINE(PACK_BITFIELDS_REVERSED)
++	AC_DEFINE([PACK_BITFIELDS_REVERSED], ,[Pack bitfields reversed])
+ else
+ 	AC_MSG_RESULT(normal)
+ fi
+@@ -331,7 +333,7 @@ AC_SUBST(LDFLAGS)
+ datadir_evaluated=`eval echo $datadir`
+ AC_SUBST(datadir_evaluated)
+ 
+-AC_OUTPUT(Makefile libevent/Makefile ../scripts/pppoe-connect ../scripts/pppoe-start ../scripts/pppoe-stop ../scripts/pppoe-init ../scripts/pppoe-init-suse ../scripts/pppoe-init-turbolinux ../scripts/pppoe-setup ../gui/Makefile ../gui/tkpppoe $EXTRACONFIGS)
++AC_OUTPUT
+ 
+ AC_MSG_RESULT([On this platform, the following targets will be built:])
+ AC_MSG_RESULT([$TARGETS])

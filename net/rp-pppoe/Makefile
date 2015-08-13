@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rp-pppoe
-PKG_VERSION:=3.11
+PKG_VERSION:=3.12
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://roaringpenguin.com/files/download
-PKG_MD5SUM:=13b5900c56bd602df6cc526e5e520722
+PKG_MD5SUM:=216eb52b69062b92a64ee37fd71f4b66
 
 PKG_BUILD_DEPENDS:=ppp
 
@@ -83,11 +83,32 @@ $(call Package/rp-pppoe/Default/description)
  This package contains pppoe-sniff.
 endef
 
-TARGET_CFLAGS += -I$(PKG_BUILD_DIR)/src/libevent
+TARGET_CFLAGS += -UUSE_BPF -I$(STAGING_DIR)/usr/include/pppd -I$(PKG_BUILD_DIR)/src/libevent
+
 CONFIGURE_PATH := ./src
-CONFIGURE_ARGS += ac_cv_path_PPPD=/usr/sbin/pppd --enable-plugin=$(STAGING_DIR)/usr/include/
-MAKE_FLAGS := DESTDIR="$(PKG_INSTALL_DIR)" install
+
+RP_CONFIGURE_ARGS := \
+	ac_cv_path_PPPD=/usr/sbin/pppd 			\
+	rpppoe_cv_pack_bitfields=normal			\
+	--enable-plugin=$(STAGING_DIR)/usr/include/
+
+MAKE_FLAGS := DESTDIR="$(PKG_INSTALL_DIR)" rp-pppoe.so install
 MAKE_PATH := ./src
+
+define Build/Prepare
+	$(PKG_UNPACK)
+	$(Build/Patch)
+	(cd $(PKG_BUILD_DIR)/src; autoreconf -vfi)
+	(mkdir -p $(PKG_BUILD_DIR)/src/plugin)
+endef
+
+define Build/Configure
+	(cd $(PKG_BUILD_DIR)/src; $(CONFIGURE_VARS) PPPD_INCDIR="$(STAGING_DIR)/usr/include/ $(STAGING_DIR)/usr/include/pppd" ./configure \
+	$(RP_CONFIGURE_ARGS) \
+	$(CONFIGURE_ARGS) \
+	)
+endef
+
 
 define Package/rp-pppoe-client/install
 	$(INSTALL_DIR) $(1)/etc/init.d
