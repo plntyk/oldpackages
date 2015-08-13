@@ -28,7 +28,7 @@ define Package/libatomicops
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=implementations for atomic memory update operations
-  DEPENDS:=@!TARGET_avr32
+  DEPENDS:=@!TARGET_avr32 @BROKEN
   URL:=http://www.hpl.hp.com/research/linux/atomic_ops/
 endef
 
