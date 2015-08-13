@@ -21,7 +21,7 @@ define Package/knock/Default
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Firewall
-  DEPENDS:=+libpcap
+  DEPENDS:=+libpcap @BROKEN
   TITLE:=Port-knocking
   URL:=http://www.zeroflux.org/projects/knock
 endef
@@ -41,6 +41,7 @@ define Package/knock/Default/description
 	detects a specific sequence of port-hits, it runs a command
 	defined in its configuration file. This can be used to open
 	up holes in a firewall for quick access.
+        BROKEN for security: fwknop seems a better approach
 endef
 
 define Package/knock/description
