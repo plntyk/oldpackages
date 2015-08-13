@@ -1,0 +1,10 @@
+--- a/src/libwps/libwps.h
++++ b/src/libwps/libwps.h
+@@ -17,6 +17,7 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <arpa/inet.h>
++#include <sys/types.h>
+ 
+ #define LIBWPS_MAX_STR_LEN 256
+ 
