@@ -1,0 +1,22 @@
+--- a/cli.c
++++ b/cli.c
+@@ -24,6 +24,7 @@ char const *cvs_id_cli = "$Id: cli.c,v 1
+ #include <dlfcn.h>
+ #include <netdb.h>
+ #include <libcli.h>
++#include <fcntl.h>
+ 
+ #include "l2tpns.h"
+ #include "constants.h"
+--- a/cluster.c
++++ b/cluster.c
+@@ -17,7 +17,9 @@ char const *cvs_id_cluster = "$Id: clust
+ #include <string.h>
+ #include <malloc.h>
+ #include <errno.h>
++#include <sys/time.h>
+ #include <libcli.h>
++#include <fcntl.h>
+ 
+ #include "l2tpns.h"
+ #include "cluster.h"
