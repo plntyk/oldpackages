@@ -1,0 +1,185 @@
+--- a/Port-linux/utils.h
++++ b/Port-linux/utils.h
+@@ -4,6 +4,7 @@
+ #include <asm/types.h>
+ //#include <resolv.h>
+ #include <linux/types.h>
++#include <sys/types.h>
+ 
+ #include "libnetlink.h"
+ #include "ll_map.h"
+--- a/Port-linux/interface.c
++++ b/Port-linux/interface.c
+@@ -35,8 +35,6 @@
+ #include <stdlib.h>
+ #include <assert.h>
+ 
+-#include <net/if.h>
+-
+ #include "ethtool-local.h"
+ #include "interface.h"
+ #include <stdarg.h>
+--- a/Port-linux/lowlevel-linux-link-state.c
++++ b/Port-linux/lowlevel-linux-link-state.c
+@@ -18,7 +18,11 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <unistd.h>
++
++#if defined(__GLIBC__)
+ #include <bits/sigthread.h>
++#endif
++
+ #include "Portable.h"
+ #include "interface.h"
+ 
+--- a/AddrMgr/AddrIA.cpp
++++ b/AddrMgr/AddrIA.cpp
+@@ -18,6 +18,7 @@
+ #include "AddrAddr.h"
+ #include "DHCPDefaults.h"
+ #include "Logger.h"
++#include <time.h>
+ 
+ using namespace std;
+ 
+--- a/AddrMgr/AddrMgr.cpp
++++ b/AddrMgr/AddrMgr.cpp
+@@ -22,6 +22,7 @@
+ #include "DHCPDefaults.h"
+ #include "Logger.h"
+ #include "hex.h"
++#include <time.h>
+ 
+ using namespace std;
+ 
+--- a/CfgMgr/CfgMgr.cpp
++++ b/CfgMgr/CfgMgr.cpp
+@@ -18,6 +18,7 @@
+ #include "Portable.h"
+ #include "DHCPDefaults.h"
+ #include "Logger.h"
++#include <time.h>
+ 
+ using namespace std;
+ 
+--- a/IfaceMgr/SocketIPv6.h
++++ b/IfaceMgr/SocketIPv6.h
+@@ -18,6 +18,7 @@ class TIfaceSocket;
+ 
+ #include <iostream>
+ #include <string>
++#include <sys/select.h>
+ 
+ #include "Portable.h"
+ #include "DHCPConst.h"
+--- a/SrvMessages/SrvMsg.cpp
++++ b/SrvMessages/SrvMsg.cpp
+@@ -10,6 +10,7 @@
+  */
+ 
+ #include <sstream>
++#include <time.h>
+ #include "Portable.h"
+ #include "SrvMsg.h"
+ #include "OptEmpty.h"
+--- a/SrvMessages/SrvMsgLeaseQueryReply.cpp
++++ b/SrvMessages/SrvMsgLeaseQueryReply.cpp
+@@ -9,6 +9,7 @@
+  *                                                                           
+  */
+ 
++#include <time.h>
+ #include "SrvMsgLeaseQueryReply.h"
+ #include "Logger.h"
+ #include "SrvOptLQ.h"
+--- a/ClntOptions/ClntOptElapsed.cpp
++++ b/ClntOptions/ClntOptElapsed.cpp
+@@ -10,6 +10,7 @@
+  *
+  */
+ 
++#include <time.h>
+ #include "Portable.h"
+ #include "DHCPConst.h"
+ #include "ClntOptElapsed.h"
+--- a/SrvMessages/SrvMsgReply.cpp
++++ b/SrvMessages/SrvMsgReply.cpp
+@@ -10,6 +10,7 @@
+  */
+ 
+ #include <cmath>
++#include <time.h>
+ #include "SmartPtr.h"
+ #include "OptEmpty.h" // rapid-commit option
+ #include "SrvMsgReply.h"
+--- a/ClntIfaceMgr/ClntIfaceIface.cpp
++++ b/ClntIfaceMgr/ClntIfaceIface.cpp
+@@ -9,6 +9,7 @@
+  */
+ 
+ #include <unistd.h>
++#include <time.h>
+ #include <iostream>
+ #include "ClntIfaceIface.h"
+ #include "Portable.h"
+--- a/ClntMessages/ClntMsgConfirm.cpp
++++ b/ClntMessages/ClntMsgConfirm.cpp
+@@ -9,6 +9,7 @@
+  *
+  */
+ 
++#include <time.h>
+ #include "SmartPtr.h"
+ #include "ClntMsgConfirm.h"
+ #include "OptDUID.h"
+--- a/ClntMessages/ClntMsg.cpp
++++ b/ClntMessages/ClntMsg.cpp
+@@ -12,6 +12,7 @@
+ #include <cmath>
+ #include <sstream>
+ #include <stdlib.h>
++#include <time.h>
+ #include "Portable.h"
+ #include "ClntCfgMgr.h"
+ 
+--- a/Misc/DHCPClient.cpp
++++ b/Misc/DHCPClient.cpp
+@@ -10,6 +10,7 @@
+ 
+ #include <iostream>
+ #include <stdlib.h>
++#include <time.h>
+ #include "SmartPtr.h"
+ #include "DHCPClient.h"
+ #include "ClntTransMgr.h"
+--- a/Misc/DHCPServer.cpp
++++ b/Misc/DHCPServer.cpp
+@@ -8,6 +8,7 @@
+  *
+  */
+ 
++#include <time.h>
+ #include "DHCPServer.h"
+ #include "AddrClient.h"
+ #include "Logger.h"
+--- a/Requestor/Requestor.cpp
++++ b/Requestor/Requestor.cpp
+@@ -9,6 +9,7 @@
+ 
+ #include <string.h>
+ #include <stdlib.h>
++#include <time.h>
+ #include "Portable.h"
+ #include "ReqCfgMgr.h"
+ #include "Portable.h"
+--- a/Misc/tests/IPv6Addr_unittest.cc
++++ b/Misc/tests/IPv6Addr_unittest.cc
+@@ -1,6 +1,7 @@
+ #include "IPv6Addr.h"
+ 
+ #include <string>
++#include <time.h>
+ #include <gtest/gtest.h>
+ 
+ using namespace std;

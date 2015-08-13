@@ -8,20 +8,21 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dibbler
-PKG_VERSION:=0.8.2
+PKG_VERSION:=1.0.1RC1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://klub.com.pl/dhcpv6/dibbler
-PKG_MD5SUM:=313044c95af3091607127a05c338d8ec
+PKG_MD5SUM:=1a7f281237541296187af21316ce07eb
 
-include $(INCLUDE_DIR)/uclibc++.mk
+PKG_FIXUP:=autoreconf
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/dibbler/Default
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=$(CXX_DEPENDS) +libpthread
+  DEPENDS:=$(CXX_DEPENDS) +libpthread +libstdcpp
   TITLE:=Dibbler, a portable DHCPv6 implementation
   URL:=http://klub.com.pl/dhcpv6/
 endef
@@ -83,6 +84,9 @@ define Package/dibbler-server/description
 	$(call Package/dibbler/Default/description)
 	This package contains the dibbler server.
 endef
+
+TARGET_CPPFLAGS+= -D_BSD_SOURCE
+#TARGET_CXXFLAGS+=-std=gnu++11
 
 define Package/dibbler-client/install
 	$(INSTALL_DIR) $(1)/usr/sbin
