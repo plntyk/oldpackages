@@ -54,6 +54,7 @@ define Build/Compile
 		$(GW6C_OPTS)
 	$(MAKE) -C $(PKG_BUILD_DIR)/tspc-advanced \
 		CC="$(TARGET_CC)" \
+		EXTRALIBS="-nodefaultlibs $(if $(CONFIG_USE_UCLIBCXX),-luClibc++,-lstdc++) -lc -lgcc -lpthread -lgw6cconfig -lgw6cmessaging" \
 		CFLAGS="$(TARGET_CFLAGS) -fno-builtin -Wall -I$(PKG_BUILD_DIR)/tspc-advanced/include \
 			-I$(PKG_BUILD_DIR)/tspc-advanced/platform/openwrt -I$(PKG_BUILD_DIR)/tspc-advanced" \
 		LDFLAGS="-L$(PKG_BUILD_DIR)/tspc-advanced/gw6cconfig \

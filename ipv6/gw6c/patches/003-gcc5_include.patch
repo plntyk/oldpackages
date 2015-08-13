@@ -1,0 +1,32 @@
+--- a/gw6c-messaging/gw6cmessaging/messagesender.h
++++ b/gw6c-messaging/gw6cmessaging/messagesender.h
+@@ -25,6 +25,7 @@
+ #include <gw6cmessaging/message.h>
+ #include <gw6cmessaging/semaphore.h>
+ #include <queue>
++#include <cstddef>
+ using namespace std;
+ 
+ 
+--- a/gw6c-messaging/src/clientmsgsender.cc
++++ b/gw6c-messaging/src/clientmsgsender.cc
+@@ -19,7 +19,7 @@
+ // **************************************************************************
+ #include <gw6cmessaging/clientmsgsender.h>
+ #include <assert.h>
+-
++#include <cstring>
+ 
+ namespace gw6cmessaging
+ {
+--- a/gw6c-messaging/src/servermsgsender.cc
++++ b/gw6c-messaging/src/servermsgsender.cc
+@@ -19,7 +19,7 @@
+ // **************************************************************************
+ #include <gw6cmessaging/servermsgsender.h>
+ #include <assert.h>
+-
++#include <cstring>
+ 
+ #ifdef WIN32
+ #define snprintf _snprintf
