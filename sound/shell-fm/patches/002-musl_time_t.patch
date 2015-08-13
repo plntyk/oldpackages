@@ -1,0 +1,10 @@
+--- a/source/include/globals.h
++++ b/source/include/globals.h
+@@ -4,6 +4,7 @@
+ 
+ /* for pid_t */
+ #include <unistd.h>
++#include <time.h>
+ 
+ #include "hash.h"
+ #include "playlist.h"
