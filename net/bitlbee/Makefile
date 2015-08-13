@@ -8,15 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bitlbee
-PKG_VERSION:=1.0.1
-PKG_RELEASE:=2
+PKG_VERSION:=3.4.1
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://get.bitlbee.org/src \
 	http://get.bitlbee.be/src \
 	http://get.us.bitlbee.org/src \
 	http://ftp.snt.utwente.nl/pub/software/bitlbee/src
-PKG_MD5SUM:=a4d7daa9b64898dd41a3a6d104692d9a
+PKG_MD5SUM:=dc2d66c0b01d450ce8b44e1f8baf0378
 
 PKG_BUILD_DEPENDS:=libopenssl glib1
 
@@ -27,7 +27,7 @@ define Package/bitlbee
   SUBMENU:=Instant Messaging
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libopenssl +glib1 $(ICONV_DEPENDS)
+  DEPENDS:=+libopenssl +glib2 $(ICONV_DEPENDS)
   TITLE:=IRC gateway to IM chat networks
   URL:=http://www.bitlbee.org/
 endef
@@ -40,13 +40,13 @@ endef
 define Build/Configure
 	# it's not GNU autoconf stuff
 	(cd $(PKG_BUILD_DIR); \
-		$(TARGET_CONFIGURE_OPTS) \
-		CFLAGS="$(TARGET_CFLAGS)" \
-		CPPFLAGS="$(TARGET_CPPFLAGS)" \
-		LDFLAGS="$(TARGET_LDFLAGS)" \
-		STAGING_DIR="$(STAGING_DIR)" \
-		STRIP="$(STRIP)" \
-		./configure \
+	$(TARGET_CONFIGURE_OPTS) \
+	CFLAGS="$(TARGET_CFLAGS)" \
+	CPPFLAGS="$(TARGET_CPPFLAGS)" \
+	LDFLAGS="$(TARGET_LDFLAGS)" \
+	STAGING_DIR="$(STAGING_DIR)" \
+	STRIP="$(STRIP)" \
+	./configure \
 			--prefix=/usr/ \
 			--bindir=/usr/sbin/ \
 			--etcdir=/etc/bitlbee/ \
@@ -59,17 +59,7 @@ define Build/Configure
 			--sizeopt=1 \
 			--ipv6=1 \
 			--ssl=openssl \
-			--glib1=1 \
-			--glib1prefix="$(STAGING_DIR)/usr" \
 	);
-	$(SED) 's,^CFLAGS=.*,CFLAGS=$(TARGET_CFLAGS),g'\
-		$(PKG_BUILD_DIR)/Makefile.settings
-	@echo 'CFLAGS+=-I$(ICONV_PREFIX)/include' >> \
-		$(PKG_BUILD_DIR)/Makefile.settings
-	@echo 'LFLAGS+=$(TARGET_LDFLAGS)' >> \
-		$(PKG_BUILD_DIR)/Makefile.settings
-	@echo 'LFLAGS+=-L$(ICONV_PREFIX)/lib' >> \
-		$(PKG_BUILD_DIR)/Makefile.settings
 endef
 
 define Build/Compile
