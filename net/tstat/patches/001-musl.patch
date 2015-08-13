@@ -1,0 +1,20 @@
+--- a/tstat/tcp.c
++++ b/tstat/tcp.c
+@@ -16,11 +16,16 @@
+  *
+ */
+ 
+-
+ #include "tstat.h"
+ #include "tcpL7.h"
+ #include "videoL7.h"
+ 
++#ifndef __GLIBC__
++#define	TCPOPT_EOL	0
++#define	TCPOPT_NOP	1
++#define	TCPOPT_MAXSEG	2
++#endif
++
+ /* provided globals  */
+ extern FILE *fp_logc;
+ extern FILE *fp_lognc;
