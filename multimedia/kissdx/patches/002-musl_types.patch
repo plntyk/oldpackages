@@ -1,0 +1,11 @@
+--- a/dvdread.h
++++ b/dvdread.h
+@@ -1,6 +1,8 @@
+ #ifndef DVDREAD_H_
+ #define DVDREAD_H_
+ 
++#include <sys/types.h>
++
+ /*
+  * kissdx - KiSS PC-Link Daemon eXtended (based on kissd)
+  *
