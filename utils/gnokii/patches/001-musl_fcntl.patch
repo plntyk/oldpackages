@@ -1,0 +1,10 @@
+--- a/common/devices/socketphonet.c
++++ b/common/devices/socketphonet.c
+@@ -28,6 +28,7 @@
+   The various routines are called socketphonet_(whatever).
+ 
+ */
++#include <fcntl.h>
+ 
+ #include "config.h"
+ #include "compat.h" /* for __ptr_t definition */
