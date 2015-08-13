@@ -22,7 +22,7 @@ PKG_UNPACK:=unzip -d $(PKG_BUILD_DIR)/ $(DL_DIR)/$(PKG_SOURCE)
 define Package/dhcp6/Default
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libncurses
+  DEPENDS:=+libncurses @!USE_MUSL
   TITLE:=IPv6 DHCP
   URL:=http://sourceforge.net/projects/dhcpv6-linux
 endef
