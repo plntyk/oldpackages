@@ -1,0 +1,13 @@
+--- a/cli/cli_readline.c
++++ b/cli/cli_readline.c
+@@ -33,6 +33,10 @@
+ #include "cli_api.h"
+ #include "cli_private.h"
+ 
++#ifndef __sighandler_t
++typedef void (*__sighandler_t) (int);
++#endif
++
+ static struct cli_node **cli_rl_nodes;
+ static int cli_rl_nodes_num;
+ static int cli_rl_display_help;

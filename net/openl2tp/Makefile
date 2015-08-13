@@ -30,7 +30,7 @@ define Package/openl2tp/Default
   TITLE:=An L2TP (Layer 2 Tunneling Protocol) daemon
   URL:=http://www.openl2tp.org/
   PROVIDES:=openl2tp
-  DEPENDS:=+ppp-mod-pppol2tp
+  DEPENDS:=+ppp-mod-pppol2tp @BROKEN
 endef
 
 define Package/openl2tp/description/Default
