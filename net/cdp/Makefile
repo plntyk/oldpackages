@@ -16,10 +16,10 @@ PKG_SOURCE_URL:=http://gpl.internetconnection.net/files/
 PKG_MD5SUM:=94e3a355a5c82a2a5b14114d1f9b0599
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
+PKG_BUILD_DEPENDS:=libpcap libnet1
 
 include $(INCLUDE_DIR)/package.mk
 
-PKG_BUILD_DEPENDS:=+libpcap +libnet1
 
 
 define Package/cdp-tools
@@ -30,7 +30,7 @@ define Package/cdp-tools
   DEPENDS:=+libpcap
 endef
 
-define Package/dhcpcd/description
+define Package/cdp-tools/description
 	Tools to work with the Cisco Discovery Protocol (CDP)
 endef
 
