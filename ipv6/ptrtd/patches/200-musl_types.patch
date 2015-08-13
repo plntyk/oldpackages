@@ -1,0 +1,11 @@
+--- a/buffer.h
++++ b/buffer.h
+@@ -23,6 +23,8 @@
+ #ifndef _BUFFER_H
+ #define _BUFFER_H
+ 
++#include <sys/types.h>
++
+ struct ringbuf {
+ 	uchar *p;
+ 	int size;
