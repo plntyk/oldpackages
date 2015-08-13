@@ -25,7 +25,7 @@ define Package/nocatsplash
   SUBMENU:=Captive Portals
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+glib1 +iptables-mod-ipopt +iptables-mod-nat-extra
+  DEPENDS:=+glib1 +iptables-mod-ipopt +iptables-mod-nat-extra @BROKEN
   TITLE:=Open public network gateway daemon
   URL:=http://nocat.net
 endef
