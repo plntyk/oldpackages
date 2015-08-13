@@ -1,0 +1,12 @@
+--- a/include/click/llrpc.h
++++ b/include/click/llrpc.h
+@@ -13,7 +13,8 @@ CLICK_CXX_UNPROTECT
+ # include <sys/ioccom.h>
+ #else
+ # include <errno.h>
+-# include <sys/ioctl.h>
++# include <sys/ioctl.h>
++# include <linux/ioctl.h>
+ #endif
+ 
+ /* Click low-level RPC interface */

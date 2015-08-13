@@ -48,6 +48,7 @@ CONFIGURE_ARGS += \
 	--enable-wing \
 	--enable-diffserv \
 	--disable-linuxmodule \
+	--disable-bsdmodule \
 	--disable-dynamic-linking \
 
 HOST_CONFIGURE_ARGS += \

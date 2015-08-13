@@ -1,0 +1,40 @@
+--- a/elements/userlevel/fromdevice.cc
++++ b/elements/userlevel/fromdevice.cc
+@@ -53,7 +53,6 @@
+ #  include <netpacket/packet.h>
+ #  include <net/ethernet.h>
+ # else
+-#  include <net/if_packet.h>
+ #  include <linux/if_packet.h>
+ #  include <linux/if_ether.h>
+ # endif
+--- a/etc/ron/todevicenotify.cc
++++ b/etc/ron/todevicenotify.cc
+@@ -38,7 +38,6 @@
+ # include <sys/socket.h>
+ # include <sys/ioctl.h>
+ # include <net/if.h>
+-# include <net/if_packet.h>
+ # include <features.h>
+ # if __GLIBC__ >= 2 && __GLIBC_MINOR__ >= 1
+ #  include <netpacket/packet.h>
+--- a/elements/userlevel/todevice.cc
++++ b/elements/userlevel/todevice.cc
+@@ -46,7 +46,6 @@
+ # include <sys/socket.h>
+ # include <sys/ioctl.h>
+ # include <net/if.h>
+-# include <net/if_packet.h>
+ # include <features.h>
+ # if __GLIBC__ >= 2 && __GLIBC_MINOR__ >= 1
+ #  include <netpacket/packet.h>
+--- a/etc/ron/divertsocket.cc
++++ b/etc/ron/divertsocket.cc
+@@ -32,7 +32,6 @@
+ 
+ #elif defined(__linux__)
+ # include <features.h>
+-# include <net/if_packet.h>
+ # include <netinet/ip.h>
+ # include <netinet/in.h>
+ # include <netinet/tcp.h>
