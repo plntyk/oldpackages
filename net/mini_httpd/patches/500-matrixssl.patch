@@ -1,7 +1,6 @@
-diff -ruN mini_httpd-1.19-orig/Makefile mini_httpd-1.19-3/Makefile
---- mini_httpd-1.19-orig/Makefile	2002-11-02 00:02:57.000000000 +0100
-+++ mini_httpd-1.19-3/Makefile	2005-03-09 08:52:21.000000000 +0100
-@@ -14,17 +14,30 @@
+--- a/Makefile
++++ b/Makefile
+@@ -14,30 +14,46 @@ CRYPT_LIB =    -lcrypt
  # http://www.openssl.org/  Make sure the SSL_TREE definition points to the
  # tree with your OpenSSL installation - depending on how you installed it,
  # it may be in /usr/local instead of /usr/local/ssl.
@@ -36,7 +35,7 @@ diff -ruN mini_httpd-1.19-orig/Makefile mini_httpd-1.19-3/Makefile
 -LDFLAGS =	-s
 +LDFLAGS =
  #LDFLAGS =	-g
-@@ -32,12 +45,15 @@
+ LDLIBS =	${SSL_LIBS} ${SYSV_LIBS} ${CRYPT_LIB}
  
  all:		mini_httpd htpasswd
  
@@ -54,7 +53,7 @@ diff -ruN mini_httpd-1.19-orig/Makefile mini_httpd-1.19-3/Makefile
  match.o:	match.c match.h
  	${CC} ${CFLAGS} -c match.c
  
-@@ -71,16 +87,18 @@
+@@ -71,16 +87,18 @@ mini_httpd.pem:	mini_httpd.cnf
  	chmod 600 mini_httpd.pem
  
  
@@ -76,9 +75,8 @@ diff -ruN mini_httpd-1.19-orig/Makefile mini_httpd-1.19-3/Makefile
  clean:
  	rm -f mini_httpd mime_encodings.h mime_types.h htpasswd mini_httpd.rnd *.o core core.* *.core
  
-diff -ruN mini_httpd-1.19-orig/mini_httpd.c mini_httpd-1.19-3/mini_httpd.c
---- mini_httpd-1.19-orig/mini_httpd.c	2003-12-03 19:27:22.000000000 +0100
-+++ mini_httpd-1.19-3/mini_httpd.c	2005-03-09 08:46:28.000000000 +0100
+--- a/mini_httpd.c
++++ b/mini_httpd.c
 @@ -66,8 +66,14 @@
  #endif /* HAVE_SENDFILE */
  
@@ -94,7 +92,7 @@ diff -ruN mini_httpd-1.19-orig/mini_httpd.c mini_httpd-1.19-3/mini_httpd.c
  #endif /* USE_SSL */
  
  extern char* crypt( const char* key, const char* setting );
-@@ -193,7 +199,13 @@
+@@ -193,7 +199,13 @@ static int listen4_fd, listen6_fd;
  static int do_ssl;
  static char* certfile;
  static char* cipher;
@@ -108,7 +106,7 @@ diff -ruN mini_httpd-1.19-orig/mini_httpd.c mini_httpd-1.19-3/mini_httpd.c
  #endif /* USE_SSL */
  static char cwd[MAXPATHLEN];
  static int got_hup;
-@@ -540,6 +552,7 @@
+@@ -540,6 +552,7 @@ main( int argc, char** argv )
  #ifdef USE_SSL
      if ( do_ssl )
  	{
@@ -116,7 +114,7 @@ diff -ruN mini_httpd-1.19-orig/mini_httpd.c mini_httpd-1.19-3/mini_httpd.c
  	SSL_load_error_strings();
  	SSLeay_add_ssl_algorithms();
  	ssl_ctx = SSL_CTX_new( SSLv23_server_method() );
-@@ -559,6 +572,17 @@
+@@ -559,6 +572,17 @@ main( int argc, char** argv )
  		exit( 1 );
  		}
  	    }
@@ -134,7 +132,7 @@ diff -ruN mini_httpd-1.19-orig/mini_httpd.c mini_httpd-1.19-3/mini_httpd.c
  	}
  #endif /* USE_SSL */
  
-@@ -1174,6 +1198,7 @@
+@@ -1174,6 +1198,7 @@ handle_request( void )
  #ifdef USE_SSL
      if ( do_ssl )
  	{
@@ -142,7 +140,7 @@ diff -ruN mini_httpd-1.19-orig/mini_httpd.c mini_httpd-1.19-3/mini_httpd.c
  	ssl = SSL_new( ssl_ctx );
  	SSL_set_fd( ssl, conn_fd );
  	if ( SSL_accept( ssl ) == 0 )
-@@ -1181,6 +1206,16 @@
+@@ -1181,6 +1206,16 @@ handle_request( void )
  	    ERR_print_errors_fp( stderr );
  	    exit( 1 );
  	    }
