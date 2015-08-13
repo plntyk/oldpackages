@@ -8,20 +8,21 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=uhub
-PKG_VERSION:=0.2.8
-PKG_RELEASE:=3
+PKG_VERSION:=0.5.0
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=http://www.extatic.org/downloads/uhub/
-PKG_MD5SUM:=45d35d9757bc0a84297dec51520f725b
+PKG_MD5SUM:=2ef7fb6f15b60e5af20d508806cc9f87
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/uhub
   SUBMENU:=P2P
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libevent
+  DEPENDS:=+libevent +libopenssl
   TITLE:=High performance ADC hub
   URL:=http://www.extatic.org/uhub/
 endef
