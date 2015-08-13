@@ -26,7 +26,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/peercast
   SECTION:=multimedia
   CATEGORY:=Multimedia
-  DEPENDS:=+libpthread $(CXX_DEPENDS)
+  DEPENDS:=+libpthread $(CXX_DEPENDS) @!USE_MUSL
   TITLE:=P2P audio and video streaming server
   URL:=http://www.peercast.org/
 endef
