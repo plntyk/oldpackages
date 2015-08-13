@@ -1,3 +1,4 @@
+
 #
 # Copyright (C) 2009-2010 OpenWrt.org
 #
@@ -16,6 +17,7 @@ PKG_SOURCE_URL:=@SF/airpwn
 PKG_MD5SUM:=15b6f1cd287b4bb20dd586bb6c83628d
 
 PKG_BUILD_DEPENDS:=libnet1 libopenssl libpcap libpcre
+PKG_BUILD_PARALLEL:=0
 
 PKG_FIXUP:=autoreconf
 PKG_LIBTOOL_PATHS:=. lorcon
@@ -25,7 +27,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/airpwn
 	SECTION:=net
 	CATEGORY:=Network
-        SUBMENU:=wireless
+	SUBMENU:=wireless
 	TITLE:=Packet injection pwnage
 	DEPENDS:=+libnet1 +libopenssl +libpcap +libpcre +libpthread
 	URL:=http://airpwn.sourceforge.net/Airpwn.html
@@ -42,7 +44,7 @@ endef
 CONFIGURE_VARS:= \
 	CC="$(TARGET_CC)" \
 	LD="$(TARGET_LD)" \
-	CFLAGS="$(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/lib/libnet-1.1.x/include -I$(STAGING_DIR)/usr/include -I$(PKG_BUILD_DIR)/lorcon" \
+	CFLAGS="$(TARGET_CFLAGS) -D_GNU_SOURCE=1 -I$(STAGING_DIR)/usr/lib/libnet-1.1.x/include -I$(STAGING_DIR)/usr/include -I$(PKG_BUILD_DIR)/lorcon" \
 	LDFLAGS="$(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib/libnet-1.1.x/lib -L$(PKG_BUILD_DIR)/lorcon/.libs -lcrypto -lssl" \
 	LIBTOOL="$(STAGING_DIR)/host/bin/libtool"
 
