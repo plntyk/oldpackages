@@ -1,0 +1,11 @@
+--- a/MainLinux.cpp
++++ b/MainLinux.cpp
+@@ -181,7 +181,7 @@ static int MnDaemonBootStrap(void)
+ 	/* Ignore childs dead. */
+ 
+ 	/* System V */
+-	signal(SIGCLD, SIG_IGN);
++	signal(SIGCHLD, SIG_IGN);
+ 
+ 	return 0;
+ }
