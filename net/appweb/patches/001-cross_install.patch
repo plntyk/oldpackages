@@ -1,0 +1,12 @@
+--- a/projects/appweb-linux-default.mk
++++ b/projects/appweb-linux-default.mk
+@@ -1126,9 +1126,7 @@ start: $(DEPS_47)
+ #
+ #   install
+ #
+-DEPS_48 += stop
+ DEPS_48 += installBinary
+-DEPS_48 += start
+ 
+ install: $(DEPS_48)
+ 
