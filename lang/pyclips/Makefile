@@ -34,6 +34,16 @@ define Package/pyclips/description
   Python module to interface the CLIPS expert system shell library.
 endef
 
+define Build/Prepare
+	$(call Build/Prepare/Default)
+	cp $(CONFIG_DOWNLOAD_FOLDER)/CLIPSSrc.zip $(PKG_BUILD_DIR)/
+endef
+
+#2005-11-04  ftp://ftp.osuosl.org/.2/nslu2/sources/CLIPSSrc.zip
+#2005-11-04  ftp://ftp.drupal.org/.2/nslu2/sources/CLIPSSrc.zip
+#2005-11-04  ftp://ftp.musicbrainz.org/.2/nslu2/sources/CLIPSSrc.zip
+#2005-11-04  ftp://cygwin.osuosl.org/.2/nslu2/sources/CLIPSSrc.zip
+
 define Build/Compile
 	$(call Build/Compile/PyMod,,install --prefix="$(PKG_INSTALL_DIR)/usr")
 endef
