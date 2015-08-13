@@ -16,6 +16,7 @@ PKG_SOURCE_URL:=http://www.hsc.fr/ressources/outils/ssltunnel/download
 PKG_MD5SUM:=4039b50566a33a4077883ea974e476d5
 
 PKG_INSTALL:=1
+PKG_CHECK_FORMAT_SECURITY:=0
 
 include $(INCLUDE_DIR)/package.mk
 
