@@ -1,0 +1,11 @@
+--- a/socket.h
++++ b/socket.h
+@@ -11,7 +11,7 @@
+ struct mysockaddr
+ {
+ #if defined (__linux__)
+-	__SOCKADDR_COMMON (sa_);
++	sa_family_t sa_family;
+ #else
+ 	unsigned char   sa_len;
+ 	sa_family_t  sa_family;
