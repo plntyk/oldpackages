@@ -1,0 +1,30 @@
+--- a/server.h
++++ b/server.h
+@@ -33,6 +33,7 @@
+ 
+ #include "uftp_common.h"
+ #include "encryption.h"
++#include <sys/types.h>
+ 
+ #define MAXDEST 100000
+ #define MAXFILES 10000
+--- a/client.h
++++ b/client.h
+@@ -33,6 +33,7 @@
+ 
+ #include "uftp_common.h"
+ #include "encryption.h"
++#include <sys/types.h>
+ 
+ #define MAXLIST 100
+ #define MAXMISORDER 5
+--- a/proxy.h
++++ b/proxy.h
+@@ -33,6 +33,7 @@
+ 
+ #include "uftp_common.h"
+ #include "encryption.h"
++#include <sys/types.h>
+ 
+ #define MAX_PEND 10
+ #define MAXLIST 100
