@@ -1,0 +1,10 @@
+--- a/n2n.h
++++ b/n2n.h
+@@ -73,7 +72,6 @@
+ 
+ #include <syslog.h>
+ #include <sys/wait.h>
+-#include <net/ethernet.h>
+ #include <netinet/in.h>
+ #include <netinet/ip.h>
+ #include <netinet/udp.h>
