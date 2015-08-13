@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=DirectFB
-PKG_VERSION:=1.4.2
+PKG_VERSION:=1.7.7
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://www.directfb.org/downloads/Core/DirectFB-1.4
-PKG_MD5SUM:=e4376c6c5b8e27d735edb7f62a7a8e86
+PKG_SOURCE_URL:=http://www.directfb.org/downloads/Core/DirectFB-1.7
+PKG_MD5SUM:=152cf1863b1a3a28aa1370e9053440bf
 
 PKG_LICENSE:=LGPLv2.1
 PKG_LICENSE_FILES:=COPYING
@@ -28,7 +28,7 @@ define Package/directfb
     SECTION:=libs
     CATEGORY:=Libraries
     URL:=http://directfb.org
-    DEPENDS:=+libpng +libjpeg +libpthread +libfreetype +libsysfs
+    DEPENDS:=+libpng +libjpeg +libpthread +libfreetype +libsysfs @!USE_MUSL
 endef
 
 define Package/directfb/description
