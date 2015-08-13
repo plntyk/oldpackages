@@ -1,0 +1,10 @@
+--- a/ftpcmd.y
++++ b/ftpcmd.y
+@@ -50,6 +50,7 @@
+ #include <sys/stat.h>
+ 
+ #include <netinet/in.h>
++#include <netdb.h> /* IPPORT_RESERVED */
+ #include <arpa/ftp.h>
+ 
+ #include <ctype.h>
