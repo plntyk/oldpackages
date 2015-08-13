@@ -8,14 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pygobject
-PKG_VERSION:=2.21.5
+PKG_VERSION:=2.28.6
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=@GNOME/$(PKG_NAME)/2.21
-PKG_MD5SUM:=77ad7e8dbf13188364c9f56f907e530a
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=@GNOME/$(PKG_NAME)/2.28
+PKG_MD5SUM:=9415cb7f2b3a847f2310ccea258b101e
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
+PKG_CHECK_FORMAT_SECURITY:=0
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
@@ -24,11 +25,17 @@ $(call include_mk, python-package.mk)
 EXTRA_LDFLAGS+= \
 	-L$(ICONV_PREFIX) -L$(INTL_PREFIX)
 
-TARGET_CFLAGS += $(FPIC)
+TARGET_CFLAGS += $(FPIC) -D_GNU_SOURCE
+
+CONFIGURE_VARS += \
+	PYTHON=$(STAGING_DIR_HOST)/bin/python$(PYTHON_VERSION) \
+	PYTHON_INCLUDES="-I$(STAGING_DIR)/usr/include/python$(PYTHON_VERSION)"
+
 CONFIGURE_ARGS += \
 	--enable-static \
 	--disable-introspection \
 	--with-libffi
+	--with-python=$(STAGING_DIR)/usr/bin/python$(PYTHON_VERSION)
 
 define Package/python-gobject
   SUBMENU:=Python
@@ -36,7 +43,7 @@ define Package/python-gobject
   CATEGORY:=Languages
   TITLE:=GLib bindings for python
   URL:=http://www.pygtk.org/
-  DEPENDS:=+python +glib2 +libffi
+  DEPENDS:=+python3 +glib2 +libffi
 endef
 
 define Package/python-gobject/description
@@ -92,7 +99,7 @@ define Package/python-gobject/install
 
 	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)
 	$(INSTALL_DATA) \
-		$(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/*.{pth,py} \
+		$(PKG_INSTALL_DIR)/usr/lib/python$(PYTHON_VERSION)/site-packages/*.{pth,py} \
 		$(1)$(PYTHON_PKG_DIR)/
 
 	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)/gtk-2.0
@@ -100,7 +107,7 @@ define Package/python-gobject/install
 		$(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/gtk-2.0/*.py \
 		$(1)$(PYTHON_PKG_DIR)/gtk-2.0/
 
-	$(foreach d,gobject gio glib, \
+	$(foreach d,gio, \
 		$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)/gtk-2.0/$(d); \
 		$(INSTALL_DATA) \
 			$(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/gtk-2.0/$(d)/*.{py,so} \
