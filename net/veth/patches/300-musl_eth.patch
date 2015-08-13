@@ -1,0 +1,30 @@
+--- a/veth/vethd.c
++++ b/veth/vethd.c
+@@ -29,7 +29,6 @@
+ #include <linux/if_ether.h>
+ #include <linux/if_packet.h>
+ #include <linux/if_tun.h>
+-#include <net/ethernet.h>
+ 
+ #define max(a,b) ((a)>(b) ? (a):(b))
+ 
+@@ -224,7 +223,7 @@ int main(int argc, char **argv)
+ 
+ 	int vfd, nfd, leidos, opc, foreground = 0;
+ 	fd_set fds;
+-	struct ether_header const* const ether_hdr = (struct ether_header const *)buffer;
++	struct ethhdr const* const ether_hdr = (struct ethhdr const *)buffer;
+ 
+ 	set_locale();
+ 	show_copyright();
+@@ -359,8 +358,8 @@ int main(int argc, char **argv)
+ 				return 2;
+ 			}
+ 			/* drop multicast and ppp session */
+-			if (!(ether_hdr->ether_dhost[0] == 0x01)
+-			   && (ether_hdr->ether_type != htons(ETH_P_PPP_SES))) {
++			if (!(ether_hdr->h_dest[0] == 0x01)
++			   && (ether_hdr->h_proto != htons(ETH_P_PPP_SES))) {
+ 				write(vfd, buffer, leidos);
+ 			}
+ 		}
