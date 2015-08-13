@@ -1,0 +1,20 @@
+--- a/Agent/mipmodlinux.c
++++ b/Agent/mipmodlinux.c
+@@ -167,7 +167,6 @@
+ #define FIRST_TUNNEL            0
+ #else
+ #include <netinet/ip.h>
+-#include <bits/ioctls.h>
+ #define SIOCADDTUNNEL   (SIOCDEVPRIVATE + 1)
+ #define SIOCDELTUNNEL   (SIOCDEVPRIVATE + 2)
+ struct ip_tunnel_parm {
+--- a/Client/mnmiplinux.c
++++ b/Client/mnmiplinux.c
+@@ -236,7 +236,6 @@
+ #define FIRST_TUNNEL            0
+ #else
+ #include <netinet/ip.h>
+-#include <bits/ioctls.h>
+ #define SIOCADDTUNNEL   (SIOCDEVPRIVATE + 1)
+ #define SIOCDELTUNNEL   (SIOCDEVPRIVATE + 2)
+ struct ip_tunnel_parm {

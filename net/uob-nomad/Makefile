@@ -16,17 +16,19 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_MD5SUM:=9c7445cefaf8d6160017aef606f2e558
 
 PKG_BUILD_PARALLEL:=0
+PKG_CHECK_FORMAT_SECURITY:=0
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/uob-nomad
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+kmod-iptunnel4 +libpthread
+  DEPENDS:=+kmod-iptunnel4 +libpthread @!USE_MUSL
   TITLE:=UoB Nomad
   URL:=http://www.comnets.uni-bremen.de/~mab/openwrt/source/
 endef
 
+#if_tr token ring header
 define Package/uob-nomad/description
 This is an implementation of NOMADv4 (Filters for
 	Mobile IP, IETF Draft
