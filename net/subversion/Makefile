@@ -17,6 +17,7 @@ PKG_MD5SUM:=5d621281ce9d3448e1437cb006331f57
 
 PKG_FIXUP:=autoreconf
 PKG_MACRO_PATHS:=build/ac-macros
+PKG_CHECK_FORMAT_SECURITY:=0
 
 include $(INCLUDE_DIR)/package.mk
 
