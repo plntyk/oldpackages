@@ -1,0 +1,22 @@
+--- a/src/ds2438.c
++++ b/src/ds2438.c
+@@ -8,6 +8,8 @@
+ #include "ownet.h"
+ #include "ad26.h"
+ 
++typedef unsigned short ushort;
++
+ extern int   owBlock(int,int,uchar *,int);
+ extern void  setcrc8(int,uchar);
+ extern uchar docrc8(int,uchar);
+--- a/userial/crcutil.c
++++ b/userial/crcutil.c
+@@ -30,6 +30,8 @@
+ // Include files
+ #include "ownet.h"
+ 
++typedef unsigned short ushort;
++
+ // Local subroutines
+ void setcrc16(int,ushort);
+ ushort docrc16(int,ushort);
