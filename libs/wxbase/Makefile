@@ -26,7 +26,7 @@ define Package/libwxbase
   CATEGORY:=Libraries
   TITLE:=Cross-platform C++ framework
   URL:=http://www.wxwidgets.org/
-  DEPENDS:=+libexpat +libstdcpp +zlib +libpthread
+  DEPENDS:=+libexpat +libstdcpp +zlib +libpthread @BROKEN
 endef
 
 define Package/libwxbase/description
@@ -59,18 +59,7 @@ CONFIGURE_ARGS+= \
 	--disable-debug \
 	--disable-stl \
 	--disable-omf \
-	--disable-debug_flag \
-	--disable-debug_info \
-	--disable-debug_gdb \
-	--disable-debug_cntxt \
-	--disable-mem_tracing \
-	--disable-profile \
-	--disable-no_rtti \
-	--disable-no_exceptions \
-	--disable-compat22 \
-	--disable-compat24 \
 	--enable-intl \
-	--disable-backtrace \
 	--enable-exceptions \
 	--disable-sound \
 	--enable-largefile \
@@ -103,7 +92,7 @@ CONFIGURE_ARGS+= \
 	--without-x \
 	--without-libiconv-prefix \
 	--without-sdl-prefix \
-	--without-cppunit-prefix \
+	--without-cppunit-prefix
 
 UNICODE=yes
 
