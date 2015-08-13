@@ -47,7 +47,10 @@ CONFIGURE_VARS += \
 	ac_libnet_have_pf_packet=yes \
 	LL_INT_TYPE=libnet_link_linux
 
+
 define Build/InstallDev
+	$(INSTALL_DIR) $(1)/usr
+	$(INSTALL_DIR) $(1)/usr/lib/
 	$(INSTALL_DIR) $(1)/usr/lib/libnet-1.1.x
 
 	$(INSTALL_DIR) $(1)/usr/lib/libnet-1.1.x/bin
