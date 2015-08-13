@@ -35,6 +35,8 @@ define Package/etherpuppet/description
   through a TCP connection.
 endef
 
+TARGET_CFLAGS+=-D_GNU_SOURCE
+
 define Build/Configure
 endef
 
