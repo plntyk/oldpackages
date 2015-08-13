@@ -40,6 +40,8 @@ define Package/peerguardian/conffiles
 /etc/p2p.p2b.p2p
 endef
 
+TARGET_CFLAGS+= -D_GNU_SOURCE
+
 CONFIGURE_ARGS += \
 	--enable-lowmem \
 	--without-qt4 \
