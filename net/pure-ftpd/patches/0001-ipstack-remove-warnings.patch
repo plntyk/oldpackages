@@ -1,0 +1,69 @@
+From 329e9018968ebc4c188f814ccd5d50c26ce4d409 Mon Sep 17 00:00:00 2001
+From: Dirk Neukirchen <dirkneukirchen@web.de>
+Date: Wed, 5 Aug 2015 06:42:28 +0200
+Subject: [PATCH] ipstack: remove warnings
+
+Signed-off-by: Dirk Neukirchen <dirkneukirchen@web.de>
+---
+ src/ipstack.c | 8 ++++----
+ src/ipstack.h | 8 ++++----
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/src/ipstack.c b/src/ipstack.c
+index 8904138..679750b 100644
+--- a/src/ipstack.c
++++ b/src/ipstack.c
+@@ -180,28 +180,28 @@ int inet_pton(int af, const char *src, void *dst)
+ 
+ #endif
+ 
+-in_port_t *storage_port(struct sockaddr_storage * const ss)
++in_port_t *storage_port(const struct sockaddr_storage * const ss)
+ {
+     struct sockaddr_in * const si = (struct sockaddr_in *) ss;
+ 
+     return &si->sin_port;
+ }
+ 
+-in_port_t *storage_port6(struct sockaddr_storage * const ss)
++in_port_t *storage_port6(const struct sockaddr_storage * const ss)
+ {
+     struct sockaddr_in6 * const si = (struct sockaddr_in6 *) ss;
+ 
+     return &si->sin6_port;
+ }
+ 
+-struct in_addr *storage_sin_addr(struct sockaddr_storage * const ss)
++struct in_addr *storage_sin_addr(const struct sockaddr_storage * const ss)
+ {
+     struct sockaddr_in * const si = (struct sockaddr_in *) ss;
+ 
+     return &si->sin_addr;
+ }
+ 
+-struct in6_addr *storage_sin_addr6(struct sockaddr_storage * const ss)
++struct in6_addr *storage_sin_addr6(const struct sockaddr_storage * const ss)
+ {
+     struct sockaddr_in6 * const si = (struct sockaddr_in6 *) ss;
+ 
+diff --git a/src/ipstack.h b/src/ipstack.h
+index ac6595d..b633462 100644
+--- a/src/ipstack.h
++++ b/src/ipstack.h
+@@ -111,9 +111,9 @@ void freeaddrinfo(struct addrinfo *res);
+ 
+ #endif
+ 
+-in_port_t *storage_port(struct sockaddr_storage * const ss);
+-in_port_t *storage_port6(struct sockaddr_storage * const ss);
+-struct in_addr *storage_sin_addr(struct sockaddr_storage * const ss);
+-struct in6_addr *storage_sin_addr6(struct sockaddr_storage * const ss);
++in_port_t *storage_port(const struct sockaddr_storage * const ss);
++in_port_t *storage_port6(const struct sockaddr_storage * const ss);
++struct in_addr *storage_sin_addr(const struct sockaddr_storage * const ss);
++struct in6_addr *storage_sin_addr6(const struct sockaddr_storage * const ss);
+ 
+ #endif
+-- 
+2.5.0
+

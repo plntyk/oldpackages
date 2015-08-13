@@ -1,0 +1,14 @@
+--- a/src/ftpd.c
++++ b/src/ftpd.c
+@@ -4123,7 +4123,11 @@ static int ul_exit(ULHandler * const ulh
+ 
+ int ul_check_free_space(const char *name, const double min_space)
+ {
++#if defined (__GLIBC__)
+     STATFS_STRUCT statfsbuf;
++#else
++    struct statvfs statfsbuf;
++#endif
+     char *z;
+     char *alloca_namedir;
+     size_t name_len;

@@ -1,0 +1,23 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -100,19 +100,7 @@ AC_ARG_VAR(PYTHON,local path to the pyth
+ python_possible_path="/usr/bin:/usr/local/bin:/bin:/opt/python/bin:/opt/python/usr/bin:/opt/python/usr/local/bin"
+ AC_PATH_PROG(PYTHON,python,/usr/bin/env python,$python_possible_path)
+ 
+-if test -d /usr/local/include; then
+-  CPPFLAGS="$CPPFLAGS -I/usr/local/include"
+-fi
+-
+-if test -d /usr/kerberos/include; then
+-  CPPFLAGS="$CPPFLAGS -I/usr/kerberos/include"
+-fi
+-
+-if test -d /usr/local/lib; then
+-  LDFLAGS="$LDFLAGS -L/usr/local/lib"
+-fi
+-
+-CPPFLAGS="$CPPFLAGS -D_FORTIFY_SOURCE=2"
++	CPPFLAGS="$CPPFLAGS -D_FORTIFY_SOURCE=2"
+ 
+ dnl Checks for header files
+ 

@@ -8,15 +8,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pure-ftpd
-PKG_VERSION:=1.0.36
+PKG_VERSION:=1.0.42
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://download.pureftpd.org/pub/pure-ftpd/releases
-PKG_MD5SUM:=7899c75c1fed7dbad0352eb31080e066
+PKG_MD5SUM:=4022f38939f6a112b18c1a43dee552c1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
 
+PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -25,7 +26,7 @@ define Package/pure-ftpd/Default
   SUBMENU:=File Transfer
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libelf1
+  DEPENDS:=+libelf1 +libsodium
   TITLE:=Secure FTP made easy!
   URL:=http://www.pureftpd.org/project/pure-ftpd
 endef
@@ -58,6 +59,8 @@ define Package/pure-ftpd/conffiles
 endef
 
 Package/pure-ftpd-tls/conffiles=$(Package/pure-ftpd/conffiles)
+
+TARGET_CFLAGS+= -save-temps -D_LARGEFILE64_SOURCE
 
 CONFIGURE_ARGS += \
 	--with-everything \
