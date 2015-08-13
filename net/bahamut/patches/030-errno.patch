@@ -1,0 +1,11 @@
+--- a/include/sys.h
++++ b/include/sys.h
+@@ -23,7 +23,7 @@
+ #ifdef ISC202
+ #include <net/errno.h>
+ #else
+-#include <sys/errno.h>
++#include <errno.h>
+ #endif
+ #include "setup.h"
+ #include <stdio.h>
