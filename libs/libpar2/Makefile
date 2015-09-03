@@ -32,6 +32,8 @@ define Package/libpar2/description
 A library for performing common tasks related to PAR recovery sets
 endef
 
+TARGET_CXXFLAGS+=--std=gnu++11
+
 CONFIGURE_ARGS += \
 	--disable-static \
 	--disable-nls \
