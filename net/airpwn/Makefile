@@ -16,7 +16,6 @@ PKG_SOURCE:=airpwn-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=@SF/airpwn
 PKG_MD5SUM:=15b6f1cd287b4bb20dd586bb6c83628d
 
-PKG_BUILD_DEPENDS:=libnet1 libopenssl libpcap libpcre
 PKG_BUILD_PARALLEL:=0
 
 PKG_FIXUP:=autoreconf
