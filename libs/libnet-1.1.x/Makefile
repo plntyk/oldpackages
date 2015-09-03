@@ -16,7 +16,7 @@ PKG_SOURCE_URL:=@SF/$(PKG_NAME)
 PKG_MD5SUM:=be845c41170d72c7db524f3411b50256
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/libnet
-
+PKG_BUILD_PARALLEL:=0
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
@@ -52,13 +52,10 @@ define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(INSTALL_DIR) $(1)/usr/lib/libnet-1.1.x
-
 	$(INSTALL_DIR) $(1)/usr/lib/libnet-1.1.x/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/libnet-config $(1)/usr/lib/libnet-1.1.x/bin/
-
 	$(INSTALL_DIR) $(1)/usr/lib/libnet-1.1.x/include
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/libnet* $(1)/usr/lib/libnet-1.1.x/include/
-
 	$(INSTALL_DIR) $(1)/usr/lib/libnet-1.1.x/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libnet.{a,so*} $(1)/usr/lib/libnet-1.1.x/lib/
 endef
