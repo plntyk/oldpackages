@@ -15,18 +15,19 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://01.org/sites/default/files/downloads/powertop/
 PKG_MD5SUM:=e0d686e47daaf7e9d89031f7763432ef
 
-PKG_INSTALL:=1
 PKG_FIXUP:=gettext-version autoreconf
+PKG_INSTALL:=1
 INTL_FULL:=1
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/nls.mk
+#include $(INCLUDE_DIR)/nls.mk
 
 define Package/powertop
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=PowerTOP
-  DEPENDS:=+libncursesw +libstdcpp +libnl $(INTL_DEPENDS)
+  DEPENDS:=+libncursesw +libstdcpp +libnl
+# $(ICONV_DEPENDS) $(INTL_DEPENDS)
   URL:=http://www.lesswatts.org
 endef
 
@@ -35,9 +36,12 @@ define Package/powertop/description
  misbehaving while your computer is idle.
 endef
 
+#LIBS+=-lintl
+
 CONFIGURE_ARGS += \
-	 --without-libiconv-prefix \
-	 --with-libintl-prefix=$(INTL_PREFIX)
+	--disable-silent-rules
+#	--with-libiconv-prefix=$(ICONV_PREFIX) \
+#	--with-libintl-prefix=$(INTL_PREFIX)
 
 
 define Package/powertop/install
