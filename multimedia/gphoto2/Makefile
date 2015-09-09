@@ -19,13 +19,15 @@ PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
+#libgphoto2
+include $(INCLUDE_DIR)/nls.mk
 
 define Package/gphoto2
   SECTION:=multimedia
   CATEGORY:=Multimedia
   TITLE:=Gphoto Digital Camera Control
   URL:=http://www.gphoto.org/
-  DEPENDS:=+libgphoto2 +libpopt +libpthread +libreadline +libncurses
+  DEPENDS:=+libgphoto2 +libpopt +libpthread +libreadline +libncurses $(INTL_DEPENDS)
 endef
 
 define Package/gphoto2/description
