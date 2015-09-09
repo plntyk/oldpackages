@@ -37,21 +37,17 @@ endif
 
 TARGET_CFLAGS += $(FPIC)
 
-CONFIGURE_ARGS += \
-	--enable-shared \
-	--enable-static \
-	--with-pf_packet=yes
-
 CONFIGURE_VARS += \
 	ac_cv_libnet_endianess=$(ENDIANESS) \
 	ac_libnet_have_pf_packet=yes \
 	LL_INT_TYPE=libnet_link_linux
 
+CONFIGURE_ARGS += \
+	--enable-shared \
+	--enable-static \
+	--with-pf_packet=yes
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr
-	$(INSTALL_DIR) $(1)/usr/lib/
-	$(INSTALL_DIR) $(1)/usr/lib/libnet-1.1.x
 	$(INSTALL_DIR) $(1)/usr/lib/libnet-1.1.x/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/libnet-config $(1)/usr/lib/libnet-1.1.x/bin/
 	$(INSTALL_DIR) $(1)/usr/lib/libnet-1.1.x/include
