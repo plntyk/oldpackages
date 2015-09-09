@@ -1,0 +1,10 @@
+--- a/h/radsysutils.h
++++ b/h/radsysutils.h
+@@ -57,6 +57,7 @@ extern "C" {
+ #include <sys/stat.h>
+ #include <signal.h>
+ #include <time.h>
++#include <fcntl.h>
+ 
+ 
+ /*  ... Library include files
