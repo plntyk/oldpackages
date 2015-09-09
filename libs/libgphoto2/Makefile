@@ -8,16 +8,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libgphoto2
-PKG_VERSION:=2.5.7
+PKG_VERSION:=2.5.8
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=@SF/gphoto
-PKG_MD5SUM:=6b20635dc9120efb3d23c3b5201894a2
+PKG_MD5SUM:=873ab01aced49c6b92a98e515db5dcef
 
 PKG_FIXUP:=autoreconf
 PKG_LIBTOOL_PATHS:=. libgphoto2_port
 PKG_INSTALL:=1
+PKG_CHECK_FORMAT_SECURITY:=0
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
@@ -30,7 +31,7 @@ endef
 
 define Package/libgphoto2
   $(call Package/libgphoto2/Default)
-  DEPENDS:=+libexif +libjpeg +libpthread +libltdl $(ICONV_DEPENDS) +libxml2
+  DEPENDS:=+libexif +libjpeg +libpthread +libltdl $(ICONV_DEPENDS) $(INTL_DEPENDS) +libxml2
   TITLE:=The basic library of the gphoto2 program.
   MENU:=1
 endef
