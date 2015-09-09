@@ -21,6 +21,9 @@ PKG_BUILD_PARALLEL:=0
 
 include $(INCLUDE_DIR)/package.mk
 
+#required glib2
+include $(INCLUDE_DIR)/nls.mk
+
 define Package/gnokii
   SECTION:=utils
   CATEGORY:=Utilities
@@ -36,12 +39,14 @@ define Package/gnokii/description
 	capable mobiles as well as Symbian phones.
 endef
 
+CONFIGURE_VARS+= \
+		INTLLIBS="$(INTL_LDFLAGS)" \
+		ac_cv_header_libintl_h=no
+
 CONFIGURE_ARGS+= \
 		--without-libiconv-prefix \
-		--without-libintl-prefix \
 		--disable-rlpdebug \
 		--disable-xdebug \
-		--disable-debug \
 		--enable-shared \
 		--disable-static \
 		--disable-libpcsclite \
