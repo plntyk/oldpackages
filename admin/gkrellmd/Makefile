@@ -19,10 +19,13 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/gkrellm-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 
+##since glib1->2 switch? NLS full build enabled missing lintl
+include $(INCLUDE_DIR)/nls.mk
+
 define Package/gkrellmd
   SECTION:=admin
   CATEGORY:=Administration
-  DEPENDS:=+glib2
+  DEPENDS:=+glib2 $(INTL_DEPENDS)
   TITLE:=The GNU Krell Monitors Server
   URL:=http://gkrellm.net/
 endef
@@ -37,14 +40,16 @@ define Package/gkrellmd/conffiles
 /etc/$(PKG_NAME).conf
 endef
 
+#		GLIB12_LIB="$(TARGET_LDFLAGS) -lglib -lgmodule" \
+#		GLIB12_INCLUDE="-I$(STAGING_DIR)/usr/include/glib-1.2 -I$(STAGING_DIR)/usr/lib/glib/include"
+
+
 define Build/Compile
-	CFLAGS="$(TARGET_CFLAGS) $(EXTRA_CPPFLAGS)" \
-	LDFLAGS="$(EXTRA_LDFLAGS) " \
 	$(MAKE) -C $(PKG_BUILD_DIR)/server \
 		CC="$(TARGET_CC)" \
-		without-libsensors="yes" \
-		GLIB12_LIB="$(TARGET_LDFLAGS) -lglib -lgmodule" \
-		GLIB12_INCLUDE="-I$(STAGING_DIR)/usr/include/glib-1.2 -I$(STAGING_DIR)/usr/lib/glib/include"
+		EXTRA_CFLAGS="$(TARGET_CFLAGS)" \
+		EXTRA_LIBS="$(TARGET_LDFLAGS)" \
+		without-libsensors="yes"
 endef
 
 define Package/gkrellmd/install

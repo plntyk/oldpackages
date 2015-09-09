@@ -1,0 +1,20 @@
+--- a/server/Makefile
++++ b/server/Makefile
+@@ -51,7 +51,7 @@ PKG_LIB = `$(PKG_CONFIG) --libs glib-2.0
+ GLIB12_INCLUDE = `glib-config --cflags`
+ GLIB12_LIB = `glib-config --libs glib gmodule`
+ 
+-FLAGS = -O2 -I.. $(PKG_INCLUDE) $(GTOP_INCLUDE)
++FLAGS = -O2 -I.. $(EXTRA_CFLAGS) $(PKG_INCLUDE) $(GTOP_INCLUDE)
+ ifeq ($(glib12),1)
+ FLAGS = -O2 -I.. $(GLIB12_INCLUDE) $(GTOP_INCLUDE)
+ endif
+@@ -61,7 +61,7 @@ endif
+ 
+ FLAGS+= $(PTHREAD_INC)
+ 
+-LIBS = $(PKG_LIB) $(GTOP_LIBS_D) $(SYS_LIBS) $(SENSORS_LIBS)
++LIBS = $(EXTRA_LIBS) $(PKG_LIB) $(GTOP_LIBS_D) $(SYS_LIBS) $(SENSORS_LIBS)
+ 
+ ifeq ($(glib12),1)
+ LIBS = $(GLIB12_LIB) $(GTOP_LIBS_D) $(SYS_LIBS) $(SENSORS_LIBS)
