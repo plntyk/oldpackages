@@ -1,0 +1,8 @@
+--- a/configure.in
++++ b/configure.in
+@@ -492,4 +492,4 @@ AC_ARG_WITH( langvox,
+         FL_LANGVOX=$with_langvox )
+ AC_SUBST(FL_LANGVOX)
+ 
+-AC_OUTPUT(config/config config/system.mak)
++AC_OUTPUT(config/config config/system.mak flite.pc)
