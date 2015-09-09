@@ -28,7 +28,7 @@ define Package/directfb
     SECTION:=libs
     CATEGORY:=Libraries
     URL:=http://directfb.org
-    DEPENDS:=+libpng +libjpeg +libpthread +libfreetype +libsysfs @!USE_MUSL
+    DEPENDS:=+libpng +libjpeg +libpthread +libfreetype +libsysfs @BROKEN
 endef
 
 define Package/directfb/description
@@ -117,5 +117,4 @@ define Package/directfb/install
 		$(1)/usr/lib/directfb-1.4-0/inputdrivers/
 endef
 
-$(eval $(call Feature,DirectFB))
-$(eval $(call BuildPackage,directfb))
+#$(eval $(call BuildPackage,directfb))
