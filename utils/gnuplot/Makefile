@@ -25,6 +25,7 @@ TARGET_LDFLAGS+= \
 	-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
 
 CONFIGURE_VARS += \
+	ac_cv_header_iconv_h=no \
 	CXXFLAGS="$$$$CXXFLAGS -fno-rtti" \
 	LIBS="-lpthread"
 
