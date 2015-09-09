@@ -24,7 +24,7 @@ define Package/tig
 	SECTION:=devel
 	CATEGORY:=Development
 	TITLE:=Console Git repository viewer
-	DEPENDS:=+git +libncursesw
+	DEPENDS:=+git +libncursesw $(ICONV_DEPENDS)
 	URL:=http://jonas.nitro.dk/tig/releases/
 endef
 
