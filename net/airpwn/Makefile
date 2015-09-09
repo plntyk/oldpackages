@@ -28,7 +28,7 @@ define Package/airpwn
 	CATEGORY:=Network
 	SUBMENU:=wireless
 	TITLE:=Packet injection pwnage
-	DEPENDS:=+libnet1 +libopenssl +libpcap +libpcre +libpthread
+	DEPENDS:=+libnet-1.2.x +libopenssl +libpcap +libpcre +libpthread
 	URL:=http://airpwn.sourceforge.net/Airpwn.html
 endef
 
@@ -43,8 +43,8 @@ endef
 CONFIGURE_VARS:= \
 	CC="$(TARGET_CC)" \
 	LD="$(TARGET_LD)" \
-	CFLAGS="$(TARGET_CFLAGS) -D_GNU_SOURCE=1 -I$(STAGING_DIR)/usr/lib/libnet-1.1.x/include -I$(STAGING_DIR)/usr/include -I$(PKG_BUILD_DIR)/lorcon" \
-	LDFLAGS="$(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib/libnet-1.1.x/lib -L$(PKG_BUILD_DIR)/lorcon/.libs -lcrypto -lssl" \
+	CFLAGS="$(TARGET_CFLAGS) -D_GNU_SOURCE=1 -I$(STAGING_DIR)/usr/lib/libnet-1.2.x/include -I$(STAGING_DIR)/usr/include -I$(PKG_BUILD_DIR)/lorcon" \
+	LDFLAGS="$(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib/libnet-1.2.x/lib -L$(PKG_BUILD_DIR)/lorcon/.libs -lcrypto -lssl" \
 	LIBTOOL="$(STAGING_DIR)/host/bin/libtool"
 
 define Build/Configure
