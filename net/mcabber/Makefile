@@ -18,13 +18,13 @@ PKG_MD5SUM:=6bb2302f5168ad4c28b647390e37f9b3
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
-#include $(INCLUDE_DIR)/nls.mk
+include $(INCLUDE_DIR)/nls.mk
 
 define Package/mcabber
   SUBMENU:=Instant Messaging
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libncursesw +libloudmouth1 +libcharset +libidn +libgpgme +libotr
+  DEPENDS:=+libncursesw +libloudmouth1 +libcharset +libidn +libgpgme +libotr $(INTL_DEPENDS)
   TITLE:=Jabber console client
   URL:=http://mcabber.com
   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
