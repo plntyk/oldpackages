@@ -8,18 +8,18 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weechat
-PKG_VERSION:=0.4.3
+PKG_VERSION:=1.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://www.weechat.org/files/src
-PKG_MD5SUM:=07500f0d1054691d88f21dd12b7c5871
+PKG_MD5SUM:=d315ceb66b03442ded0715f4277bd65f
 
-PKG_FIXUP:=autoreconf
+#PKG_FIXUP:=autoreconf
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/nls.mk
 include $(INCLUDE_DIR)/cmake.mk
+include $(INCLUDE_DIR)/nls.mk
 
 define Package/weechat
   SUBMENU:=Instant Messaging
@@ -27,7 +27,7 @@ define Package/weechat
   CATEGORY:=Network
   TITLE:=Lightweight IRC client
   URL:=http://www.weechat.org/
-  DEPENDS:=+libcurl +libgnutls +libgcrypt +zlib +libncursesw $(ICONV_DEPENDS)
+  DEPENDS:=+libcurl +libgnutls +libgcrypt +zlib +libncursesw $(ICONV_DEPENDS) $(INTL_DEPENDS)
 endef
 
 define Package/weechat/description
@@ -40,11 +40,12 @@ CMAKE_OPTIONS+= \
 	-DENABLE_LUA=OFF \
 	-DENABLE_GUILE=OFF \
 	-DENABLE_RUBY=OFF \
-	-DENABLE_TCL=OFF
-
-TARGET_LDFLAGS += \
-	-L$(ICONV_PREFIX)/lib -ldl \
-	-Wl,-rpath-link,$(STAGING_DIR)/usr/lib
+	-DENABLE_TCL=OFF \
+	$(if $(CONFIG_BUILD_NLS),-DENABLE_NLS=OFF,-DENABLE_NLS=ON) \
+	-DLIBINTL_INCLUDE:PATH="$(INTL_PREFIX)/include" \
+	-DLIBINTL_LIBRARY:PATH="$(INTL_PREFIX)/lib" \
+	-DICONV_INCLUDE_PATH:PATH="$(ICONV_PREFIX)/include" \
+	-DICONV_LIBRARY:FILEPATH="$(ICONV_PREFIX)/lib/libiconv.so"
 
 define Package/weechat/install
 	$(INSTALL_DIR) $(1)/usr/bin
