@@ -36,7 +36,7 @@ $(call Package/openswan/Default)
   SECTION:=net
   CATEGORY:=Network
   TITLE+= (daemon)
-  DEPENDS+= +libgmp +ip @LINUX_3_10||@LINUX_3_14||@LINUX_3_18
+  DEPENDS+= +libgmp +ip @LINUX_3_10||@LINUX_3_14||@LINUX_3_18 @!USE_MUSL
 endef
 
 define Package/openswan/description
@@ -48,7 +48,7 @@ define KernelPackage/openswan
 $(call Package/openswan/Default)
   SUBMENU:=Network Support
   TITLE+= (kernel module)
-  DEPENDS+=+IPV6:kmod-ipv6 @LINUX_3_10||@LINUX_3_14||@LINUX_3_18
+  DEPENDS+=+IPV6:kmod-ipv6 @LINUX_3_10||@LINUX_3_14||@LINUX_3_18 @!USE_MUSL
   FILES:=$(PKG_BUILD_DIR)/modobj*/ipsec.$(LINUX_KMOD_SUFFIX)
 endef
 
