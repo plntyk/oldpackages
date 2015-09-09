@@ -42,9 +42,8 @@ EXTRA_CPPFLAGS:=\
 	-I$(INTL_PREFIX)/include \
 
 EXTRA_LDFLAGS:=\
-	-L$(ICONV_PREFIX)/lib \
-	-L$(INTL_PREFIX)/lib \
-	-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
+	$(ICONV_LDFLAGS) \
+	$(INTL_LDFLAGS) \
 
 MAKE_FLAGS += \
 	CPPFLAGS="$(TARGET_CPPFLAGS) $(EXTRA_CPPFLAGS)" \
