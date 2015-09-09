@@ -24,7 +24,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/ettercap
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libcurl +libpcap +libnet1 +libopenssl +libpcre +libncurses +libltdl +libpthread +zlib +libiconv-full
+  DEPENDS:=+libcurl +libpcap +libnet-1.2.x +libopenssl +libpcre +libncurses +libltdl +libpthread +zlib +libiconv-full
   TITLE:=Ettercap is a suite for man in the middle attacks on LAN.
   URL:=http://www.ettercap-project.org
 endef
@@ -48,8 +48,8 @@ CMAKE_OPTIONS += \
 	-DINSTALL_DESKTOP:BOOL=OFF \
 	-DENABLE_GTK:BOOL=OFF \
 	-DBUNDLED_LIBS:BOOL=OFF \
-	-DLIBNET_INCLUDE_DIR:PATH=$(STAGING_DIR)/usr/lib/libnet-1.1.x/include \
-	-DLIBNET_LIBRARY:FILEPATH=$(STAGING_DIR)/usr/lib/libnet-1.1.x/lib/libnet.so \
+	-DLIBNET_INCLUDE_DIR:PATH=$(STAGING_DIR)/usr/lib/libnet-1.2.x/include \
+	-DLIBNET_LIBRARY:FILEPATH=$(STAGING_DIR)/usr/lib/libnet-1.2.x/lib/libnet.so \
 	-DHAVE_ICONV:FILEPATH=$(STAGING_DIR)/usr/lib/libiconv-full/lib/libiconv.so \
 	-DEXECUTABLE_OUTPUT_PATH=$(PKG_BUILD_DIR)/bin_out
 
