@@ -25,6 +25,9 @@ PKG_USE_MIPS16:=0
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/kernel.mk
 
+#glib2
+include $(INCLUDE_DIR)/nls.mk
+
 define Package/sysprof
   SECTION:=devel
   CATEGORY:=Development
