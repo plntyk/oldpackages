@@ -37,10 +37,12 @@ define Package/nzbget/description
 A command-line client/server based binary newsgrabber for nzb-files.
 endef
 
+TARGET_CPPFLAGS+=-std=c++11
+
 CONFIGURE_ARGS += \
 	--disable-nls \
 	--with-tlslib=OpenSSL \
-	--with-libpar2-includes=$(STAGING_DIR)/usr/include/libpar2 \
+	--with-libpar2-includes=$(STAGING_DIR)/usr/include \
 	--with-libpar2-libraries=$(STAGING_DIR)/usr/lib \
 	--with-libsigc-includes=$(STAGING_DIR)/usr/include/sigc++-2.0 \
 	--with-libsigc-libraries=$(STAGING_DIR)/usr/lib \
