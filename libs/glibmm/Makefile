@@ -33,6 +33,8 @@ define Package/glibmm/description
 c++ bindings for glib2
 endef
 
+TARGET_CPPFLAGS+=-std=c++11
+
 TARGET_LDFLAGS+= \
 	-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
 
