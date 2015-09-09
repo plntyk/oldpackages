@@ -21,6 +21,9 @@ PKG_LIBTOOL_PATHS:=. tre-0.7.2
 
 include $(INCLUDE_DIR)/package.mk
 
+#from glib2
+include $(INCLUDE_DIR)/nls.mk
+
 define Package/streamripper
   SECTION:=multimedia
   CATEGORY:=Multimedia
