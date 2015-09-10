@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/fprobe-ulog
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libpthread @BROKEN
+  DEPENDS:=+libpthread +ulogd @BROKEN
   TITLE:=NetFlow probe (ulog-based)
   URL:=http://fprobe.sourceforge.net
 endef
@@ -30,13 +30,13 @@ define Package/fprobe-ulog/description
 	(iptables ULOG target).
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default, \
+TARGET_CFLAGS+= \
+	-I$(STAGING_DIR)/ulogd-2.0.5/include
+
+CONFIGURE_ARGS+= \
 		--with-piddir=/var \
 		--with-membulk=index8 \
-		--with-hash=xor8 \
-	)
-endef
+		--with-hash=xor8
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR)
