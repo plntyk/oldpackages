@@ -1,0 +1,11 @@
+--- a/src/common/timestamp.h
++++ b/src/common/timestamp.h
+@@ -25,7 +25,7 @@
+  *   For commercial use please refer to D-ITG Professional.
+  */
+ 
+-
++#include <time.h>
+ 
+ #ifdef WIN32
+ #include <windows.h>
