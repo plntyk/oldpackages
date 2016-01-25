@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wing
-PKG_VERSION:=20140513
+PKG_VERSION:=20151201
 PKG_RELEASE:=1
-PKG_REV:=022ca995143f086fd6397e4c0eeb15a24ed835fd
+PKG_REV:=1490de34fb38de2d38a84893f87dc4c8c065eb8f
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=git://github.com/rriggio/click.git
+PKG_SOURCE_URL:=git://github.com/kohler/click.git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_PROTO:=git
@@ -29,7 +29,7 @@ define Package/wing
 	SUBMENU:=Routing and Redirection
 	TITLE:=Wireless mesh networking toolkit
 	MAINTAINER:=Roberto Riggio <roberto.riggio@create-net.org>
-	DEPENDS:=+kmod-tun +libpcap +libstdcpp
+	DEPENDS:=+kmod-tun +libpcap +libstdcpp @BROKEN
 	URL:=http://www.wing-project.org/
 endef
 
@@ -45,18 +45,14 @@ CONFIGURE_ARGS += \
 	--enable-tools=host \
 	--enable-userlevel \
 	--enable-wifi \
-	--enable-wing \
-	--enable-diffserv \
 	--disable-linuxmodule \
 	--disable-bsdmodule \
-	--disable-dynamic-linking \
+	--disable-dynamic-linking
 
 HOST_CONFIGURE_ARGS += \
 	--enable-userlevel \
 	--enable-wifi \
-	--enable-wing \
-	--enable-diffserv \
-	--disable-linuxmodule \
+	--disable-linuxmodule
 
 define Host/Compile
 	$(call Host/Install/Default, tools elementmap.xml install)
@@ -64,7 +60,7 @@ endef
 
 define Build/Compile
 	(cd $(PKG_BUILD_DIR)/userlevel; \
-		$(STAGING_DIR_HOST)/bin/click-mkmindriver -p $(PKG_NAME) -C $(STAGING_DIR_HOST) \
+		$(STAGING_DIR)/host/bin/click-mkmindriver -p $(PKG_NAME) -C $(STAGING_DIR)/host \
 		-f $(PKG_BUILD_DIR)/conf/wing/sample.click \
 		-A --all -E Discard -E Print -E PrintWifi -E Strip -E Null \
 		-E InfiniteSource -E RatedSource -E EtherEncap -E UDPIPEncap \
