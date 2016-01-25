@@ -1,0 +1,51 @@
+--- a/aclocal.m4
++++ b/aclocal.m4
+@@ -808,7 +808,7 @@ AC_DEFUN([EGG_CHECK_LIBS],
+   else
+     AC_CHECK_LIB(socket, socket)
+     AC_CHECK_LIB(nsl, connect)
+-    AC_CHECK_LIB(dns, gethostbyname)
++    AC_CHECK_LIB(c, gethostbyname)
+     AC_CHECK_LIB(dl, dlopen)
+     AC_CHECK_LIB(m, tan, EGG_MATH_LIB="-lm")
+ 
+--- a/configure.ac
++++ b/configure.ac
+@@ -134,24 +134,11 @@ tcllibnames="tcl8.5 tcl85 tcl8.4 tcl84 t
+ 
+ tcllibextensions=".so .so.1 .so.1.0 .so.1.2 .dll .dylib .sl .a"
+ 
+-tcllibpaths="$HOME/lib $HOME/tcl/lib \
+-             /usr/local/lib /usr/lib /lib /lib64 /usr/lib64 \
+-             /usr/local/lib/tcl8.5 /usr/lib/tcl8.5 \
+-             /usr/local/lib/tcl8.4 /usr/lib/tcl8.4 \
+-             /usr/local/lib/tcl8.3 /usr/lib/tcl8.3 \
+-             /usr/local/pkgs/tcl/lib /sys/lib /usr/pkg/lib \
+-             /usr/i486-linuxaout/lib /beos/system/lib $HOME"
++tcllibpaths=""
+ 
+ # Tcl header filenames and search paths.
+ tclheadernames="tcl.h"
+-tclheaderpaths="$HOME/include $HOME/tcl/include \
+-                /usr/local/include /usr/include \
+-                /usr/local/include/tcl8.5 /usr/include/tcl8.5 \
+-                /usr/local/include/tcl8.4 /usr/include/tcl8.4 \
+-                /usr/local/include/tcl8.3 /usr/include/tcl8.3 \
+-                /usr/local/pkgs/tcl/include /sys/include \
+-                /usr/pkg/lib /beos/system/include /beos/devel/include $HOME"
+-
++tclheaderpaths=""
+ 
+ # We save the cache (if used) here to speed things up if we can't find Tcl.
+ AC_CACHE_SAVE
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -77,7 +77,7 @@ MODULE_XLIBS = @MODULE_XLIBS@
+ 
+ modconf = $(top_srcdir)/misc/modconfig --top_srcdir=$(top_srcdir)
+ 
+-egg_test_run = EGG_LANGDIR=$(top_srcdir)/language ./$(EGGEXEC) -v
++egg_test_run =
+ 
+ post_config  =  echo "" && \
+ 		echo "You can now compile the bot, using \"make\"." && \

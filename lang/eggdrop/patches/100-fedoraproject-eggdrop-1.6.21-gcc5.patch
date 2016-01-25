@@ -1,0 +1,49 @@
+Patch by Robert Scheck <robert@fedoraproject.org> for eggdrop >= 1.6.21 to
+avoid build failures with GCC 5.x such as "eggdrop1.6.21/src/./main.c:710:
+undefined reference to `garbage_collect_tclhash'" and "eggdrop1.6.21/src/
+tcldcc.c:942: undefined reference to `open_listen'".
+
+--- eggdrop1.6.21/src/net.c		2011-02-13 15:19:33.000000000 +0100
++++ eggdrop1.6.21/src/net.c.gcc5	2015-06-20 14:24:38.000000000 +0200
+@@ -564,7 +564,7 @@
+ /* Returns a socket number for a listening socket that will accept any
+  * connection -- port # is returned in port
+  */
+-inline int open_listen(int *port)
++int open_listen(int *port)
+ {
+   return open_address_listen(myip[0] ? getmyip() : INADDR_ANY, port);
+ }
+--- eggdrop1.6.21/src/proto.h		2011-07-09 17:07:48.000000000 +0200
++++ eggdrop1.6.21/src/proto.h.gcc5	2015-06-20 14:25:03.000000000 +0200
+@@ -271,7 +271,7 @@
+ void killsock(int);
+ void killtclsock(int);
+ int answer(int, char *, unsigned long *, unsigned short *, int);
+-inline int open_listen(int *);
++int open_listen(int *);
+ int open_address_listen(IP addr, int *);
+ int open_telnet(char *, int);
+ int open_telnet_dcc(int, char *, char *);
+--- eggdrop1.6.21/src/tclhash.c		2011-07-09 17:07:48.000000000 +0200
++++ eggdrop1.6.21/src/tclhash.c.gcc5	2015-06-20 14:41:14.000000000 +0200
+@@ -109,7 +109,7 @@
+   nfree(tl);
+ }
+ 
+-inline void garbage_collect_tclhash(void)
++void garbage_collect_tclhash(void)
+ {
+   tcl_bind_list_t *tl, *tl_next, *tl_prev;
+   tcl_bind_mask_t *tm, *tm_next, *tm_prev;
+--- eggdrop1.6.21/src/tclhash.h		2011-07-31 22:15:06.000000000 +0200
++++ eggdrop1.6.21/src/tclhash.h.gcc5	2015-06-20 14:41:40.000000000 +0200
+@@ -75,7 +75,7 @@
+ 
+ #ifndef MAKING_MODS
+ 
+-inline void garbage_collect_tclhash(void);
++void garbage_collect_tclhash(void);
+ 
+ void init_bind(void);
+ void kill_bind(void);

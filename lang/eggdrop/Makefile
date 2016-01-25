@@ -8,16 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=eggdrop
-PKG_VERSION:=1.6.17
+PKG_VERSION:=1.6.21
 PKG_RELEASE:=1
 
 PKG_SOURCE:=eggdrop$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=ftp://ftp.eggheads.org/pub/eggdrop/source/1.6
-PKG_MD5SUM:=68e181201483dee398f9904e8652e6ca
+PKG_MD5SUM:=5663b2daecc790e6e9237e1d5a2caa50
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)$(PKG_VERSION)
 PKG_INSTALL:=1
-PKG_BUILD_PARALLEL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -35,10 +34,11 @@ endef
 
 TARGET_CFLAGS+=-std=gnu89
 
+CONFIGURE_VARS+= egg_cv_socklen_t=yes
+
 CONFIGURE_ARGS+=\
 	--prefix="$(PKG_INSTALL_DIR)/eggdrop" \
-	--enable-threads \
-	--with-tcllib="$(STAGING_DIR)/usr/lib/libtcl8.5.so" \
+	--with-tcllib="$(STAGING_DIR)/usr/lib/libtcl8.6.so" \
 	--with-tclinc="$(STAGING_DIR)/usr/include/tcl.h"
 
 define Build/Compile
