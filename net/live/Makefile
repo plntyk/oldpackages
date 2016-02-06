@@ -29,8 +29,8 @@ endef
 
 define Build/Configure
 	( cd $(PKG_BUILD_DIR); \
-		$(SED) 's/@CROSS_COMPILE@/$(TARGET_CROSS)/g' \
-		    -e 's/@CFLAGS@/$(TARGET_CFLAGS)/g' \
+		$(SED) 's#@CROSS_COMPILE@#$(TARGET_CROSS)#g' \
+		    -e 's#@CFLAGS@#$(TARGET_CFLAGS)#g' \
 		    config.OpenWrt; \
 		./genMakefiles OpenWrt; \
 	)
