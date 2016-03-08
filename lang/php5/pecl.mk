@@ -15,12 +15,12 @@ define Package/php5-pecl/Default
 endef
 
 define Build/Configure
-	( cd $(PKG_BUILD_DIR); $(STAGING_DIR_HOST)/usr/bin/phpize )
+	( cd $(PKG_BUILD_DIR); $(STAGING_DIR)/host/usr/bin/phpize )
 	$(Build/Configure/Default)
 endef
 
 CONFIGURE_ARGS+= \
-	--with-php-config=$(STAGING_DIR_HOST)/usr/bin/php-config
+	--with-php-config=$(STAGING_DIR)/host/usr/bin/php-config
 
 define PECLPackage
 
