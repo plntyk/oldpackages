@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/ptrtd
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+kmod-ipv6 +kmod-tun +ip
+  DEPENDS:=+kmod-tun +ip
   TITLE:=Portable Transport Relay Translator Daemon
   URL:=http://v6web.litech.org/ptrtd/
 endef
