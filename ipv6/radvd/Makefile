@@ -26,7 +26,7 @@ define Package/radvd/Default
   CATEGORY:=Network
   TITLE:=IPv6 Routing Advertisement
   URL:=http://v6web.litech.org/radvd/
-  DEPENDS:=+kmod-ipv6 +libdaemon
+  DEPENDS:=+libdaemon
 endef
 
 define Package/radvd
