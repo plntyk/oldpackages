@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/elinks
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libopenssl
+  DEPENDS:=+libopenssl @BROKEN
   TITLE:=A text based web browser
   URL:=http://elinks.or.cz/
 endef
@@ -30,8 +30,10 @@ An advanced text based web browser
 endef
 
 SHVAR_TRANS:= \
-	$(STAGING_DIR_HOST)/bin/sed -e \
+	$(TOPDIR)/staging_dir/host/bin/sed -e \
 	'y%*+%pp%;s%[^_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789]%_%g'
+
+TARGET_CFLAGS+=-std=gnu89
 
 define Build/Configure
  (cd $(PKG_BUILD_DIR); rm -rf config.cache; \
