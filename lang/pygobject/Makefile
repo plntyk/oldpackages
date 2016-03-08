@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pygobject
-PKG_VERSION:=2.28.6
+PKG_VERSION:=3.10.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=@GNOME/$(PKG_NAME)/2.28
-PKG_MD5SUM:=9415cb7f2b3a847f2310ccea258b101e
+PKG_SOURCE_URL:=@GNOME/$(PKG_NAME)/3.10
+PKG_MD5SUM:=f311155be8510df6ad8e4edf1cb463d4
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 PKG_CHECK_FORMAT_SECURITY:=0
@@ -28,7 +28,7 @@ EXTRA_LDFLAGS+= \
 TARGET_CFLAGS += $(FPIC) -D_GNU_SOURCE
 
 CONFIGURE_VARS += \
-	PYTHON=$(STAGING_DIR_HOST)/bin/python$(PYTHON_VERSION) \
+	PYTHON=$(STAGING_DIR)/host/bin/python$(PYTHON_VERSION) \
 	PYTHON_INCLUDES="-I$(STAGING_DIR)/usr/include/python$(PYTHON_VERSION)"
 
 CONFIGURE_ARGS += \
@@ -37,13 +37,14 @@ CONFIGURE_ARGS += \
 	--with-libffi
 	--with-python=$(STAGING_DIR)/usr/bin/python$(PYTHON_VERSION)
 
+#BROKEN needs gobject-introspection
 define Package/python-gobject
   SUBMENU:=Python
   SECTION:=lang
   CATEGORY:=Languages
   TITLE:=GLib bindings for python
   URL:=http://www.pygtk.org/
-  DEPENDS:=+python3 +glib2 +libffi
+  DEPENDS:=+python3 +glib2 +libffi @BROKEN
 endef
 
 define Package/python-gobject/description
