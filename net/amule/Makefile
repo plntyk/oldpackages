@@ -8,14 +8,18 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=aMule
-PKG_VERSION:=2.3.1
-PKG_RELEASE:=1
+PKG_VERSION:=2016-02-04
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=@SF/amule
-PKG_MD5SUM:=31724290a440943f5b05d4dca413fe02
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/amule-project/amule
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_VERSION:=bf163ae89fb242b5909adb138fb59892f0dd6527
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
+PKG_MIRROR_MD5SUM:=
 
+#call autogen because of other fixups (autopoint)
 PKG_BUILD_DEPENDS:=libgd
+PKG_REMOVE_FILES:=
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
@@ -40,7 +44,7 @@ CONFIGURE_ARGS+= \
 	--disable-monolithic \
 	--enable-amule-daemon \
 	--enable-amulecmd \
-	--enable-webserver \
+	--disable-webserver \
 	--disable-amule-gui \
 	--disable-cas \
 	--disable-wxcas \
@@ -49,6 +53,7 @@ CONFIGURE_ARGS+= \
 	--disable-alcc \
 	--disable-fileview \
 	--disable-plasmamule \
+	--disable-upnp \
 	--without-wxdebug \
 	\
 	--with-zlib="$(STAGING_DIR)/usr" \
@@ -57,8 +62,7 @@ CONFIGURE_ARGS+= \
 	--with-wx-prefix="$(STAGING_DIR)/usr" \
 	--with-crypto-prefix="$(STAGING_DIR)/usr" \
 	--with-libiconv-prefix="$(ICONV_PREFIX)" \
-	--with-libintl-prefix="$(INTL_PREFIX)" \
-	--without-x \
+	--with-libintl-prefix="$(INTL_PREFIX)"
 
 TARGET_LDFLAGS += \
 	-liconv
@@ -68,6 +72,11 @@ define Build/Compile
 		HOSTCC="$(HOSTCC)" \
 		DESTDIR="$(PKG_INSTALL_DIR)" \
 		all install
+endef
+
+define Build/Configure
+	(cd $(PKG_BUILD_DIR); ./autogen.sh)
+	$(call Build/Configure/Default)
 endef
 
 define Package/amule/install
