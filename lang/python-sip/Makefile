@@ -111,17 +111,17 @@ endef
 
 HOST_CFLAGS+= \
 	$(HOST_FPIC) \
-	-I$(STAGING_DIR_HOST)/include/python$(PYTHON_VERSION)
+	-I$(STAGING_DIR)/host/include/python$(PYTHON_VERSION)
 
 define Host/Configure
 	$(call HostPython, \
 		cd "$(HOST_BUILD_DIR)"; \
 		, \
 		./configure.py \
-			--bindir=$(STAGING_DIR_HOST)/usr/bin \
-			--destdir=$(STAGING_DIR_HOST)/$(PYTHON_PKG_DIR) \
-			--incdir=$(STAGING_DIR_HOST)/usr/include \
-			--sipdir=$(STAGING_DIR_HOST)/usr/share/sip \
+			--bindir=$(STAGING_DIR)/host/usr/bin \
+			--destdir=$(STAGING_DIR)/host/$(PYTHON_PKG_DIR) \
+			--incdir=$(STAGING_DIR)/host/usr/include \
+			--sipdir=$(STAGING_DIR)/host/usr/share/sip \
 	)
 endef
 
