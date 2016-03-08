@@ -63,7 +63,8 @@ endef
 
 define Build/Configure
 	$(call Build/Configure/Default)
-	find $(PKG_BUILD_DIR) -name Makefile -exec sed -i 's,IDL_COMPILER.*orbit-idl-2,IDL_COMPILER = $(STAGING_DIR_HOST)/bin/orbit-idl-2,g' {} \; # tell orbit2 to use the host-built idl-compiler
+	# tell orbit2 to use the host-built idl-compiler
+	find $(PKG_BUILD_DIR) -name Makefile -exec sed -i 's,IDL_COMPILER.*orbit-idl-2,IDL_COMPILER = $(STAGING_DIR)/host/bin/orbit-idl-2,g' {} \;
 endef
 
 define Build/InstallDev
