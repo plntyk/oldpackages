@@ -25,7 +25,7 @@ define Package/send
   CATEGORY:=Network
   TITLE:=Secure Neighbor Discovery implementation
   URL:=http://mobisend.org/debian-mobisend.html
-  DEPENDS:=+kmod-ipv6 +ip6tables +libnetfilter-queue +libopenssl +libreadline +libncurses
+  DEPENDS:=+ip6tables +libnetfilter-queue +libopenssl +libreadline +libncurses
 endef
 
 define Package/send/description
