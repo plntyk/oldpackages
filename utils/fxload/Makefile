@@ -21,7 +21,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/fxload
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=@USB_SUPPORT +udev
+  DEPENDS:=@USB_SUPPORT +eudev
   TITLE:=Downloading firmware into EZ-USB microcontrollers
   URL:=http://linux-hotplug.sourceforge.net/
 endef
