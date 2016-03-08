@@ -54,7 +54,7 @@ endef
 CONFIGURE_VARS:= \
 	 CXXFLAGS="-I$(STAGING_DIR)/usr/include $(ICONV_CFLAGS) $(TARGET_CFLAGS)" \
 	 LDFLAGS="-L$(STAGING_DIR)/usr/lib      $(ICONV_LDFLAGS)" \
-	 ac_cv_path_PROTOC=$(STAGING_DIR_HOST)/usr/bin/protoc \
+	 ac_cv_path_PROTOC=$(STAGING_DIR)/host/usr/bin/protoc \
 
 CONFIGURE_ARGS += \
 	--prefix=/usr \
