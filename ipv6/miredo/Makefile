@@ -32,7 +32,7 @@ endef
 define Package/miredo-common
 $(call Package/miredo/Default)
   TITLE:=Teredo (IPv6 tunneling over UDP through NAT) shared libraries
-  DEPENDS+= +ip +libpthread +librt $(CXX_DEPENDS) +kmod-ipv6 +kmod-tun
+  DEPENDS+= +ip +libpthread +librt $(CXX_DEPENDS) +kmod-tun
 endef
 
 define Package/miredo-server
