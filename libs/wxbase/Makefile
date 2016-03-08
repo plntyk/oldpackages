@@ -8,14 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wxbase
-PKG_VERSION:=2.8.12
+PKG_VERSION:=3.0.2
 PKG_RELEASE:=1
 
-PKG_SOURCE:=wxGTK-$(PKG_VERSION).tar.bz2
+PKG_SOURCE:=wxWidgets-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=@SF/wxwindows
-PKG_MD5SUM:=08f81ab60647308058f6ce99712b14f8
+PKG_MD5SUM:=ba4cd1f3853d0cd49134c5ae028ad080
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/wxGTK-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/wxWidgets-$(PKG_VERSION)
 PKG_USE_MIPS16:=0
 PKG_INSTALL:=1
 
@@ -37,7 +37,7 @@ define Package/libwxbase/description
  etc.) allowing you to write portable programs easily.
 endef
 
-TARGET_CFLAGS += $(FPIC)
+#TARGET_CFLAGS += $(FPIC) -std=gnu89
 
 # XXX: aMule *needs* the following configure options to be enabled:
 #	--enable-intl
@@ -46,53 +46,57 @@ TARGET_CFLAGS += $(FPIC)
 #	--with-regex
 #	--enable-unicode
 CONFIGURE_ARGS+= \
-	--enable-shared \
-	--disable-rpath \
-	--disable-gui \
-	--disable-monolithic \
-	--enable-plugins \
-	--disable-universal \
-	--disable-nanox \
-	--disable-gtk2 \
-	--disable-gpe \
-	--disable-optimise \
 	--disable-debug \
-	--disable-stl \
-	--disable-omf \
-	--enable-intl \
-	--enable-exceptions \
-	--disable-sound \
-	--enable-largefile \
-	--enable-no_deps \
-	\
-	--without-gtk \
-	--without-motif \
-	--without-mac \
-	--without-cocoa \
-	--without-wine \
-	--without-msw \
-	--without-pm \
-	--without-mgl \
-	--without-microwin \
-	--without-x11 \
-	--without-libpng \
-	--without-libjpeg \
-	--without-libtiff \
-	--without-libxpm \
-	--without-libmspack \
-	--without-sdl \
-	--without-gnomeprint \
-	--without-opengl \
-	--without-dmalloc \
-	--with-regex="sys" \
-	--with-zlib="sys" \
-	--without-odbc \
-	--with-expat="sys" \
-	--without-gtk-prefix \
-	--without-x \
-	--without-libiconv-prefix \
-	--without-sdl-prefix \
-	--without-cppunit-prefix
+	--disable-gui \
+	--disable-precomp-headers
+
+#	--disable-monolithic \
+#	--disable-nanox \
+#	--disable-gtk2 \
+#	--disable-gpe \
+#	--disable-no_rtti \
+#	--disable-optimise \
+#	--disable-omf \
+#	--disable-rpath \
+#	--disable-stl \
+#	--disable-sound \
+#	--disable-universal \
+#	--enable-plugins \
+
+#	--enable-shared \
+#	--enable-intl \
+#	--enable-exceptions \
+#	--enable-largefile \
+#	--enable-no_deps \
+#	--with-gnu-ld \
+#	--without-gtk \
+#	--without-motif \
+#	--without-mac \
+#	--without-cocoa \
+#	--without-wine \
+#	--without-msw \
+#	--without-pm \
+#	--without-mgl \
+#	--without-microwin \
+#	--without-x11 \
+#	--without-libpng \
+#	--without-libjpeg \
+#	--without-libtiff \
+#	--without-libxpm \
+#	--without-libmspack \
+#	--without-sdl \
+#	--without-gnomeprint \
+#	--without-opengl \
+#	--without-dmalloc \
+#	--with-regex="sys" \
+#	--with-zlib="sys" \
+#	--without-odbc \
+#	--with-expat="sys" \
+#	--without-gtk-prefix \
+#	--without-x \
+#	--without-libiconv-prefix \
+#	--without-sdl-prefix \
+#	--without-cppunit-prefix
 
 UNICODE=yes
 
@@ -109,10 +113,10 @@ endif
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/include $(1)/usr/lib
 	$(CP) -L $(PKG_BUILD_DIR)/wx-config $(1)/usr/bin/
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/wx-2.8 $(1)/usr/include/
+	$(CP) $(PKG_INSTALL_DIR)/usr/include/wx-3.0 $(1)/usr/include/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libwx_base$(LIB_PFX){,_net,_xml}-*.so* $(1)/usr/lib/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/wx $(1)/usr/lib/
-	$(SED) 's,-I$$$${includedir}/wx-2.8,-I$(STAGING_DIR)/usr/include/wx-2.8,g' $(1)/usr/bin/wx-config
+	$(SED) 's,-I$$$${includedir}/wx-3.0,-I$(STAGING_DIR)/usr/include/wx-3.0,g' $(1)/usr/bin/wx-config
 	$(SED) 's,-I$$$${libdir}/wx/include,-I$(STAGING_DIR)/usr/lib/wx/include,g' $(1)/usr/bin/wx-config
 endef
 
