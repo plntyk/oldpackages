@@ -1,0 +1,69 @@
+--- a/include/ircsprintf.h
++++ b/include/ircsprintf.h
+@@ -3,6 +3,7 @@
+ #include <stdarg.h>
+ #include <stdio.h>
+ #include "setup.h"
++#include "defs.h"
+ 
+ /* define this if you intend to use ircsnprintf or ircvsnprintf */
+ /* It's not used, and sNprintf functions are not in all libraries */
+@@ -14,24 +15,7 @@
+ #define ircvsnprintf vsnprintf
+ #define ircsnprintf snprintf
+ #endif
+-/* This code contributed by Rossi 'vejeta' Marcello <vjt@users.sourceforge.net>
+- * Originally in va_copy.h, however there wasnt much there, so i stuck it in
+- * here.  Thanks Rossi!  -epi
+- */
+ 
+-/* va_copy hooks for IRCd */
+-
+-#if defined(__powerpc__)
+-# if defined(__NetBSD__)
+-#  define VA_COPY va_copy
+-# elif defined(__FreeBSD__) || defined(__linux__)
+-#  define VA_COPY __va_copy
+-# endif
+-#elif defined (__x86_64)
+-# define VA_COPY __va_copy
+-#else
+-# define VA_COPY(x, y) x = y
+-#endif
+ 
+ #endif
+ 
+--- a/include/defs.h
++++ b/include/defs.h
+@@ -1,6 +1,8 @@
+ #if !defined( DEFS_H_INCLUDED )
+ # define DEFS_H_INCLUDED 1
+ 
++#include <stdarg.h>
++
+ /*
+  * None of the following should need to be changed by hand.  
+  */
+@@ -73,10 +75,10 @@
+ # if defined(__NetBSD__)
+ #  define VA_COPY va_copy
+ # elif defined(__FreeBSD__) || defined(__linux__)
+-#  define VA_COPY __va_copy
++#  define VA_COPY va_copy
+ # endif
+ #elif defined (__x86_64)
+-# define VA_COPY __va_copy
++# define VA_COPY va_copy
+ #else
+ # define VA_COPY(x, y) x = y
+ #endif
+--- a/src/send.c
++++ b/src/send.c
+@@ -28,6 +28,7 @@
+ #include "zlink.h"
+ #include "fds.h"
+ #include "memcount.h"
++#include "defs.h"
+ 
+ /*
+  * STOP_SENDING_ON_SHORT_SEND:

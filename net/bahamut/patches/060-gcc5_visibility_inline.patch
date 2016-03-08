@@ -1,0 +1,119 @@
+--- a/include/h.h
++++ b/include/h.h
+@@ -117,7 +117,7 @@ extern aClient 	*find_chasing(aClient *,
+ extern int  	  find_restrict(aClient *);
+ extern int  	  rehash(aClient *, aClient *, int);
+ extern int  	  initconf(char *);
+-extern inline char *finishconf(void);
++static inline char *finishconf(void);
+ extern void       merge_confs();
+ extern int  	  lock_kline_file();
+ 
+@@ -216,7 +216,7 @@ extern int 	do_client_queue(aClient *);
+ extern void 	read_error_exit(aClient *, int, int);
+ extern int 	readwrite_client(aClient *, int, int);
+ 
+-extern inline char *get_listener_name(aListener *);
++static inline char *get_listener_name(aListener *);
+ extern int        attach_Iline(aClient *, struct hostent *, char *);
+ extern aConnect  *find_aConnect(char *);
+ extern aOper     *find_oper(char *, char *, char *, char *);
+@@ -389,4 +389,43 @@ int ssl_smart_shutdown(SSL *);
+ int bitncmp(const void *l, const void *r, size_t n);
+ int inet_parse_cidr(int af, const char *src, void *dst, size_t size);
+ 
++/* from confparse.c */
++extern int forked;
++extern char *set_classes(void);
++extern aPort *new_ports;
++extern Conf_Me *new_MeLine;
++
++
++static inline char *
++get_listener_name(aListener *lptr)
++{
++   static char nbuf[HOSTLEN * 2 + USERLEN + 5];
++
++   ircsprintf(nbuf, "%s[@%s.%d][%s]", me.name, BadPtr(lptr->vhost_string) ?
++              "0.0.0.0" : lptr->vhost_string, lptr->port, 
++               BadPtr(lptr->allow_string) ?  "*" : lptr->allow_string);
++
++   return nbuf;
++}
++
++
++static inline char *
++finishconf(void)
++{
++    static char buf[256];
++    char *ret;
++
++    if (!new_MeLine || !new_MeLine->servername)
++        return "Missing global block";
++    if ((ret = set_classes()))
++    {
++        ircsnprintf(buf, sizeof(buf), "Missing class block for referenced "
++                    "class '%s'", ret);
++        return buf;
++    }
++    if (!new_ports)
++        return "No ports defined";
++    return NULL;
++}
++
+ #endif  /* H_H */
+--- a/src/confparse.c
++++ b/src/confparse.c
+@@ -68,10 +68,6 @@
+  * -epi
+  */
+ 
+-extern int forked;
+-extern char *set_classes(void);
+-extern aPort *new_ports;
+-extern Conf_Me *new_MeLine;
+ 
+ /* free_vars()
+  * clear our temp variable array used by parse_block and children
+@@ -789,21 +785,3 @@ jmp_including:
+     return 1;
+ }
+ 
+-inline char *
+-finishconf(void)
+-{
+-    static char buf[256];
+-    char *ret;
+-
+-    if (!new_MeLine || !new_MeLine->servername)
+-        return "Missing global block";
+-    if ((ret = set_classes()))
+-    {
+-        ircsnprintf(buf, sizeof(buf), "Missing class block for referenced "
+-                    "class '%s'", ret);
+-        return buf;
+-    }
+-    if (!new_ports)
+-        return "No ports defined";
+-    return NULL;
+-}
+--- a/src/s_misc.c
++++ b/src/s_misc.c
+@@ -147,17 +147,6 @@ myctime(time_t value)
+     return buf;
+ }
+ 
+-inline char *
+-get_listener_name(aListener *lptr)
+-{
+-   static char nbuf[HOSTLEN * 2 + USERLEN + 5];
+-
+-   ircsprintf(nbuf, "%s[@%s.%d][%s]", me.name, BadPtr(lptr->vhost_string) ?
+-              "0.0.0.0" : lptr->vhost_string, lptr->port, 
+-               BadPtr(lptr->allow_string) ?  "*" : lptr->allow_string);
+-
+-   return nbuf;
+-}
+ 
+ /*
+  * * get_client_name *      Return the name of the client for various

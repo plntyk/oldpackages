@@ -1,8 +1,6 @@
-diff --git a/configure b/configure
-index 4ef7659..c774c65 100755
---- a/configure
-+++ b/configure
-@@ -8009,11 +8009,6 @@ fi
+--- a/configure.in
++++ b/configure.in
+@@ -686,11 +686,6 @@ fi
  # zlib test
  # ripped from http://autoconf-archive.cryp.to/check_zlib.html
  #
@@ -13,4 +11,4 @@ index 4ef7659..c774c65 100755
 -fi
  if test -n "${ZLIB_HOME}"
  then
-         ZLIB_OLD_LDFLAGS=$LDFLAGS
+         ZLIB_OLD_CPPFLAGS="$CPPFLAGS"

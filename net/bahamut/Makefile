@@ -8,12 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bahamut
-PKG_VERSION:=1.8.6
+PKG_VERSION:=2.0.7
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-release.tar.gz
-PKG_SOURCE_URL:=http://bahamut.dal.net/download
-PKG_MD5SUM:=a814a4e0ff1fabcf026ea8574b4a1e20
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=http://code.dal.net/release/
+PKG_MD5SUM:=b6e63e6cdae6cca9145a4d2111747e7c
+
+PKG_FIXUP:=autoreconf
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -27,17 +29,17 @@ define Package/bahamut
 endef
 
 TARGET_CFLAGS += \
-	-DSYS_ERRLIST_DECLARED
+	-D_GNU_SOURCE \
+	-DSYS_ERRLIST_DECLARED \
+	-fgnu89-inline
 
-define Build/Configure
-	$(call Build/Configure/Default,\
-		--with-maxconnections=64 \
-		--with-openssl="$(STAGING_DIR)/usr/lib" \
-		,\
+CONFIGURE_VARS+= \
 		ac_cv_func_dn_skipname=yes \
-		ZLIB_HOME="$(STAGING_DIR)/usr" \
-	)
-endef
+		ZLIB_HOME="$(STAGING_DIR)/usr"
+
+CONFIGURE_ARGS+= \
+		--with-maxconnections=64 \
+		--with-openssl="$(STAGING_DIR)/usr/lib"
 
 define Build/Compile
 	$(call Build/Compile/Default,\
