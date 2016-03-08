@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/gw6c
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libpthread +ip +kmod-tun +kmod-ipv6 $(CXX_DEPENDS) +radvd
+  DEPENDS:=+libpthread +ip +kmod-tun $(CXX_DEPENDS) +radvd
   TITLE:=IPv6 tunnel client software
   URL:=http://www.go6.net
 endef
