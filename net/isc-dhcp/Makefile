@@ -9,15 +9,14 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=isc-dhcp
 UPSTREAM_NAME:=dhcp
-PKG_VERSION:=4.3.2
+PKG_VERSION:=4.3.3-P1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(UPSTREAM_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.isc.org/isc/dhcp/$(PKG_VERSION)
-PKG_MD5SUM:=c244cefe663d43100af757d8ff625a1f
+PKG_MD5SUM:=60f330a69566c52d841ddaab9d7a2662
 
 PKG_FIXUP:=autoreconf
-PKG_BUILD_PARALLEL:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(UPSTREAM_NAME)-$(PKG_VERSION)
 
@@ -29,17 +28,19 @@ define Package/isc-dhcp/Default
   SUBMENU:=IP Addresses and Names
   TITLE:=ISC's DHCP
   URL:=https://www.isc.org/software/dhcp
+  DEPENDS:=@BROKEN
 endef
 
 define Package/isc-dhcp-relay-ipv4
   $(call Package/isc-dhcp/Default)
   TITLE+= relay (without IPv6)
   VARIANT:=ipv4
+  DEPENDS:=@BROKEN
 endef
 
 define Package/isc-dhcp-relay-ipv6
   $(call Package/isc-dhcp/Default)
-  DEPENDS:= @IPV6
+  DEPENDS:= @IPV6 @BROKEN
   TITLE+= relay (with IPv6)
   VARIANT:=ipv6
 endef
@@ -76,7 +77,7 @@ endef
 
 define Package/isc-dhcp-client-ipv6
   $(call Package/isc-dhcp/Default)
-  DEPENDS:= @IPV6
+  DEPENDS:= @IPV6 @BROKEN
   TITLE+= client (with IPv6)
   VARIANT:=ipv6
 endef
@@ -105,7 +106,7 @@ endef
 
 define Package/isc-dhcp-server-ipv6
   $(call Package/isc-dhcp/Default)
-  DEPENDS:= @IPV6
+  DEPENDS:= @IPV6 @BROKEN
   TITLE+= server (with IPv6)
   VARIANT:=ipv6
 endef
@@ -127,58 +128,70 @@ endef
 
 define Package/isc-dhcp-omshell-ipv4
   $(call Package/isc-dhcp/Default)
-  DEPENDS:= +isc-dhcp-server-ipv4
+  DEPENDS:= +isc-dhcp-server-ipv4 @BROKEN
   TITLE+= omshell (without IPv6)
   VARIANT:=ipv4
 endef
 
 define Package/isc-dhcp-omshell-ipv6
   $(call Package/isc-dhcp/Default)
-  DEPENDS:= @IPV6 +isc-dhcp-server-ipv6
+  DEPENDS:= @IPV6 +isc-dhcp-server-ipv6 @BROKEN
   TITLE+= omshell (with IPv6)
   VARIANT:=ipv6
 endef
 
-define Package/isc-dhcp-omshell/description
- provides an interactive way to connect to, query, and possibly change, the ISC
- DHCP Server's state via OMAPI, the Object Management API.
-endef
+#define Package/isc-dhcp-omshell/description
+# provides an interactive way to connect to, query, and possibly change, the ISC
+# DHCP Server's state via OMAPI, the Object Management API.
+#endef
 
-define Package/isc-dhcp-omshell-ipv4/description
-$(call Package/isc-dhcp-omshell/description)
- This package is compiled with IPv4 support only.
-endef
+#define Package/isc-dhcp-omshell-ipv4/description
+#$(call Package/isc-dhcp-omshell/description)
+# This package is compiled with IPv4 support only.
+#endef
 
-define Package/isc-dhcp-omshell-ipv6/description
-$(call Package/isc-dhcp-omshell/description)
- This package is compiled with IPv4 and IPv6 support.
-endef
+#define Package/isc-dhcp-omshell-ipv6/description
+#$(call Package/isc-dhcp-omshell/description)
+# This package is compiled with IPv4 and IPv6 support.
+#endef
 
 CONFIGURE_VARS += \
 	ac_cv_file__dev_random=yes
 
 CONFIGURE_ARGS += \
 	--disable-tracing 		\
+	--enable-dhcpv6			\
 	--enable-paranoia		\
-	--disable-dependency-tracking
+	--with-randomdev=/dev/random
 
-ifeq ($(BUILD_VARIANT),ipv4)
-  CONFIGURE_ARGS += --disable-dhcpv6
-endif
-ifeq ($(BUILD_VARIANT),ipv6)
-  CONFIGURE_ARGS += --enable-dhcpv6
-endif
+#	--build=$(GNU_HOST_NAME)	\
+#	--host=$(GNU_HOST_NAME)		\
+
+#ifeq ($(BUILD_VARIANT),ipv4)
+#  CONFIGURE_ARGS += --disable-dhcpv6
+#endif
+#ifeq ($(BUILD_VARIANT),ipv6)
+#  CONFIGURE_ARGS += --enable-dhcpv6
+#endif
 
 define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR)			\
-		DESTDIR="$(PKG_INSTALL_DIR)"		\
-		BUILD_CC="$(HOSTCC_NOCACHE)"		\
-		host_alias="$(GNU_TARGET_NAME)"		\
-		target_alias="$(GNU_TARGET_NAME)"	\
-		build_alias="$(GNU_HOST_NAME)"		\
-		ac_cv_file__dev_random=yes		\
-		all install-exec
+	$(MAKE) -C $(PKG_BUILD_DIR) \
+	BUILD_CC="$(HOSTCC)" \
+	CC="$(HOSTCC)" \
+	CFLAGS="-O2" \
+	LIBS="" \
+	gen
+	$(call Build/Compile/Default)
 endef
+
+#	$(MAKE) -C $(PKG_BUILD_DIR)			\
+#		all && $(MAKE)
+#		DESTDIR="$(PKG_INSTALL_DIR)"		\
+#		BUILD_CC="$(HOSTCC_NOCACHE)"		\
+#		host_alias="$(GNU_TARGET_NAME)"		\
+#		target_alias="$(GNU_TARGET_NAME)"	\
+#		build_alias="$(GNU_HOST_NAME)"		\
+#		ac_cv_file__dev_random=yes		\
 
 define Package/isc-dhcp-relay-$(BUILD_VARIANT)/install
 	$(INSTALL_DIR) $(1)/usr/sbin
