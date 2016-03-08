@@ -1,0 +1,11 @@
+--- a/transocks.c
++++ b/transocks.c
+@@ -358,7 +358,7 @@ static void
+ logmsg(char *msg)
+ {
+ 	if (isdaemon) {
+-		syslog(LOG_ERR, msg);
++		syslog(LOG_ERR, "%s", msg);
+ 		return;
+ 	}
+ 	fprintf(stderr, "transocks[%d]: %s\n", getpid(), msg);
