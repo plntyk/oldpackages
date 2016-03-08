@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dt
-PKG_VERSION:=15.14
+PKG_VERSION:=18.32
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-source.tar.gz
-PKG_SOURCE_URL:=http://home.comcast.net/~SCSIguy/SCSI_FAQ/RMiller_Tools/ftp/$(PKG_NAME)/
+PKG_SOURCE:=$(PKG_NAME)-source-v18.32.tar.gz
+PKG_SOURCE_URL:=http://pkgs.fedoraproject.org/lookaside/pkgs/dt/dt-source-v18.32.tar.gz/3054aeaaba047a1dbe90c2132a382ee2
 PKG_MD5SUM:=5776233a2d301a50b314306538257a45
 
 include $(INCLUDE_DIR)/package.mk
@@ -38,9 +38,11 @@ define Package/dt/description
 endef
 
 define Build/Compile
+	$(cd $(PKG_BUILD_DIR); cp scsilib-linux.c scsilib.c)
 	$(MAKE) -C $(PKG_BUILD_DIR) -f Makefile.linux \
 		CC="$(TARGET_CC)" \
-		CFLAGS="$(TARGET_CFLAGS) -DFIFO -DMMAP -DTTY -D__linux__ -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64" \
+		CFLAGS="$(TARGET_CFLAGS) -DAIO -DFIFO -DMMAP -D__linux__ -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -DTHREADS" \
+		VPATH=.. OS=linux \
 		dt
 endef
 

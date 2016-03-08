@@ -1,0 +1,11 @@
+--- a/Makefile.linux
++++ b/Makefile.linux
+@@ -129,7 +129,7 @@ scsilib.c:
+ 	    echo "Please specify OS={aix,linux,hpux,solaris,windows}"; \
+ 	    exit 1; \
+ 	fi; \
+-	ln -sf ../scsilib-$(OS).c scsilib.c
++	cp ./scsilib-$(OS).c scsilib.c
+ 
+ print:;
+ 		@$(PRINTER) $(PRINTFLAGS) $(ALL_CFILES)

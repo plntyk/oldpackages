@@ -1,0 +1,16 @@
+diff --git a/Documentation/dt.man b/Documentation/dt.man
+index af32831..d4960cf 100644
+--- a/Documentation/dt.man
++++ b/Documentation/dt.man
+@@ -299,7 +299,7 @@ Log File Format Keywords:
+ .TP
+ %iodir
+ The I/O direction.
+-.tP
++.TP
+ %iotype
+ The I/O type.
+ .TP
+--
+1.7.8.5
+
