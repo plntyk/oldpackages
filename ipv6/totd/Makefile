@@ -20,7 +20,6 @@ include $(INCLUDE_DIR)/package.mk
 define Package/totd
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+kmod-ipv6
   TITLE:=Small DNS proxy that supports IPv6/IPv4 record translation
   URL:=http://www.dillema.net/software/totd.html
 endef
