@@ -26,6 +26,7 @@ define Package/tsocks
   CATEGORY:=Network
   SUBMENU:=Web Servers/Proxies
   TITLE:=Transparent SOCKS v4 proxying library
+  DEPENDS:=@!USE_MUSL
   URL:=http://tsocks.sourceforge.net/
 endef
 
@@ -33,11 +34,9 @@ define Package/tsocks/description
 Transparent SOCKS v4 proxying library
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default,\
-                  --with-conf=/etc/tsocks.conf \
-	)
-endef
+CONFIGURE_ARGS+= \
+	--with-conf=/etc/tsocks.conf
+
 
 define Package/tsocks/install
 	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/lib

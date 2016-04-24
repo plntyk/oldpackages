@@ -8,19 +8,19 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lilo
-PKG_VERSION:=24.1
+PKG_VERSION:=24.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://lilo.alioth.debian.org/ftp/sources/
-PKG_MD5SUM:=66573ba8629209da694131efbe20c5de
+PKG_MD5SUM:=fe5e8c9754cee342b958b5fcbbb6eb51
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/lilo
   SECTION:=base
   CATEGORY:=Boot Loaders
-  DEPENDS:=@TARGET_x86&&@!TARGET_x86_64
+  DEPENDS:=@TARGET_x86&&@!TARGET_x86_64 @BROKEN
   TITLE:=lilo
   URL:=http://lilo.alioth.debian.org/ftp/sources/
 endef
@@ -31,7 +31,7 @@ endef
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
-		CC="$(HOSTCC) -m32 -std=gnu89" \
+		CC="$(HOSTCC) -m32 " \
 		alles
 endef
 

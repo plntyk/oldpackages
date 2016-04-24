@@ -36,7 +36,7 @@ endef
 
 TARGET_CFLAGS += $(FPIC) $(TARGET_CPPFLAGS)
 
-TARGET_LDFLAGS += -llua
+TARGET_LDFLAGS += -llua -lssp_nonshared
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
