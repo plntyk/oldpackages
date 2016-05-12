@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dialog
-PKG_VERSION:=1.2-20150125
+PKG_VERSION:=1.3-20160424
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=ftp://invisible-island.net/dialog
-PKG_MD5SUM:=4b362a15cb72fb191165d5ece6d9ac16
+PKG_MD5SUM:=582d804252205f73df2d892ebdc5212e
 
 include $(INCLUDE_DIR)/package.mk
 
