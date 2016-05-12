@@ -31,7 +31,7 @@ endef
 define Package/wt
   $(call Package/wt/Default)
   MENU:=1
-  DEPENDS:= +libstdcpp +boost-date_time +boost-system +boost-filesystem +boost-thread +boost-program_options +boost-signals +boost-regex +libpthread
+  DEPENDS:= +libstdcpp +boost +boost-date_time +boost-system +boost-filesystem +boost-thread +boost-program_options +boost-signals +boost-regex +libpthread
   TITLE:=C++ Web Toolkit
 endef
 
