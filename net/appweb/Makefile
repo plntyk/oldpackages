@@ -60,7 +60,7 @@ define Package/appweb
   SUBMENU:=Web Servers/Proxies
   TITLE:=Appweb Web Server
   URL:=http://www.appwebserver.org/
-  DEPENDS:=@!avr32 +libpthread +libpcre +libsqlite3 +libopenssl
+  DEPENDS:=@!avr32 +libpthread +libpcre +libsqlite3 +libopenssl @BROKEN
 endef
 
 define Package/appweb/description
