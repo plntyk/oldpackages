@@ -1,0 +1,11 @@
+--- a/configure.in
++++ b/configure.in
+@@ -1,8 +1,5 @@
+ AC_INIT(interface/interface.c)
+ 
+-cp $srcdir/configure.guess $srcdir/config.guess
+-cp $srcdir/configure.sub $srcdir/config.sub
+-
+ AC_CANONICAL_HOST
+ 
+ if test -z "$CC"; then

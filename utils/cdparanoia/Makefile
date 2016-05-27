@@ -18,6 +18,9 @@ PKG_MD5SUM:=b304bbe8ab63373924a744eac9ebc652
 
 PKG_BUILD_PARALLEL:=0
 
+PKG_FIXUP:=autoreconf
+PKG_REMOVE_FILES:=configure.guess configure.sub
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/cdparanoia
@@ -28,16 +31,10 @@ define Package/cdparanoia
   URL:=http://www.xiph.org/paranoia/index.html
 endef
 
-#define Build/Configure
-#	echo "Build/Configure"
-#        $(call Build/Configure/Default)
-#endef
-
-#define Build/Compile
-#endef
-
-define Build/InstallDev
-	echo "Build/InstallDev"
+define Build/Prepare
+	$(call Build/Prepare/Default)
+	$(CP) $(SCRIPT_DIR)/config.{sub,guess} $(PKG_BUILD_DIR)/
+#	cp -fp $(SCRIPT_DIR)/config.sub $(PKG_BUILD_DIR)/
 endef
 
 define Package/cdparanoia/install
