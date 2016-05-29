@@ -17,6 +17,7 @@ PKG_MD5SUM:=56d7147cf7031583ba7d8db09033e0c5
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
+PKG_USE_MIPS16:=0
 
 include $(INCLUDE_DIR)/package.mk
 
