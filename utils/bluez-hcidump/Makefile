@@ -27,12 +27,6 @@ define Package/bluez-hcidump
   URL:=http://www.bluez.org/
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default, \
-		--with-bluez="$(STAGING_DIR)/usr/include" \
-	)
-endef
-
 define Package/bluez-hcidump/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/hcidump $(1)/usr/sbin/
