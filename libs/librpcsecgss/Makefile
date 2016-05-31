@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=librpcsecgss
-PKG_VERSION:=0.14
-PKG_RELEASE:=2
+PKG_VERSION:=0.19
+PKG_RELEASE:=1
 
 PKG_SOURCE:=librpcsecgss-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.citi.umich.edu/projects/nfsv4/linux/librpcsecgss/
@@ -27,6 +27,7 @@ define Package/librpcsecgss
   CATEGORY:=Libraries
   TITLE:=required libraries for the nfs-utils
   URL:=http://www.citi.umich.edu/projects/nfsv4/linux
+  DEPENDS:=@BROKEN
 endef
 
 define Package/librpcsecgss/description
