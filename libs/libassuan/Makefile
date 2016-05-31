@@ -40,8 +40,7 @@ endef
 CONFIGURE_ARGS += \
 	--enable-shared \
 	--enable-static \
-	--with-gpg-error-prefix="$(STAGING_DIR)/usr" \
-	--without-pth-test \
+	--with-gpg-error-prefix="$(STAGING_DIR)/usr"
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
