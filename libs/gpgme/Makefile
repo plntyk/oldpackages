@@ -51,7 +51,6 @@ CONFIGURE_VARS += ac_cv_type_error_t=yes
 CONFIGURE_ARGS += \
 	--enable-shared \
 	--enable-static \
-	--with-gpg=/"usr/bin/gpg" \
 	--with-gpg-error-prefix="$(STAGING_DIR)/usr" \
 	--with-libassuan-prefix="$(STAGING_DIR)/usr" \
 	--disable-gpgconf-test \
