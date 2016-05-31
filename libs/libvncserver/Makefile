@@ -36,22 +36,10 @@ endef
 
 CONFIGURE_ARGS += \
 	--with-sdl=no \
-	--without-avahi \
-	--without-dpms \
-	--without-fbpm \
-	--without-filetransfer \
 	--without-gcrypt \
 	--without-gnutls \
 	--without-libva \
-	--without-macosx-native \
-	--without-ssl \
-	--without-xdamage \
-	--without-xfixes \
-	--without-xkeyboard \
-	--without-xinerama \
-	--without-xrandr \
-	--without-xrecord \
-	--without-xtrap
+	--without-ssl
 
 #define Build/InstallDev
 #	$(INSTALL_DIR) $(1)/usr/{lib,include,bin}
