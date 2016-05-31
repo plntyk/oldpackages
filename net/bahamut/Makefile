@@ -39,7 +39,7 @@ CONFIGURE_VARS+= \
 
 CONFIGURE_ARGS+= \
 		--with-maxconnections=64 \
-		--with-openssl="$(STAGING_DIR)/usr/lib"
+		--enable-openssl="$(STAGING_DIR)/usr/lib"
 
 define Build/Compile
 	$(call Build/Compile/Default,\
