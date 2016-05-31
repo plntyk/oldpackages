@@ -29,12 +29,6 @@ define Package/remind/description
 	Remind is a powerfull commadline reminder.
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default, \
-		--prefix=/usr --with-linux-headers="$(LINUX_DIR)" \
-	)
-endef
-
 define Package/remind/install
 	$(INSTALL_DIR) $(1)/usr/bin/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/remind $(1)/usr/bin/
