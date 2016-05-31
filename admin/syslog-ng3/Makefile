@@ -51,7 +51,7 @@ CONFIGURE_ARGS +=  \
 	--disable-glibtest \
 	--disable-spoof-source \
 	--disable-sql \
-	--enable-prce \
+	--enable-pcre \
 	--disable-linux-caps \
 
 TARGET_CPPFLAGS += \
