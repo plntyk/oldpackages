@@ -30,7 +30,7 @@ define Package/cmus/Default
   SECTION:=sound
   CATEGORY:=Sound
   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
-  URL:=http://cmus.sourceforge.net/
+  URL:=https://cmus.github.io/
 endef
 
 define Package/cmus
