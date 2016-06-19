@@ -8,7 +8,7 @@
  AM_ICONV()
  GP_GETTEXT_FLAGS()
  
-@@ -644,11 +643,6 @@ packaging/linux-hotplug/Makefile
+@@ -645,11 +644,6 @@ packaging/linux-hotplug/Makefile
  packaging/generic/Makefile
  packaging/rpm/Makefile
  packaging/rpm/package.spec
@@ -36,8 +36,8 @@
  bin_SCRIPTS = gphoto2-port-config
  
  # The . stands for the current dir, i.e. the iolibs to build.
--SUBDIRS = po libgphoto2_port test . doc m4
-+SUBDIRS = libgphoto2_port . m4
+-SUBDIRS = po libgphoto2_port test . doc gphoto-m4
++SUBDIRS = libgphoto2_port . gphoto-m4
  
  
  ########################################################################
@@ -47,8 +47,8 @@
  EXTRA_DIST = HACKING MAINTAINERS TESTERS installcheck.mk
  
  # Note: @subdirs@ lists all the directories from AC_CONFIG_SUBDIRS()
--SUBDIRS = @subdirs@ libgphoto2 camlibs tests examples po packaging doc
-+SUBDIRS = @subdirs@ libgphoto2 camlibs examples packaging
+-SUBDIRS = @subdirs@ libgphoto2 camlibs tests examples po packaging doc gphoto-m4
++SUBDIRS = @subdirs@ libgphoto2 camlibs examples packaging gphoto-m4
  
  EXTRA_DIST    += libgphoto2.pc.in
  pkgconfig_DATA = libgphoto2.pc
