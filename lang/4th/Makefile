@@ -5,11 +5,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=4th
-PKG_VERSION:=3.62.0
+PKG_VERSION:=3.62.4
 PKG_RELEASE:=1
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-nano.tar.gz
-PKG_SOURCE_URL:=http://4th.googlecode.com/files/
-PKG_MD5SUM:=087e3a18a278046cc02abc968515646c
+PKG_SOURCE_URL:=@SF/forth-4th
+PKG_MD5SUM:=951aecb4fb9b5379fdb573ed305b641e
 
 include $(INCLUDE_DIR)/package.mk
 
