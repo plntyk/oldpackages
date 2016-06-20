@@ -8,20 +8,20 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dash
-PKG_VERSION:=0.5.8
+PKG_VERSION:=0.5.9
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://gondor.apana.org.au/~herbert/dash/files
-PKG_MD5SUM:=5c152209680dab3c319e8923f6c51378
+PKG_MD5SUM:=57341c24c3ebd3d5fc3a863001c94be6
 
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/dash
-  SECTION:=base
-  CATEGORY:=Base system
+  SECTION:=utils
+  CATEGORY:=Utilities
   TITLE:=Debian Almquist shell
   URL:=http://gondor.apana.org.au/~herbert/dash/
 endef
