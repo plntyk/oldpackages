@@ -6,12 +6,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gawk
-PKG_VERSION:=4.1.1
+PKG_VERSION:=4.1.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=gawk-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://ftp.gnu.org/gnu/gawk/
-PKG_MD5SUM:=45f5b09aa87b4744c4c53bf274e96ed0
+PKG_MD5SUM:=55d37f4069502677f25d1340df8eec97
 
 
 include $(INCLUDE_DIR)/package.mk
@@ -21,17 +21,16 @@ define Package/gawk
 	CATEGORY:=Utilities
 	TITLE:=GAWK
 	URL:=http://www.gnu.org/software/gawk/
+	DEPENDS:=+libncursesw +libreadline
 endef
 
 define Package/gawk/description
 	GNU version of AWK.
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default, \
-		--prefix=/usr --with-linux-headers="$(LINUX_DIR)" \
-	)
-endef
+CONFIGURE_ARGS+= \
+	--prefix=/usr \
+	--with-linux-headers="$(LINUX_DIR)"
 
 define Package/gawk/install
 	$(INSTALL_DIR) $(1)/usr/bin/
