@@ -8,13 +8,13 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=input-utils
-PKG_VERSION:=1.1
+PKG_VERSION:=1.2
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/input-$(PKG_VERSION)/
 PKG_SOURCE:=input-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.kraxel.org/cgit/input/snapshot
-PKG_MD5SUM:=592b1b45d9d891725f7793999aa52f31
+PKG_MD5SUM:=8fad179b69f76221ab43c2d124dac204
 
 include $(INCLUDE_DIR)/package.mk
 
