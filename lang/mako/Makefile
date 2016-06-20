@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mako
-PKG_VERSION:=0.2.5
+PKG_VERSION:=1.0.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=Mako-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://www.makotemplates.org/downloads/
-PKG_MD5SUM:=d8ca783630dc5e93970a2075532fa643
+PKG_SOURCE_URL:=https://pypi.python.org/packages/source/M/Mako
+PKG_MD5SUM:=c5fc31a323dd4990683d2f2da02d4e20
 
 PKG_BUILD_DEPENDS:=distribute/host
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(subst .tar.gz,,$(PKG_SOURCE))
