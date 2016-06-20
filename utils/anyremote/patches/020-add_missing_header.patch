@@ -1,0 +1,19 @@
+--- a/src/pr_web.c
++++ b/src/pr_web.c
+@@ -33,6 +33,7 @@
+ #include <netinet/in.h>
+ #include <netdb.h>
+ #include <unistd.h>
++#include <signal.h>
+ #ifdef __FreeBSD__
+ #include <sys/uio.h>
+ #else
+@@ -1232,7 +1233,7 @@ pointer_t serveRequest(pointer_t data)
+ 
+         } else if (strncmp(path,"/?name=SEP", 10) == 0) {
+         
+-            // URL: GET /?name=SEP0014F2C23169&locale=United_States_English HTTP/1.0
++            // URL: GET /?name=SEP0014F2C23169&locale=United_States_English HTTP/1.0
+             renderForm(tvisits, cc);
+             //wait = BOOL_YES;
+ 

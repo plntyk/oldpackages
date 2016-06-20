@@ -1,6 +1,6 @@
 --- a/configure
 +++ b/configure
-@@ -4135,7 +4135,7 @@ $as_echo "#define HAVE_SYS_WAIT_H 1" >>c
+@@ -4329,7 +4329,7 @@ $as_echo "#define HAVE_SYS_WAIT_H 1" >>c
  fi
  
  
