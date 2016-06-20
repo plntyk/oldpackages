@@ -8,14 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gnuplot
-PKG_VERSION:=4.6.0
-PKG_RELEASE:=2
+PKG_VERSION:=5.0.3
+PKG_RELEASE:=1
 
 PKG_INSTALL:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/gnuplot
-PKG_MD5SUM:=8e6e92b4596ea0eb75e16a57fc79efec
+PKG_MD5SUM:=425ec74f34e54298e48b8c85e546d4ad
 
 include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
