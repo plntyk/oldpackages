@@ -9,10 +9,10 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=byobu
-PKG_VERSION:=3.6
+PKG_VERSION:=5.108
 
 PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).orig.tar.gz
-PKG_SOURCE_URL:=http://launchpad.net/byobu/trunk/3.6/+download/
+PKG_SOURCE_URL:=http://launchpad.net/byobu/trunk/5.108/+download/
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_INSTALL:=1
 
