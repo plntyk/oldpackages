@@ -7,13 +7,13 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=libdvbpsi5
-PKG_VERSION:=0.1.6
+PKG_NAME:=libdvbpsi
+PKG_VERSION:=1.3.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://download.videolan.org/pub/libdvbpsi/$(PKG_VERSION)/
-PKG_MD5SUM:=bd2d9861be3311e1e03c91cd9345f542
+PKG_MD5SUM:=2b217039a1299000c39423441f77e76a
 
 PKG_FIXUP:=autoreconf
 
