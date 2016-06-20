@@ -29,11 +29,10 @@ define Package/anyremote/description
  Remote control your machine via bluetooth
 endef
 
-define Build/Configure
-    $(call Build/Configure/Default, \
-    --disable-xtest --disable-glib --disable-iconv \
-    )
-endef
+CONFIGURE_ARGS+= \
+	--disable-xtest \
+	--disable-glib \
+	--disable-iconv
 
 define Package/anyremote/install
 	$(INSTALL_DIR) $(1)/usr/sbin
