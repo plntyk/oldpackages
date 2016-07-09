@@ -8,15 +8,18 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=syslog-ng
-PKG_VERSION:=3.0.5
-PKG_RELEASE:=5
+PKG_VERSION:=3.6.4
+PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=http://www.balabit.com/downloads/files/syslog-ng/open-source-edition/$(PKG_VERSION)/source/
 PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).tar.gz
-PKG_MD5SUM:=28f0d9ff2243b330e8cd6311ef9b2f12
+PKG_MD5SUM:=e9f401615e92e5eb27396c995c1446ba
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_IPV6 \
+
+PKG_FIXUP:=autoreconf
+PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
@@ -39,10 +42,10 @@ define Package/syslog-ng3/conffiles
 /etc/syslog-ng.conf
 endef
 
-define Build/Configure
-	$(SED) 's,-I/usr/include,,' $(PKG_BUILD_DIR)/configure
-	$(Build/Configure/Default)
-endef
+#define Build/Configure
+#	$(SED) 's,-I/usr/include,,' $(PKG_BUILD_DIR)/configure
+#	$(Build/Configure/Default)
+#endef
 
 CONFIGURE_ARGS +=  \
 	$(call autoconf_bool,CONFIG_IPV6,ipv6) \
@@ -62,7 +65,10 @@ CONFIGURE_VARS += \
 
 define Package/syslog-ng3/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/syslog-ng $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/syslog-ng $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/usr/lib
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/libsyslog-ng-3.6* $(1)/usr/lib/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/libsyslog-ng.so $(1)/usr/lib/
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/syslog-ng.init $(1)/etc/init.d/syslog-ng
 	$(INSTALL_DIR) $(1)/etc
