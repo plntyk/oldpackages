@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pmacct
-PKG_VERSION:=0.14.0
+PKG_VERSION:=1.6.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.pmacct.net/
-PKG_MD5SUM:=4588531f0e8033fe82ad7fb22d1bbdb7
+PKG_MD5SUM:=be0a9d3648e5d296521005926e04fc40
 
 PKG_BUILD_DEPENDS:=libpcap
 
@@ -38,27 +38,31 @@ define Package/pmacct-client
   $(call Package/pmacct/Default)
   TITLE:=Command-line client to gather data from the IMT plugin
   VARIANT:=basic
+  DEPENDS+=+zlib
 endef
 
 define Package/nfacctd/Default
   $(call Package/pmacct/Default)
   TITLE:=NetFlow accounting daemon
+  DEPENDS+=+zlib
 endef
 
 define Package/pmacctd/Default
   $(call Package/pmacct/Default)
   TITLE:=IP pcap-based accounting daemon
+  DEPENDS+=+zlib
 endef
 
 define Package/sfacctd/Default
   $(call Package/pmacct/Default)
   TITLE:=sFlow accounting daemon
+  DEPENDS+=+zlib
 endef
 
 define Package/uacctd/Default
   $(call Package/pmacct/Default)
-  DEPENDS+= +iptables-mod-ulog
-  TITLE:=ulog accounting daemon
+  DEPENDS+= +iptables-mod-nflog +libnetfilter-log +zlib
+  TITLE:=ulog/nflog accounting daemon
 endef
 
 
@@ -66,7 +70,7 @@ CONFIGURE_ARGS+= \
 	$(call autoconf_bool,CONFIG_IPV6,ipv6) \
 	--with-pcap-includes="$(STAGING_DIR)/usr/include" \
 	--with-pcap-libs="$(STAGING_DIR)/usr/lib" \
-	--enable-ulog \
+	--enable-nflog \
 
 ifeq ($(BUILD_VARIANT),basic)
 
