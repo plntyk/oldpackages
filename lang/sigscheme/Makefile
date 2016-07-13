@@ -25,7 +25,7 @@ define Package/sigscheme
   CATEGORY:=Languages
   TITLE:=SigScheme
   URL:=http://code.google.com/p/sigscheme/
-  DEPENDS:=@!avr32
+  DEPENDS:=@!avr32 +libgcroots
 endef
 
 define Package/sigscheme/description
@@ -35,9 +35,11 @@ TinyScheme, low memory consumption (2-words per cons cell), multibyte characters
 handling (UTF-8, EUCs and Shift_JIS) and more.
 endef
 
+CONFIGURE_ARGS+= --with-libgcroots=installed
+
 define Package/sigscheme/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib{gcroots,sscm}.so.* $(1)/usr/lib
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libsscm.so.* $(1)/usr/lib
 
 	$(INSTALL_DIR) $(1)/usr/share/sigscheme/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/share/sigscheme/lib/* \
