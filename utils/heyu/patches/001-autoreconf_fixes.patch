@@ -1,0 +1,13 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -163,7 +163,9 @@ AC_MSG_CHECKING([for a custom post-insta
+ 	AM_CONDITIONAL([POSTINST], [test "x$enable_postinst" != "x"])
+ 	AC_MSG_RESULT([$enable_postinst])
+ 
+-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
++AM_INIT_AUTOMAKE([-Wall foreign])
++m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
++LT_INIT
+ 
+ AC_CANONICAL_HOST
+ AS_CASE([$host_os],
