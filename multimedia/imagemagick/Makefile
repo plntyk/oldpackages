@@ -91,6 +91,9 @@ CONFIGURE_ARGS += \
 	--without-bzlib \
 	--without-freetype \
 	--without-fontconfig \
+	--without-jbig \
+	--without-lcms \
+	--without-lcms2 \
 	--without-rsvg \
 	--without-fftw \
 	--without-xml \
