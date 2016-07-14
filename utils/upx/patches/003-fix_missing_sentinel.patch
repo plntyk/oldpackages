@@ -1,0 +1,38 @@
+--- a/src/packer.cpp
++++ b/src/packer.cpp
+@@ -1074,25 +1074,25 @@ void Packer::initLoader(const void *pdat
+ 
+ #define C const char *
+ void Packer::addLoader(C a)
+-{ addLoaderVA(a, NULL); }
++{ addLoaderVA(a, (char *)NULL); }
+ void Packer::addLoader(C a, C b)
+-{ addLoaderVA(a, b, NULL); }
++{ addLoaderVA(a, b, (char *)NULL); }
+ void Packer::addLoader(C a, C b, C c)
+-{ addLoaderVA(a, b, c, NULL); }
++{ addLoaderVA(a, b, c, (char *)NULL); }
+ void Packer::addLoader(C a, C b, C c, C d)
+-{ addLoaderVA(a, b, c, d, NULL); }
++{ addLoaderVA(a, b, c, d, (char *)NULL); }
+ void Packer::addLoader(C a, C b, C c, C d, C e)
+-{ addLoaderVA(a, b, c, d, e, NULL); }
++{ addLoaderVA(a, b, c, d, e, (char *)NULL); }
+ void Packer::addLoader(C a, C b, C c, C d, C e, C f)
+-{ addLoaderVA(a, b, c, d, e, f, NULL); }
++{ addLoaderVA(a, b, c, d, e, f, (char *)NULL); }
+ void Packer::addLoader(C a, C b, C c, C d, C e, C f, C g)
+-{ addLoaderVA(a, b, c, d, e, f, g, NULL); }
++{ addLoaderVA(a, b, c, d, e, f, g, (char *)NULL); }
+ void Packer::addLoader(C a, C b, C c, C d, C e, C f, C g, C h)
+-{ addLoaderVA(a, b, c, d, e, f, g, h, NULL); }
++{ addLoaderVA(a, b, c, d, e, f, g, h, (char *)NULL); }
+ void Packer::addLoader(C a, C b, C c, C d, C e, C f, C g, C h, C i)
+-{ addLoaderVA(a, b, c, d, e, f, g, h, i, NULL); }
++{ addLoaderVA(a, b, c, d, e, f, g, h, i, (char *)NULL); }
+ void Packer::addLoader(C a, C b, C c, C d, C e, C f, C g, C h, C i, C j)
+-{ addLoaderVA(a, b, c, d, e, f, g, h, i, j, NULL); }
++{ addLoaderVA(a, b, c, d, e, f, g, h, i, j, (char *)NULL); }
+ #undef C
+ 
+ void __acc_cdecl_va Packer::addLoaderVA(const char *s, ...)
