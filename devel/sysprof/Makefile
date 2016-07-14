@@ -33,7 +33,7 @@ define Package/sysprof
   CATEGORY:=Development
   TITLE:=Sysprof System Profiler
   URL:=http://sysprof.com
-  DEPENDS:=+glib2
+  DEPENDS:=+glib2 @!TARGET_arm64
 endef
 
 
