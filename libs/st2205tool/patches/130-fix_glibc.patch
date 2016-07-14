@@ -1,0 +1,11 @@
+--- a/splice.c
++++ b/splice.c
+@@ -67,7 +67,7 @@ int main(int argc, char **argv) {
+     }
+     read(f2,buff+offset,size);
+     close(f2);
+-    f1=open(argv[1],O_CREAT|O_TRUNC|O_WRONLY);
++    f1=open(argv[1],O_CREAT|O_TRUNC|O_WRONLY,0600);
+     if (f1<0) {
+ 	perror("Couldn't open file1 for writing.\n");
+ 	exit(1);
